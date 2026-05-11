@@ -257,7 +257,7 @@ export class Overlay extends BaseComponent {
      * @defaultValue false
      * @group Props
      */
-    inline = input<boolean>(false);
+    inline = input<boolean>(this.getDefault('inline', false));
     /**
      * The motion options.
      * @group Props

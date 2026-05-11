@@ -225,31 +225,31 @@ export class Image extends BaseComponent<ImagePassThrough> {
      * Controls the preview functionality.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) preview: boolean = false;
+    @Input({ transform: booleanAttribute }) preview: boolean = this.getDefault('preview', false);
     /**
      * Transition options of the show animation
      * @group Props
      * @deprecated since v21.0.0. Use `motionOptions` instead.
      */
-    @Input() showTransitionOptions: string = '150ms cubic-bezier(0, 0, 0.2, 1)';
+    @Input() showTransitionOptions: string = this.getDefault('showTransitionOptions', '150ms cubic-bezier(0, 0, 0.2, 1)');
     /**
      * Transition options of the hide animation
      * @group Props
      * @deprecated since v21.0.0. Use `motionOptions` instead.
      */
-    @Input() hideTransitionOptions: string = '150ms cubic-bezier(0, 0, 0.2, 1)';
+    @Input() hideTransitionOptions: string = this.getDefault('hideTransitionOptions', '150ms cubic-bezier(0, 0, 0.2, 1)');
     /**
      * Enter animation class name of modal.
      * @defaultValue 'p-modal-enter'
      * @group Props
      */
-    modalEnterAnimation = input<string | null | undefined>('p-modal-enter');
+    modalEnterAnimation = input<string | null | undefined>(this.getDefault('modalEnterAnimation', 'p-modal-enter'));
     /**
      * Leave animation class name of modal.
      * @defaultValue 'p-modal-leave'
      * @group Props
      */
-    modalLeaveAnimation = input<string | null | undefined>('p-modal-leave');
+    modalLeaveAnimation = input<string | null | undefined>(this.getDefault('modalLeaveAnimation', 'p-modal-leave'));
     /**
      * Target element to attach the overlay, valid values are "body" or a local ng-template variable of another element (note: use binding with brackets for template variables, e.g. [appendTo]="mydiv" for a div element having #mydiv as variable name).
      * @defaultValue 'self'

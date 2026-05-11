@@ -177,7 +177,7 @@ export class DataView extends BaseComponent<DataViewPassThrough> implements Bloc
      * Number of page links to display in paginator.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) pageLinks: number = 5;
+    @Input({ transform: numberAttribute }) pageLinks: number = this.getDefault('pageLinks', 5);
     /**
      * Array of integer/object values to display inside rows per page dropdown of paginator
      * @group Props
@@ -187,7 +187,7 @@ export class DataView extends BaseComponent<DataViewPassThrough> implements Bloc
      * Position of the paginator.
      * @group Props
      */
-    @Input() paginatorPosition: 'top' | 'bottom' | 'both' = 'bottom';
+    @Input() paginatorPosition: 'top' | 'bottom' | 'both' = this.getDefault('paginatorPosition', 'bottom');
     /**
      * Custom style class for paginator
      * @group Props
@@ -197,7 +197,7 @@ export class DataView extends BaseComponent<DataViewPassThrough> implements Bloc
      * Whether to show it even there is only one page.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) alwaysShowPaginator: boolean = true;
+    @Input({ transform: booleanAttribute }) alwaysShowPaginator: boolean = this.getDefault('alwaysShowPaginator', true);
     /**
      * Target element to attach the paginator dropdown overlay, valid values are "body" or a local ng-template variable of another element (note: use binding with brackets for template variables, e.g. [appendTo]="mydiv" for a div element having #mydiv as variable name).
      * @group Props
@@ -207,12 +207,12 @@ export class DataView extends BaseComponent<DataViewPassThrough> implements Bloc
      * Paginator dropdown height of the viewport in pixels, a scrollbar is defined if height of list exceeds this value.
      * @group Props
      */
-    @Input() paginatorDropdownScrollHeight: string = '200px';
+    @Input() paginatorDropdownScrollHeight: string = this.getDefault('paginatorDropdownScrollHeight', '200px');
     /**
      * Template of the current page report element. Available placeholders are {currentPage},{totalPages},{rows},{first},{last} and {totalRecords}
      * @group Props
      */
-    @Input() currentPageReportTemplate: string = '{currentPage} of {totalPages}';
+    @Input() currentPageReportTemplate: string = this.getDefault('currentPageReportTemplate', '{currentPage} of {totalPages}');
     /**
      * Whether to display current page report.
      * @group Props
@@ -227,12 +227,12 @@ export class DataView extends BaseComponent<DataViewPassThrough> implements Bloc
      * When enabled, icons are displayed on paginator to go first and last page.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showFirstLastIcon: boolean = true;
+    @Input({ transform: booleanAttribute }) showFirstLastIcon: boolean = this.getDefault('showFirstLastIcon', true);
     /**
      * Whether to show page links.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showPageLinks: boolean = true;
+    @Input({ transform: booleanAttribute }) showPageLinks: boolean = this.getDefault('showPageLinks', true);
     /**
      * Defines if data is loaded and interacted with in lazy manner.
      * @group Props
@@ -242,12 +242,12 @@ export class DataView extends BaseComponent<DataViewPassThrough> implements Bloc
      * Whether to call lazy loading on initialization.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) lazyLoadOnInit: boolean = true;
+    @Input({ transform: booleanAttribute }) lazyLoadOnInit: boolean = this.getDefault('lazyLoadOnInit', true);
     /**
      * Text to display when there is no data. Defaults to global value in i18n translation configuration.
      * @group Props
      */
-    @Input() emptyMessage: string = '';
+    @Input() emptyMessage: string = this.getDefault('emptyMessage', '');
     /**
      * Style class of the component.
      * @deprecated since v20.0.0, use `class` instead.
@@ -258,12 +258,12 @@ export class DataView extends BaseComponent<DataViewPassThrough> implements Bloc
      * Style class of the grid.
      * @group Props
      */
-    @Input() gridStyleClass: string = '';
+    @Input() gridStyleClass: string = this.getDefault('gridStyleClass', '');
     /**
      * Function to optimize the dom operations by delegating to ngForTrackBy, default algorithm checks for object identity.
      * @group Props
      */
-    @Input() trackBy: Function = (index: number, item: any) => item;
+    @Input() trackBy: Function = this.getDefault('trackBy', (index: number, item: any) => item);
     /**
      * Comma separated list of fields in the object graph to search against.
      * @group Props
@@ -288,7 +288,7 @@ export class DataView extends BaseComponent<DataViewPassThrough> implements Bloc
      * Index of the first row to be displayed.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) first: number | undefined = 0;
+    @Input({ transform: numberAttribute }) first: number | undefined = this.getDefault('first', 0);
     /**
      * Property name of data to use in sorting by default.
      * @group Props
@@ -308,7 +308,7 @@ export class DataView extends BaseComponent<DataViewPassThrough> implements Bloc
      * Defines the layout mode.
      * @group Props
      */
-    @Input() layout: 'list' | 'grid' = 'list';
+    @Input() layout: 'list' | 'grid' = this.getDefault('layout', 'list');
     /**
      * Callback to invoke when paging, sorting or filtering happens in lazy mode.
      * @param {DataViewLazyLoadEvent} event - Custom lazy load event.

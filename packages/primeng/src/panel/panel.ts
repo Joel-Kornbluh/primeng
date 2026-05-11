@@ -175,26 +175,30 @@ export class Panel extends BaseComponent<PanelPassThrough> implements BlockableU
      * Position of the icons.
      * @group Props
      */
-    @Input() iconPos: 'start' | 'end' | 'center' = 'end';
+    @Input() iconPos: 'start' | 'end' | 'center' = this.getDefault('iconPos', 'end');
+
 
     /**
      * Specifies if header of panel cannot be displayed.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showHeader: boolean = true;
+    @Input({ transform: booleanAttribute }) showHeader: boolean = this.getDefault('showHeader', true);
+
 
     /**
      * Specifies the toggler element to toggle the panel content.
      * @group Props
      */
-    @Input() toggler: 'icon' | 'header' = 'icon';
+    @Input() toggler: 'icon' | 'header' = this.getDefault('toggler', 'icon');
+
 
     /**
      * Transition options of the animation.
      * @group Props
      * @deprecated since v21.0.0, use `motionOptions` instead.
      */
-    @Input() transitionOptions: string = '400ms cubic-bezier(0.86, 0, 0.07, 1)';
+    @Input() transitionOptions: string = this.getDefault('transitionOptions', '400ms cubic-bezier(0.86, 0, 0.07, 1)');
+
 
     /**
      * Used to pass all properties of the ButtonProps to the Button component.

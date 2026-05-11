@@ -492,7 +492,7 @@ export class Stepper extends BaseComponent<StepperPassThrough> {
      * @type {InputSignalWithTransform<any, boolean >}
      * @group Props
      */
-    linear: InputSignalWithTransform<any, boolean> = input(false, {
+    linear: InputSignalWithTransform<any, boolean> = input(this.getDefault('linear', false), {
         transform: (v: any | boolean) => transformToBoolean(v)
     });
     /**
@@ -502,8 +502,7 @@ export class Stepper extends BaseComponent<StepperPassThrough> {
      * @group Props
      * @deprecated since v21.0.0, use `motionOptions` instead.
      */
-    transitionOptions: InputSignal<string> = input<string>('400ms cubic-bezier(0.86, 0, 0.07, 1)');
-
+    transitionOptions: InputSignal<string> = input<string>(this.getDefault('transitionOptions', '400ms cubic-bezier(0.86, 0, 0.07, 1)'));
     /**
      * The motion options.
      * @group Props

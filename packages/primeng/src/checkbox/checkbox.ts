@@ -148,7 +148,7 @@ export class Checkbox extends BaseEditableHolder<CheckboxPassThrough> {
      * When present, it specifies input state as indeterminate.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) indeterminate: boolean = false;
+    @Input({ transform: booleanAttribute }) indeterminate: boolean = this.getDefault('indeterminate', false);
     /**
      * Form control value.
      * @group Props
@@ -173,12 +173,12 @@ export class Checkbox extends BaseEditableHolder<CheckboxPassThrough> {
      * Value in checked state.
      * @group Props
      */
-    @Input() trueValue: any = true;
+    @Input() trueValue: any = this.getDefault('trueValue', true);
     /**
      * Value in unchecked state.
      * @group Props
      */
-    @Input() falseValue: any = false;
+    @Input() falseValue: any = this.getDefault('falseValue', false);
     /**
      * Specifies the input variant of the component.
      * @defaultValue undefined

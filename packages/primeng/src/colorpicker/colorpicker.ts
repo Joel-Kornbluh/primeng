@@ -112,13 +112,13 @@ export class ColorPicker extends BaseEditableHolder<ColorPickerPassThrough> impl
      * @group Props
      * @deprecated since v21.0.0, use `motionOptions` instead.
      */
-    @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
+    @Input() showTransitionOptions: string = this.getDefault('showTransitionOptions', '.12s cubic-bezier(0, 0, 0.2, 1)');
     /**
      * Transition options of the hide animation.
      * @group Props
      * @deprecated since v21.0.0, use `motionOptions` instead.
      */
-    @Input() hideTransitionOptions: string = '.1s linear';
+    @Input() hideTransitionOptions: string = this.getDefault('hideTransitionOptions', '.1s linear');
     /**
      * Whether to display as an overlay or not.
      * @group Props
@@ -128,7 +128,7 @@ export class ColorPicker extends BaseEditableHolder<ColorPickerPassThrough> impl
      * Format to use in value binding.
      * @group Props
      */
-    @Input() format: 'hex' | 'rgb' | 'hsb' = 'hex';
+    @Input() format: 'hex' | 'rgb' | 'hsb' = this.getDefault('format', 'hex');
     /**
      * Index of the element in tabbing order.
      * @group Props
@@ -143,7 +143,7 @@ export class ColorPicker extends BaseEditableHolder<ColorPickerPassThrough> impl
      * Whether to automatically manage layering.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoZIndex: boolean = true;
+    @Input({ transform: booleanAttribute }) autoZIndex: boolean = this.getDefault('autoZIndex', true);
     /**
      * When present, it specifies that the component should automatically get focus on load.
      * @group Props
@@ -153,7 +153,7 @@ export class ColorPicker extends BaseEditableHolder<ColorPickerPassThrough> impl
      * Default color to display initially when model value is not present.
      * @group Props
      */
-    @Input() defaultColor: string | undefined = 'ff0000';
+    @Input() defaultColor: string | undefined = this.getDefault('defaultColor', 'ff0000');
     /**
      * Target element to attach the overlay, valid values are "body" or a local ng-template variable of another element (note: use binding with brackets for template variables, e.g. [appendTo]="mydiv" for a div element having #mydiv as variable name).
      * @defaultValue 'self'

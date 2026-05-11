@@ -230,19 +230,22 @@ export class ButtonDirective extends BaseComponent {
      * Add a textual class to the button without a background initially.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) text: boolean = false;
+    @Input({ transform: booleanAttribute }) text: boolean = this.getDefault('text', false);
+
 
     /**
      * Add a plain textual class to the button without a background initially.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) plain: boolean = false;
+    @Input({ transform: booleanAttribute }) plain: boolean = this.getDefault('plain', false);
+
 
     /**
      * Add a shadow to indicate elevation.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) raised: boolean = false;
+    @Input({ transform: booleanAttribute }) raised: boolean = this.getDefault('raised', false);
+
 
     /**
      * Defines the size of the button.
@@ -254,19 +257,22 @@ export class ButtonDirective extends BaseComponent {
      * Add a border class without a background initially.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) outlined: boolean = false;
+    @Input({ transform: booleanAttribute }) outlined: boolean = this.getDefault('outlined', false);
+
 
     /**
      * Add a circular border radius to the button.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) rounded: boolean = false;
+    @Input({ transform: booleanAttribute }) rounded: boolean = this.getDefault('rounded', false);
+
 
     /**
      * Position of the icon.
      * @group Props
      */
-    @Input() iconPos: ButtonIconPosition = 'left';
+    @Input() iconPos: ButtonIconPosition = this.getDefault('iconPos', 'left');
+
 
     /**
      * Icon to display in loading state.
@@ -649,7 +655,8 @@ export class Button extends BaseComponent<ButtonPassThrough> {
      * Type of the button.
      * @group Props
      */
-    @Input() type: string = 'button';
+    @Input() type: string = this.getDefault('type', 'button');
+
 
     /**
      * Value of the badge.
@@ -667,37 +674,43 @@ export class Button extends BaseComponent<ButtonPassThrough> {
      * Add a shadow to indicate elevation.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) raised: boolean = false;
+    @Input({ transform: booleanAttribute }) raised: boolean = this.getDefault('raised', false);
+
 
     /**
      * Add a circular border radius to the button.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) rounded: boolean = false;
+    @Input({ transform: booleanAttribute }) rounded: boolean = this.getDefault('rounded', false);
+
 
     /**
      * Add a textual class to the button without a background initially.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) text: boolean = false;
+    @Input({ transform: booleanAttribute }) text: boolean = this.getDefault('text', false);
+
 
     /**
      * Add a plain textual class to the button without a background initially.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) plain: boolean = false;
+    @Input({ transform: booleanAttribute }) plain: boolean = this.getDefault('plain', false);
+
 
     /**
      * Add a border class without a background initially.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) outlined: boolean = false;
+    @Input({ transform: booleanAttribute }) outlined: boolean = this.getDefault('outlined', false);
+
 
     /**
      * Add a link style to the button.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) link: boolean = false;
+    @Input({ transform: booleanAttribute }) link: boolean = this.getDefault('link', false);
+
 
     /**
      * Add a tabindex to the button.
@@ -741,7 +754,8 @@ export class Button extends BaseComponent<ButtonPassThrough> {
      * @group Props
      * @defaultValue secondary
      */
-    @Input() badgeSeverity: 'success' | 'info' | 'warn' | 'danger' | 'help' | 'primary' | 'secondary' | 'contrast' | null | undefined = 'secondary';
+    @Input() badgeSeverity: 'success' | 'info' | 'warn' | 'danger' | 'help' | 'primary' | 'secondary' | 'contrast' | null | undefined = this.getDefault('badgeSeverity', 'secondary');
+
 
     /**
      * Used to define a string that autocomplete attribute the current element.
@@ -759,7 +773,8 @@ export class Button extends BaseComponent<ButtonPassThrough> {
      * Position of the icon.
      * @group Props
      */
-    @Input() iconPos: ButtonIconPosition = 'left';
+    @Input() iconPos: ButtonIconPosition = this.getDefault('iconPos', 'left');
+
 
     /**
      * Name of the icon.

@@ -214,17 +214,17 @@ export class InputNumber extends BaseInput<InputNumberPassThrough> {
      * Displays spinner buttons.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showButtons: boolean = false;
+    @Input({ transform: booleanAttribute }) showButtons: boolean = this.getDefault('showButtons', false);
     /**
      * Whether to format the value.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) format: boolean = true;
+    @Input({ transform: booleanAttribute }) format: boolean = this.getDefault('format', true);
     /**
      * Layout of the buttons, valid values are "stacked" (default), "horizontal" and "vertical".
      * @group Props
      */
-    @Input() buttonLayout: string = 'stacked';
+    @Input() buttonLayout: string = this.getDefault('buttonLayout', 'stacked');
     /**
      * Identifier of the focus input to match a label defined for the component.
      * @group Props
@@ -305,7 +305,7 @@ export class InputNumber extends BaseInput<InputNumberPassThrough> {
      * Determines whether the input field is empty.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) allowEmpty: boolean = true;
+    @Input({ transform: booleanAttribute }) allowEmpty: boolean = this.getDefault('allowEmpty', true);
     /**
      * Locale to be used in formatting.
      * @group Props
@@ -320,7 +320,7 @@ export class InputNumber extends BaseInput<InputNumberPassThrough> {
      * Defines the behavior of the component, valid values are "decimal" and "currency".
      * @group Props
      */
-    @Input() mode: string | any = 'decimal';
+    @Input() mode: string | any = this.getDefault('mode', 'decimal');
     /**
      * The currency to use in currency formatting. Possible values are the ISO 4217 currency codes, such as "USD" for the US dollar, "EUR" for the euro, or "CNY" for the Chinese RMB. There is no default value; if the style is "currency", the currency property must be provided.
      * @group Props
@@ -335,7 +335,7 @@ export class InputNumber extends BaseInput<InputNumberPassThrough> {
      * Whether to use grouping separators, such as thousands separators or thousand/lakh/crore separators.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) useGrouping: boolean = true;
+    @Input({ transform: booleanAttribute }) useGrouping: boolean = this.getDefault('useGrouping', true);
     /**
      * The minimum number of fraction digits to use. Possible values are from 0 to 20; the default for plain number and percent formatting is 0; the default for currency formatting is the number of minor unit digits provided by the ISO 4217 currency code list (2 if the list doesn't provide that information).
      * @group Props
@@ -370,7 +370,7 @@ export class InputNumber extends BaseInput<InputNumberPassThrough> {
      * When enabled, a clear icon is displayed to clear the value.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showClear: boolean = false;
+    @Input({ transform: booleanAttribute }) showClear: boolean = this.getDefault('showClear', false);
     /**
      * When present, it specifies that the component should automatically get focus on load.
      * @group Props

@@ -443,7 +443,7 @@ export class Select extends BaseInput<SelectPassThrough> implements AfterViewIni
      * Height of the viewport in pixels, a scrollbar is defined if height of list exceeds this value.
      * @group Props
      */
-    @Input() scrollHeight: string = '200px';
+    @Input() scrollHeight: string = this.getDefault('scrollHeight', '200px');
     /**
      * When specified, displays an input field to filter the items on keyup.
      * @group Props
@@ -534,12 +534,12 @@ export class Select extends BaseInput<SelectPassThrough> implements AfterViewIni
      * Clears the filter value when hiding the select.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) resetFilterOnHide: boolean = false;
+    @Input({ transform: booleanAttribute }) resetFilterOnHide: boolean = this.getDefault('resetFilterOnHide', false);
     /**
      * Whether the selected option will be shown with a check mark.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) checkmark: boolean = false;
+    @Input({ transform: booleanAttribute }) checkmark: boolean = this.getDefault('checkmark', false);
     /**
      * Icon class of the select icon.
      * @group Props
@@ -569,12 +569,12 @@ export class Select extends BaseInput<SelectPassThrough> implements AfterViewIni
      * Name of the label field of an option group.
      * @group Props
      */
-    @Input() optionGroupLabel: string | undefined = 'label';
+    @Input() optionGroupLabel: string | undefined = this.getDefault('optionGroupLabel', 'label');
     /**
      * Name of the options field of an option group.
      * @group Props
      */
-    @Input() optionGroupChildren: string = 'items';
+    @Input() optionGroupChildren: string = this.getDefault('optionGroupChildren', 'items');
     /**
      * Whether to display options as grouped when nested options are provided.
      * @group Props
@@ -589,17 +589,17 @@ export class Select extends BaseInput<SelectPassThrough> implements AfterViewIni
      * Text to display when filtering does not return any results. Defaults to global value in i18n translation configuration.
      * @group Props
      */
-    @Input() emptyFilterMessage: string = '';
+    @Input() emptyFilterMessage: string = this.getDefault('emptyFilterMessage', '');
     /**
      * Text to display when there is no data. Defaults to global value in i18n translation configuration.
      * @group Props
      */
-    @Input() emptyMessage: string = '';
+    @Input() emptyMessage: string = this.getDefault('emptyMessage', '');
     /**
      * Defines if data is loaded and interacted with in lazy manner.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) lazy: boolean = false;
+    @Input({ transform: booleanAttribute }) lazy: boolean = this.getDefault('lazy', false);
     /**
      * Whether the data should be loaded on demand during scroll.
      * @group Props
@@ -639,7 +639,7 @@ export class Select extends BaseInput<SelectPassThrough> implements AfterViewIni
      * Defines how the items are filtered.
      * @group Props
      */
-    @Input() filterMatchMode: 'contains' | 'startsWith' | 'endsWith' | 'equals' | 'notEquals' | 'in' | 'lt' | 'lte' | 'gt' | 'gte' = 'contains';
+    @Input() filterMatchMode: 'contains' | 'startsWith' | 'endsWith' | 'equals' | 'notEquals' | 'in' | 'lt' | 'lte' | 'gt' | 'gte' = this.getDefault('filterMatchMode', 'contains');
     /**
      * Advisory information to display in a tooltip on hover.
      * @group Props
@@ -649,12 +649,12 @@ export class Select extends BaseInput<SelectPassThrough> implements AfterViewIni
      * Position of the tooltip.
      * @group Props
      */
-    @Input() tooltipPosition: 'top' | 'left' | 'right' | 'bottom' = 'right';
+    @Input() tooltipPosition: 'top' | 'left' | 'right' | 'bottom' = this.getDefault('tooltipPosition', 'right');
     /**
      * Type of CSS position.
      * @group Props
      */
-    @Input() tooltipPositionStyle: string = 'absolute';
+    @Input() tooltipPositionStyle: string = this.getDefault('tooltipPositionStyle', 'absolute');
     /**
      * Style class of the tooltip.
      * @group Props
@@ -664,22 +664,22 @@ export class Select extends BaseInput<SelectPassThrough> implements AfterViewIni
      * Fields used when filtering the options, defaults to optionLabel.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) focusOnHover: boolean = true;
+    @Input({ transform: booleanAttribute }) focusOnHover: boolean = this.getDefault('focusOnHover', true);
     /**
      * Determines if the option will be selected on focus.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) selectOnFocus: boolean = false;
+    @Input({ transform: booleanAttribute }) selectOnFocus: boolean = this.getDefault('selectOnFocus', false);
     /**
      * Whether to focus on the first visible or selected element when the overlay panel is shown.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoOptionFocus: boolean = false;
+    @Input({ transform: booleanAttribute }) autoOptionFocus: boolean = this.getDefault('autoOptionFocus', false);
     /**
      * Applies focus to the filter element when the overlay is shown.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autofocusFilter: boolean = true;
+    @Input({ transform: booleanAttribute }) autofocusFilter: boolean = this.getDefault('autofocusFilter', true);
     /**
      * When specified, filter displays with this value.
      * @group Props

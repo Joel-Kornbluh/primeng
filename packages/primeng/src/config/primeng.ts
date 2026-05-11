@@ -1,12 +1,19 @@
 import { ElementRef, inject, Injectable, PLATFORM_ID, signal, TemplateRef } from '@angular/core';
 import { FilterMatchMode, OverlayOptions, Translation } from 'primeng/api';
 import { Subject } from 'rxjs';
+import type { ComponentDefaults } from './componentdefaults';
 import type { PrimeNGConfigType, ThemeConfigType, ZIndex } from './primeng.types';
 import { ThemeProvider } from './themeprovider';
 
 @Injectable({ providedIn: 'root' })
 export class PrimeNG extends ThemeProvider {
     ripple = signal<boolean>(false);
+
+    /**
+     * Global component input defaults.
+     * @group Props
+     */
+    defaults: ComponentDefaults = {};
 
     public platformId: any = inject(PLATFORM_ID);
     /**
@@ -186,7 +193,7 @@ export class PrimeNG extends ThemeProvider {
     }
 
     setConfig(config: PrimeNGConfigType): void {
-        const { csp, ripple, inputStyle, inputVariant, theme, overlayOptions, translation, filterMatchModeOptions, overlayAppendTo, zIndex, ptOptions, pt, unstyled } = config || {};
+        const { csp, ripple, inputStyle, inputVariant, theme, overlayOptions, translation, filterMatchModeOptions, overlayAppendTo, zIndex, ptOptions, pt, unstyled, defaults } = config || {};
 
         if (csp) this.csp.set(csp);
         if (overlayAppendTo) this.overlayAppendTo.set(overlayAppendTo);
@@ -200,6 +207,7 @@ export class PrimeNG extends ThemeProvider {
         if (pt) this.pt.set(pt);
         if (ptOptions) this.ptOptions.set(ptOptions);
         if (unstyled) this.unstyled.set(unstyled);
+        if (defaults) this.defaults = { ...this.defaults, ...defaults };
 
         if (theme)
             this.setThemeConfig({

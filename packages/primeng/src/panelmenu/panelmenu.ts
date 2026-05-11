@@ -965,13 +965,13 @@ export class PanelMenu extends BaseComponent<PanelMenuPassThrough> {
      * Whether multiple tabs can be activated at the same time or not.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) multiple: boolean = false;
+    @Input({ transform: booleanAttribute }) multiple: boolean = this.getDefault('multiple', false);
     /**
      * Transition options of the animation.
      * @group Props
      * @deprecated since v21.0.0, use `motionOptions` instead.
      */
-    @Input() transitionOptions: string = '400ms cubic-bezier(0.86, 0, 0.07, 1)';
+    @Input() transitionOptions: string = this.getDefault('transitionOptions', '400ms cubic-bezier(0.86, 0, 0.07, 1)');
     /**
      * The motion options.
      * @group Props

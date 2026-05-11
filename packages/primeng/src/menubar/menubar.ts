@@ -479,18 +479,18 @@ export class Menubar extends BaseComponent<MenubarPassThrough> {
      * Whether to automatically manage layering.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoZIndex: boolean = true;
+    @Input({ transform: booleanAttribute }) autoZIndex: boolean = this.getDefault('autoZIndex', true);
     /**
      * Base zIndex value to use in layering.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) baseZIndex: number = 0;
+    @Input({ transform: numberAttribute }) baseZIndex: number = this.getDefault('baseZIndex', 0);
     /**
      * Whether to show a root submenu on mouse over.
      * @defaultValue true
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoDisplay: boolean | undefined = true;
+    @Input({ transform: booleanAttribute }) autoDisplay: boolean | undefined = this.getDefault('autoDisplay', true);
     /**
      * Whether to hide a root submenu when mouse leaves.
      * @group Props
@@ -500,12 +500,12 @@ export class Menubar extends BaseComponent<MenubarPassThrough> {
      * The breakpoint to define the maximum width boundary.
      * @group Props
      */
-    @Input() breakpoint: string = '960px';
+    @Input() breakpoint: string = this.getDefault('breakpoint', '960px');
     /**
      * Delay to hide the root submenu in milliseconds when mouse leaves.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) autoHideDelay: number = 100;
+    @Input({ transform: numberAttribute }) autoHideDelay: number = this.getDefault('autoHideDelay', 100);
     /**
      * Current id state as a string.
      * @group Props

@@ -163,17 +163,17 @@ export class Slider extends BaseEditableHolder<SliderPassThrough> {
      * Mininum boundary value.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) min: number = 0;
+    @Input({ transform: numberAttribute }) min: number = this.getDefault('min', 0);
     /**
      * Maximum boundary value.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) max: number = 100;
+    @Input({ transform: numberAttribute }) max: number = this.getDefault('max', 100);
     /**
      * Orientation of the slider.
      * @group Props
      */
-    @Input() orientation: 'horizontal' | 'vertical' = 'horizontal';
+    @Input() orientation: 'horizontal' | 'vertical' = this.getDefault('orientation', 'horizontal');
     /**
      * Step factor to increment/decrement the value.
      * @group Props

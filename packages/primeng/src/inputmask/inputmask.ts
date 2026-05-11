@@ -763,22 +763,22 @@ export class InputMask extends BaseInput<InputMaskPassThrough> {
      * HTML5 input type.
      * @group Props
      */
-    @Input() type: string = 'text';
+    @Input() type: string = this.getDefault('type', 'text');
     /**
      * Placeholder character in mask, default is underscore.
      * @group Props
      */
-    @Input() slotChar: string = '_';
+    @Input() slotChar: string = this.getDefault('slotChar', '_');
     /**
      * Clears the incomplete value on blur.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoClear: boolean = true;
+    @Input({ transform: booleanAttribute }) autoClear: boolean = this.getDefault('autoClear', true);
     /**
      * When enabled, a clear icon is displayed to clear the value.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showClear: boolean = false;
+    @Input({ transform: booleanAttribute }) showClear: boolean = this.getDefault('showClear', false);
     /**
      * Inline style of the input field.
      * @group Props
@@ -838,7 +838,7 @@ export class InputMask extends BaseInput<InputMaskPassThrough> {
      * Regex pattern for alpha characters
      * @group Props
      */
-    @Input() characterPattern: string = '[A-Za-z]';
+    @Input() characterPattern: string = this.getDefault('characterPattern', '[A-Za-z]');
     /**
      * When present, the input gets a focus automatically on load.
      * @group Props
@@ -853,7 +853,7 @@ export class InputMask extends BaseInput<InputMaskPassThrough> {
      * When present, it specifies that whether to clean buffer value from model.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) keepBuffer: boolean = false;
+    @Input({ transform: booleanAttribute }) keepBuffer: boolean = this.getDefault('keepBuffer', false);
     /**
      * Mask pattern.
      * @group Props

@@ -226,19 +226,22 @@ export class OrderList extends BaseComponent<OrderListPassThrough> {
      * When true metaKey needs to be pressed to select or unselect an item and when set to false selection of each item can be toggled individually. On touch enabled devices, metaKeySelection is turned off automatically.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) metaKeySelection: boolean = false;
+    @Input({ transform: booleanAttribute }) metaKeySelection: boolean = this.getDefault('metaKeySelection', false);
+
 
     /**
      * Whether to enable dragdrop based reordering.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) dragdrop: boolean = false;
+    @Input({ transform: booleanAttribute }) dragdrop: boolean = this.getDefault('dragdrop', false);
+
 
     /**
      * Defines the location of the buttons with respect to the list.
      * @group Props
      */
-    @Input() controlsPosition: 'left' | 'right' = 'left';
+    @Input() controlsPosition: 'left' | 'right' = this.getDefault('controlsPosition', 'left');
+
 
     /**
      * Defines a string that labels the filter input.
@@ -250,13 +253,15 @@ export class OrderList extends BaseComponent<OrderListPassThrough> {
      * Defines how the items are filtered.
      * @group Props
      */
-    @Input() filterMatchMode: 'contains' | 'startsWith' | 'endsWith' | 'equals' | 'notEquals' | 'in' | 'lt' | 'lte' | 'gt' | 'gte' = 'contains';
+    @Input() filterMatchMode: 'contains' | 'startsWith' | 'endsWith' | 'equals' | 'notEquals' | 'in' | 'lt' | 'lte' | 'gt' | 'gte' = this.getDefault('filterMatchMode', 'contains');
+
 
     /**
      * Indicates the width of the screen at which the component should change its behavior.
      * @group Props
      */
-    @Input() breakpoint: string = '960px';
+    @Input() breakpoint: string = this.getDefault('breakpoint', '960px');
+
 
     /**
      * Whether to displays rows with alternating colors.
@@ -274,7 +279,8 @@ export class OrderList extends BaseComponent<OrderListPassThrough> {
      * Function to optimize the dom operations by delegating to ngForTrackBy, default algorithm checks for object identity.
      * @group Props
      */
-    @Input() trackBy: Function = (index: number, item: any) => item;
+    @Input() trackBy: Function = this.getDefault('trackBy', (index: number, item: any) => item);
+
 
     /**
      * Height of the viewport, a scrollbar is defined if height of list exceeds this value.
@@ -286,7 +292,7 @@ export class OrderList extends BaseComponent<OrderListPassThrough> {
      * Whether to focus on the first visible or selected element.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoOptionFocus: boolean = true;
+    @Input({ transform: booleanAttribute }) autoOptionFocus: boolean = this.getDefault('autoOptionFocus', true);
     /**
      * Name of the field that uniquely identifies the record in the data.
      * @group Props
@@ -325,7 +331,8 @@ export class OrderList extends BaseComponent<OrderListPassThrough> {
      * Used to pass all properties of the ButtonProps to the Button component.
      * @group Props
      */
-    @Input() buttonProps: ButtonProps = { severity: 'secondary' };
+    @Input() buttonProps: ButtonProps = this.getDefault('buttonProps', { severity: 'secondary' });
+
 
     /**
      * Used to pass all properties of the ButtonProps to the move up button inside the component.

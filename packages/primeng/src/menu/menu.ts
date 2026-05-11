@@ -308,24 +308,25 @@ export class Menu extends BaseComponent<MenuPassThrough> {
      * Whether to automatically manage layering.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoZIndex: boolean = true;
+    @Input({ transform: booleanAttribute }) autoZIndex: boolean = this.getDefault('autoZIndex', true);
     /**
      * Base zIndex value to use in layering.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) baseZIndex: number = 0;
+    @Input({ transform: numberAttribute }) baseZIndex: number = this.getDefault('baseZIndex', 0);
     /**
      * Transition options of the show animation.
      * @deprecated since v21.0.0, use `motionOptions` instead.
      * @group Props
      */
-    @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
+    @Input() showTransitionOptions: string = this.getDefault('showTransitionOptions', '.12s cubic-bezier(0, 0, 0.2, 1)');
     /**
      * Transition options of the hide animation.
      * @deprecated since v21.0.0, use `motionOptions` instead.
      * @group Props
      */
-    @Input() hideTransitionOptions: string = '.1s linear';
+    @Input() hideTransitionOptions: string = this.getDefault('hideTransitionOptions', '.1s linear');
+
 
     /**
      * Defines a string value that labels an interactive element.

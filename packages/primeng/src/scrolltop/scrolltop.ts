@@ -81,12 +81,12 @@ export class ScrollTop extends BaseComponent<ScrollTopPassThrough> {
      * Target of the ScrollTop.
      * @group Props
      */
-    @Input() target: 'window' | 'parent' | undefined = 'window';
+    @Input() target: 'window' | 'parent' | undefined = this.getDefault('target', 'window');
     /**
      * Defines the threshold value of the vertical scroll position of the target to toggle the visibility.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) threshold: number = 400;
+    @Input({ transform: numberAttribute }) threshold: number = this.getDefault('threshold', 400);
     /**
      * Name of the icon or JSX.Element for icon.
      * @group Props
@@ -98,19 +98,19 @@ export class ScrollTop extends BaseComponent<ScrollTopPassThrough> {
      * Defines the scrolling behavior, "smooth" adds an animation and "auto" scrolls with a jump.
      * @group Props
      */
-    @Input() behavior: 'auto' | 'smooth' | undefined = 'smooth';
+    @Input() behavior: 'auto' | 'smooth' | undefined = this.getDefault('behavior', 'smooth');
     /**
      * A string value used to determine the display transition options.
      * @group Props
      * @deprecated since v21.0.0. Use `motionOptions` instead.
      */
-    @Input() showTransitionOptions: string = '.15s';
+    @Input() showTransitionOptions: string = this.getDefault('showTransitionOptions', '.15s');
     /**
      * A string value used to determine the hiding transition options.
      * @group Props
      * @deprecated since v21.0.0. Use `motionOptions` instead.
      */
-    @Input() hideTransitionOptions: string = '.15s';
+    @Input() hideTransitionOptions: string = this.getDefault('hideTransitionOptions', '.15s');
     /**
      * The motion options.
      * @group Props
@@ -132,7 +132,7 @@ export class ScrollTop extends BaseComponent<ScrollTopPassThrough> {
      * Used to pass all properties of the ButtonProps to the Button component.
      * @group Props
      */
-    @Input() buttonProps: ButtonProps = { rounded: true };
+    @Input() buttonProps: ButtonProps = this.getDefault('buttonProps', { rounded: true });
     /**
      * Custom icon template.
      * @param {ScrollTopIconTemplateContext} context - icon context.

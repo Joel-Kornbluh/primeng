@@ -70,12 +70,12 @@ export class Timeline extends BaseComponent<TimelinePassThrough> implements Bloc
      * Position of the timeline bar relative to the content. Valid values are "left", "right" for vertical layout and "top", "bottom" for horizontal layout.
      * @group Props
      */
-    @Input() align: string = 'left';
+    @Input() align: string = this.getDefault('align', 'left');
     /**
      * Orientation of the timeline.
      * @group Props
      */
-    @Input() layout: 'vertical' | 'horizontal' = 'vertical';
+    @Input() layout: 'vertical' | 'horizontal' = this.getDefault('layout', 'vertical');
     /**
      * Custom content template.
      * @param {TimelineItemTemplateContext} context - item context.

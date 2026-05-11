@@ -1,3 +1,4 @@
+export * from './componentdefaults';
 export * from './primeng';
 export * from './primeng.types';
 export * from './provideprimeng';

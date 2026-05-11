@@ -98,52 +98,52 @@ export class Knob extends BaseEditableHolder<KnobPassThrough> {
      * Background of the value.
      * @group Props
      */
-    @Input() valueColor: string = $dt('knob.value.background').variable;
+    @Input() valueColor: string = this.getDefault('valueColor', $dt('knob.value.background').variable);
     /**
      * Background color of the range.
      * @group Props
      */
-    @Input() rangeColor: string = $dt('knob.range.background').variable;
+    @Input() rangeColor: string = this.getDefault('rangeColor', $dt('knob.range.background').variable);
     /**
      * Color of the value text.
      * @group Props
      */
-    @Input() textColor: string = $dt('knob.text.color').variable;
+    @Input() textColor: string = this.getDefault('textColor', $dt('knob.text.color').variable);
     /**
      * Template string of the value.
      * @group Props
      */
-    @Input() valueTemplate: string = '{value}';
+    @Input() valueTemplate: string = this.getDefault('valueTemplate', '{value}');
     /**
      * Size of the component in pixels.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) size: number = 100;
+    @Input({ transform: numberAttribute }) size: number = this.getDefault('size', 100);
     /**
      * Mininum boundary value.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) min: number = 0;
+    @Input({ transform: numberAttribute }) min: number = this.getDefault('min', 0);
     /**
      * Maximum boundary value.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) max: number = 100;
+    @Input({ transform: numberAttribute }) max: number = this.getDefault('max', 100);
     /**
      * Step factor to increment/decrement the value.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) step: number = 1;
+    @Input({ transform: numberAttribute }) step: number = this.getDefault('step', 1);
     /**
      * Width of the knob stroke.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) strokeWidth: number = 14;
+    @Input({ transform: numberAttribute }) strokeWidth: number = this.getDefault('strokeWidth', 14);
     /**
      * Whether the show the value inside the knob.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showValue: boolean = true;
+    @Input({ transform: booleanAttribute }) showValue: boolean = this.getDefault('showValue', true);
     /**
      * When present, it specifies that the component value cannot be edited.
      * @group Props

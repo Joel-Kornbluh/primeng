@@ -57,7 +57,7 @@ export class UIChart extends BaseComponent<ChartPassThrough> {
      * Array of per-chart plugins to customize the chart behaviour.
      * @group Props
      */
-    @Input() plugins: any[] = [];
+    @Input() plugins: any[] = this.getDefault('plugins', []);
     /**
      * Width of the chart.
      * @group Props
@@ -72,7 +72,7 @@ export class UIChart extends BaseComponent<ChartPassThrough> {
      * Whether the chart is redrawn on screen size change.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) responsive: boolean = true;
+    @Input({ transform: booleanAttribute }) responsive: boolean = this.getDefault('responsive', true);
     /**
      * Used to define a string that autocomplete attribute the current element.
      * @group Props

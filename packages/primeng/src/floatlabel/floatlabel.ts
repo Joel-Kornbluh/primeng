@@ -42,7 +42,7 @@ export class FloatLabel extends BaseComponent<FloatLabelPassThrough> implements 
      * Defines the positioning of the label relative to the input.
      * @group Props
      */
-    @Input() variant: 'in' | 'over' | 'on' = 'over';
+    @Input() variant: 'in' | 'over' | 'on' = this.getDefault('variant', 'over');
 }
 
 @NgModule({

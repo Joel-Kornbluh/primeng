@@ -49,17 +49,17 @@ export class ProgressSpinner extends BaseComponent<ProgressSpinnerPassThrough> {
      * Width of the circle stroke.
      * @group Props
      */
-    @Input() strokeWidth: string = '2';
+    @Input() strokeWidth: string = this.getDefault('strokeWidth', '2');
     /**
      * Color for the background of the circle.
      * @group Props
      */
-    @Input() fill: string = 'none';
+    @Input() fill: string = this.getDefault('fill', 'none');
     /**
      * Duration of the rotate animation.
      * @group Props
      */
-    @Input() animationDuration: string = '2s';
+    @Input() animationDuration: string = this.getDefault('animationDuration', '2s');
     /**
      * Used to define a aria label attribute the current element.
      * @group Props

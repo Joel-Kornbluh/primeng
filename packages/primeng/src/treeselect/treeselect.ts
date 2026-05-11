@@ -250,22 +250,22 @@ export class TreeSelect extends BaseEditableHolder<TreeSelectPassThrough> {
      * Height of the viewport, a scrollbar is defined if height of list exceeds this value.
      * @group Props
      */
-    @Input() scrollHeight: string = '400px';
+    @Input() scrollHeight: string = this.getDefault('scrollHeight', '400px');
     /**
      * Defines how multiple items can be selected, when true metaKey needs to be pressed to select or unselect an item and when set to false selection of each item can be toggled individually. On touch enabled devices, metaKeySelection is turned off automatically.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) metaKeySelection: boolean = false;
+    @Input({ transform: booleanAttribute }) metaKeySelection: boolean = this.getDefault('metaKeySelection', false);
     /**
      * Defines how the selected items are displayed.
      * @group Props
      */
-    @Input() display: 'comma' | 'chip' = 'comma';
+    @Input() display: 'comma' | 'chip' = this.getDefault('display', 'comma');
     /**
      * Defines the selection mode.
      * @group Props
      */
-    @Input() selectionMode: 'single' | 'multiple' | 'checkbox' = 'single';
+    @Input() selectionMode: 'single' | 'multiple' | 'checkbox' = this.getDefault('selectionMode', 'single');
     /**
      * Index of the element in tabbing order.
      * @group Props
@@ -332,22 +332,22 @@ export class TreeSelect extends BaseEditableHolder<TreeSelectPassThrough> {
      * Text to display when there are no options available. Defaults to value from PrimeNG locale configuration.
      * @group Props
      */
-    @Input() emptyMessage: string = '';
+    @Input() emptyMessage: string = this.getDefault('emptyMessage', '');
     /**
      * When specified, displays an input field to filter the items.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) filter: boolean = false;
+    @Input({ transform: booleanAttribute }) filter: boolean = this.getDefault('filter', false);
     /**
      * When filtering is enabled, filterBy decides which field or fields (comma separated) to search against.
      * @group Props
      */
-    @Input() filterBy: string = 'label';
+    @Input() filterBy: string = this.getDefault('filterBy', 'label');
     /**
      * Mode for filtering valid values are "lenient" and "strict". Default is lenient.
      * @group Props
      */
-    @Input() filterMode: string = 'lenient';
+    @Input() filterMode: string = this.getDefault('filterMode', 'lenient');
     /**
      * Placeholder text to show when filter input is empty.
      * @group Props
@@ -362,27 +362,27 @@ export class TreeSelect extends BaseEditableHolder<TreeSelectPassThrough> {
      * Determines whether the filter input should be automatically focused when the component is rendered.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) filterInputAutoFocus: boolean = true;
+    @Input({ transform: booleanAttribute }) filterInputAutoFocus: boolean = this.getDefault('filterInputAutoFocus', true);
     /**
      * Whether checkbox selections propagate to descendant nodes.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) propagateSelectionDown: boolean = true;
+    @Input({ transform: booleanAttribute }) propagateSelectionDown: boolean = this.getDefault('propagateSelectionDown', true);
     /**
      * Whether checkbox selections propagate to ancestor nodes.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) propagateSelectionUp: boolean = true;
+    @Input({ transform: booleanAttribute }) propagateSelectionUp: boolean = this.getDefault('propagateSelectionUp', true);
     /**
      * When enabled, a clear icon is displayed to clear the value.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showClear: boolean = false;
+    @Input({ transform: booleanAttribute }) showClear: boolean = this.getDefault('showClear', false);
     /**
      * Clears the filter value when hiding the dropdown.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) resetFilterOnHide: boolean = true;
+    @Input({ transform: booleanAttribute }) resetFilterOnHide: boolean = this.getDefault('resetFilterOnHide', true);
     /**
      * Whether the data should be loaded on demand during scroll.
      * @group Props
@@ -424,7 +424,7 @@ export class TreeSelect extends BaseEditableHolder<TreeSelectPassThrough> {
      * Loading mode display.
      * @group Props
      */
-    @Input() loadingMode: 'mask' | 'icon' = 'mask';
+    @Input() loadingMode: 'mask' | 'icon' = this.getDefault('loadingMode', 'mask');
     /**
      * Specifies the size of the component.
      * @defaultValue undefined

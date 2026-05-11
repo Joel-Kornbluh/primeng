@@ -121,12 +121,12 @@ export class ToggleSwitch extends BaseEditableHolder<ToggleSwitchPassThrough> {
      * Value in checked state.
      * @group Props
      */
-    @Input() trueValue: any = true;
+    @Input() trueValue: any = this.getDefault('trueValue', true);
     /**
      * Value in unchecked state.
      * @group Props
      */
-    @Input() falseValue: any = false;
+    @Input() falseValue: any = this.getDefault('falseValue', false);
     /**
      * Used to define a string that autocomplete attribute the current element.
      * @group Props
