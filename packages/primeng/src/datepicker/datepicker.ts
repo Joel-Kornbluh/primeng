@@ -1110,7 +1110,7 @@ export class DatePicker extends BaseInput<DatePickerPassThrough> {
 
     _hourFormat: string = this._componentDefaults?.datepicker?.hourFormat ?? '24';
 
-    _showTime!: boolean = this._componentDefaults?.datepicker?.showTime ?? false;
+    _showTime: boolean = this._componentDefaults?.datepicker?.showTime ?? false;
 
     _yearRange!: string;
 
@@ -1263,7 +1263,7 @@ export class DatePicker extends BaseInput<DatePickerPassThrough> {
 
     _numberOfMonths: number = this._componentDefaults?.datepicker?.numberOfMonths ?? 1;
 
-    _firstDayOfWeek!: number = this._componentDefaults?.datepicker?.firstDayOfWeek ?? 0;
+    _firstDayOfWeek: number = this._componentDefaults?.datepicker?.firstDayOfWeek ?? 0;
 
     _view: DatePickerTypeView = this._componentDefaults?.datepicker?.view ?? 'date';
 
