@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, inject, InjectionToken, Input, NgModule, Output, ViewEncapsulation } from '@angular/core';
 import { SharedModule } from 'primeng/api';
 import { BaseComponent, PARENT_INSTANCE } from 'primeng/basecomponent';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { Bind } from 'primeng/bind';
 import { AvatarPassThrough } from 'primeng/types/avatar';
 import { AvatarStyle } from './style/avatarstyle';
@@ -40,6 +41,8 @@ export class Avatar extends BaseComponent<AvatarPassThrough> {
 
     bindDirectiveInstance = inject(Bind, { self: true });
 
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
     onAfterViewChecked(): void {
         this.bindDirectiveInstance.setAttrs(this.ptms(['host', 'root']));
     }
@@ -62,12 +65,12 @@ export class Avatar extends BaseComponent<AvatarPassThrough> {
      * Size of the element.
      * @group Props
      */
-    @Input() size: 'normal' | 'large' | 'xlarge' | undefined = 'normal';
+    @Input() size: 'normal' | 'large' | 'xlarge' | undefined = this._componentDefaults?.avatar?.size ?? 'normal';
     /**
      * Shape of the element.
      * @group Props
      */
-    @Input() shape: 'square' | 'circle' | undefined = 'square';
+    @Input() shape: 'square' | 'circle' | undefined = this._componentDefaults?.avatar?.shape ?? 'square';
     /**
      * Class of the element.
      * @deprecated since v20.0.0, use `class` instead.

@@ -3,6 +3,7 @@ import { booleanAttribute, ChangeDetectionStrategy, Component, ContentChild, Con
 import { blockBodyScroll, unblockBodyScroll } from '@primeuix/utils';
 import { PrimeTemplate, SharedModule } from 'primeng/api';
 import { BaseComponent, PARENT_INSTANCE } from 'primeng/basecomponent';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { Bind } from 'primeng/bind';
 import { BlockUIPassThrough } from 'primeng/types/blockui';
 import { ZIndexUtils } from 'primeng/utils';
@@ -38,6 +39,8 @@ export class BlockUI extends BaseComponent<BlockUIPassThrough> {
 
     bindDirectiveInstance = inject(Bind, { self: true });
 
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
     onAfterViewChecked(): void {
         this.bindDirectiveInstance.setAttrs(this.ptms(['host', 'root']));
     }
@@ -50,12 +53,12 @@ export class BlockUI extends BaseComponent<BlockUIPassThrough> {
      * Whether to automatically manage layering.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoZIndex: boolean = true;
+    @Input({ transform: booleanAttribute }) autoZIndex: boolean = this._componentDefaults?.blockUI?.autoZIndex ?? true;
     /**
      * Base zIndex value to use in layering.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) baseZIndex: number = 0;
+    @Input({ transform: numberAttribute }) baseZIndex: number = this._componentDefaults?.blockUI?.baseZIndex ?? 0;
     /**
      * Class of the element.
      * @deprecated since v20.0.0, use `class` instead.

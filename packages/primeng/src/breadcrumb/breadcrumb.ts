@@ -4,6 +4,7 @@ import { Router, RouterLink, RouterLinkActive, RouterModule } from '@angular/rou
 import { MenuItem, PrimeTemplate, SharedModule } from 'primeng/api';
 import { Badge } from 'primeng/badge';
 import { BaseComponent, PARENT_INSTANCE } from 'primeng/basecomponent';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { Bind } from 'primeng/bind';
 import { ChevronRightIcon, HomeIcon } from 'primeng/icons';
 import { TooltipModule } from 'primeng/tooltip';
@@ -174,6 +175,9 @@ export class Breadcrumb extends BaseComponent<BreadcrumbPassThrough> {
     componentName = 'Breadcrumb';
 
     bindDirectiveInstance = inject(Bind, { self: true });
+
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
     /**
      * An array of menuitems.
      * @group Props
@@ -198,7 +202,7 @@ export class Breadcrumb extends BaseComponent<BreadcrumbPassThrough> {
      * Defines a string that labels the home icon for accessibility.
      * @group Props
      */
-    @Input() homeAriaLabel: string | undefined;
+    @Input() homeAriaLabel: string | undefined = this._componentDefaults?.breadcrumb?.homeAriaLabel;
     /**
      * Fired when an item is selected.
      * @param {BreadcrumbItemClickEvent} event - custom click event.

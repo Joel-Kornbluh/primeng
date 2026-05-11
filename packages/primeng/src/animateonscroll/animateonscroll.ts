@@ -1,7 +1,8 @@
 import { isPlatformBrowser } from '@angular/common';
-import { booleanAttribute, Directive, Input, NgModule, numberAttribute } from '@angular/core';
+import { booleanAttribute, Directive, inject, Input, NgModule, numberAttribute } from '@angular/core';
 import { addClass, removeClass } from '@primeuix/utils';
 import { BaseComponent } from 'primeng/basecomponent';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 interface AnimateOnScrollOptions {
     root?: HTMLElement | null;
@@ -21,16 +22,18 @@ interface AnimateOnScrollOptions {
     }
 })
 export class AnimateOnScroll extends BaseComponent {
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
     /**
      * Selector to define the CSS class for enter animation.
      * @group Props
      */
-    @Input() enterClass: string | undefined;
+    @Input() enterClass: string | undefined = this._componentDefaults?.animateOnScroll?.enterClass;
     /**
      * Selector to define the CSS class for leave animation.
      * @group Props
      */
-    @Input() leaveClass: string | undefined;
+    @Input() leaveClass: string | undefined = this._componentDefaults?.animateOnScroll?.leaveClass;
     /**
      * Specifies the root option of the IntersectionObserver API.
      * @group Props
@@ -40,17 +43,17 @@ export class AnimateOnScroll extends BaseComponent {
      * Specifies the rootMargin option of the IntersectionObserver API.
      * @group Props
      */
-    @Input() rootMargin: string | undefined;
+    @Input() rootMargin: string | undefined = this._componentDefaults?.animateOnScroll?.rootMargin;
     /**
      * Specifies the threshold option of the IntersectionObserver API
      * @group Props
      */
-    @Input({ transform: numberAttribute }) threshold: number | undefined = 0.5;
+    @Input({ transform: numberAttribute }) threshold: number | undefined = this._componentDefaults?.animateOnScroll?.threshold ?? 0.5;
     /**
      * Whether the scroll event listener should be removed after initial run.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) once: boolean = false;
+    @Input({ transform: booleanAttribute }) once: boolean = this._componentDefaults?.animateOnScroll?.once ?? false;
 
     observer: IntersectionObserver | undefined;
 
