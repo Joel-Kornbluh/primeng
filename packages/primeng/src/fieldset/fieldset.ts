@@ -24,6 +24,7 @@ import { uuid } from '@primeuix/utils';
 import { BlockableUI, PrimeTemplate, SharedModule } from 'primeng/api';
 import { BaseComponent, PARENT_INSTANCE } from 'primeng/basecomponent';
 import { Bind, BindModule } from 'primeng/bind';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { MinusIcon, PlusIcon } from 'primeng/icons';
 import { MotionModule } from 'primeng/motion';
 import type { FieldsetAfterToggleEvent, FieldsetBeforeToggleEvent, FieldsetPassThrough } from 'primeng/types/fieldset';
@@ -113,6 +114,8 @@ export class Fieldset extends BaseComponent<FieldsetPassThrough> implements Bloc
 
     bindDirectiveInstance = inject(Bind, { self: true });
 
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
     onAfterViewChecked(): void {
         this.bindDirectiveInstance.setAttrs(this.ptm('host'));
     }
@@ -133,7 +136,7 @@ export class Fieldset extends BaseComponent<FieldsetPassThrough> implements Bloc
      * @group Props
      * @defaultValue false
      */
-    @Input({ transform: booleanAttribute }) toggleable: boolean | undefined;
+    @Input({ transform: booleanAttribute }) toggleable: boolean | undefined = this._componentDefaults?.fieldset?.toggleable;
     /**
      * Inline style of the component.
      * @group Props
@@ -149,7 +152,7 @@ export class Fieldset extends BaseComponent<FieldsetPassThrough> implements Bloc
      * @group Props
      * @deprecated since v21.0.0, use `motionOptions` instead.
      */
-    @Input() transitionOptions: string = '400ms cubic-bezier(0.86, 0, 0.07, 1)';
+    @Input() transitionOptions: string = this._componentDefaults?.fieldset?.transitionOptions ?? '400ms cubic-bezier(0.86, 0, 0.07, 1)';
     /**
      * The motion options.
      * @group Props

@@ -4,6 +4,7 @@ import { resolveFieldData } from '@primeuix/utils';
 import { BlockableUI, FilterService, Footer, Header, SharedModule, TranslationKeys } from 'primeng/api';
 import { BaseComponent, PARENT_INSTANCE } from 'primeng/basecomponent';
 import { Bind } from 'primeng/bind';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { SpinnerIcon } from 'primeng/icons';
 import { PaginatorModule } from 'primeng/paginator';
 import { Nullable } from 'primeng/ts-helpers';
@@ -154,6 +155,8 @@ export class DataView extends BaseComponent<DataViewPassThrough> implements Bloc
 
     $pcDataView: DataView | undefined = inject(DATAVIEW_INSTANCE, { optional: true, skipSelf: true }) ?? undefined;
 
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
     onAfterViewChecked(): void {
         this.bindDirectiveInstance.setAttrs(this.ptms(['host', 'root']));
     }
@@ -162,12 +165,12 @@ export class DataView extends BaseComponent<DataViewPassThrough> implements Bloc
      * When specified as true, enables the pagination.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) paginator: boolean | undefined;
+    @Input({ transform: booleanAttribute }) paginator: boolean | undefined = this._componentDefaults?.dataView?.paginator;
     /**
      * Number of rows to display per page.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) rows: number | undefined;
+    @Input({ transform: numberAttribute }) rows: number | undefined = this._componentDefaults?.dataView?.rows;
     /**
      * Number of total records, defaults to length of value when not defined.
      * @group Props
@@ -177,17 +180,17 @@ export class DataView extends BaseComponent<DataViewPassThrough> implements Bloc
      * Number of page links to display in paginator.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) pageLinks: number = 5;
+    @Input({ transform: numberAttribute }) pageLinks: number = this._componentDefaults?.dataView?.pageLinks ?? 5;
     /**
      * Array of integer/object values to display inside rows per page dropdown of paginator
      * @group Props
      */
-    @Input() rowsPerPageOptions: number[] | any[] | undefined;
+    @Input() rowsPerPageOptions: number[] | any[] | undefined = this._componentDefaults?.dataView?.rowsPerPageOptions;
     /**
      * Position of the paginator.
      * @group Props
      */
-    @Input() paginatorPosition: 'top' | 'bottom' | 'both' = 'bottom';
+    @Input() paginatorPosition: 'top' | 'bottom' | 'both' = this._componentDefaults?.dataView?.paginatorPosition ?? 'bottom';
     /**
      * Custom style class for paginator
      * @group Props
@@ -197,7 +200,7 @@ export class DataView extends BaseComponent<DataViewPassThrough> implements Bloc
      * Whether to show it even there is only one page.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) alwaysShowPaginator: boolean = true;
+    @Input({ transform: booleanAttribute }) alwaysShowPaginator: boolean = this._componentDefaults?.dataView?.alwaysShowPaginator ?? true;
     /**
      * Target element to attach the paginator dropdown overlay, valid values are "body" or a local ng-template variable of another element (note: use binding with brackets for template variables, e.g. [appendTo]="mydiv" for a div element having #mydiv as variable name).
      * @group Props
@@ -207,32 +210,32 @@ export class DataView extends BaseComponent<DataViewPassThrough> implements Bloc
      * Paginator dropdown height of the viewport in pixels, a scrollbar is defined if height of list exceeds this value.
      * @group Props
      */
-    @Input() paginatorDropdownScrollHeight: string = '200px';
+    @Input() paginatorDropdownScrollHeight: string = this._componentDefaults?.dataView?.paginatorDropdownScrollHeight ?? '200px';
     /**
      * Template of the current page report element. Available placeholders are {currentPage},{totalPages},{rows},{first},{last} and {totalRecords}
      * @group Props
      */
-    @Input() currentPageReportTemplate: string = '{currentPage} of {totalPages}';
+    @Input() currentPageReportTemplate: string = this._componentDefaults?.dataView?.currentPageReportTemplate ?? '{currentPage} of {totalPages}';
     /**
      * Whether to display current page report.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showCurrentPageReport: boolean | undefined;
+    @Input({ transform: booleanAttribute }) showCurrentPageReport: boolean | undefined = this._componentDefaults?.dataView?.showCurrentPageReport;
     /**
      * Whether to display a dropdown to navigate to any page.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showJumpToPageDropdown: boolean | undefined;
+    @Input({ transform: booleanAttribute }) showJumpToPageDropdown: boolean | undefined = this._componentDefaults?.dataView?.showJumpToPageDropdown;
     /**
      * When enabled, icons are displayed on paginator to go first and last page.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showFirstLastIcon: boolean = true;
+    @Input({ transform: booleanAttribute }) showFirstLastIcon: boolean = this._componentDefaults?.dataView?.showFirstLastIcon ?? true;
     /**
      * Whether to show page links.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showPageLinks: boolean = true;
+    @Input({ transform: booleanAttribute }) showPageLinks: boolean = this._componentDefaults?.dataView?.showPageLinks ?? true;
     /**
      * Defines if data is loaded and interacted with in lazy manner.
      * @group Props
@@ -242,12 +245,12 @@ export class DataView extends BaseComponent<DataViewPassThrough> implements Bloc
      * Whether to call lazy loading on initialization.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) lazyLoadOnInit: boolean = true;
+    @Input({ transform: booleanAttribute }) lazyLoadOnInit: boolean = this._componentDefaults?.dataView?.lazyLoadOnInit ?? true;
     /**
      * Text to display when there is no data. Defaults to global value in i18n translation configuration.
      * @group Props
      */
-    @Input() emptyMessage: string = '';
+    @Input() emptyMessage: string = this._componentDefaults?.dataView?.emptyMessage ?? '';
     /**
      * Style class of the component.
      * @deprecated since v20.0.0, use `class` instead.
@@ -273,7 +276,7 @@ export class DataView extends BaseComponent<DataViewPassThrough> implements Bloc
      * Locale to use in filtering. The default locale is the host environment's current locale.
      * @group Props
      */
-    @Input() filterLocale: string | undefined;
+    @Input() filterLocale: string | undefined = this._componentDefaults?.dataView?.filterLocale;
     /**
      * Displays a loader to indicate data load is in progress.
      * @group Props
@@ -283,7 +286,7 @@ export class DataView extends BaseComponent<DataViewPassThrough> implements Bloc
      * The icon to show while indicating data load is in progress.
      * @group Props
      */
-    @Input() loadingIcon: string | undefined;
+    @Input() loadingIcon: string | undefined = this._componentDefaults?.dataView?.loadingIcon;
     /**
      * Index of the first row to be displayed.
      * @group Props
@@ -308,7 +311,7 @@ export class DataView extends BaseComponent<DataViewPassThrough> implements Bloc
      * Defines the layout mode.
      * @group Props
      */
-    @Input() layout: 'list' | 'grid' = 'list';
+    @Input() layout: 'list' | 'grid' = this._componentDefaults?.dataView?.layout ?? 'list';
     /**
      * Callback to invoke when paging, sorting or filtering happens in lazy mode.
      * @param {DataViewLazyLoadEvent} event - Custom lazy load event.

@@ -26,6 +26,7 @@ import { PrimeTemplate, SharedModule } from 'primeng/api';
 import { BaseComponent, PARENT_INSTANCE } from 'primeng/basecomponent';
 import { Bind } from 'primeng/bind';
 import { Button, ButtonProps } from 'primeng/button';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { blockBodyScroll, unblockBodyScroll } from 'primeng/dom';
 import { FocusTrapModule } from 'primeng/focustrap';
 import { TimesIcon } from 'primeng/icons';
@@ -115,6 +116,8 @@ export class Drawer extends BaseComponent<DrawerPassThrough> {
 
     bindDirectiveInstance = inject(Bind, { self: true });
 
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
     onAfterViewChecked(): void {
         this.bindDirectiveInstance.setAttrs(this.ptm('host'));
     }
@@ -140,7 +143,7 @@ export class Drawer extends BaseComponent<DrawerPassThrough> {
      * Whether to block scrolling of the document when drawer is active.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) blockScroll: boolean = false;
+    @Input({ transform: booleanAttribute }) blockScroll: boolean = this._componentDefaults?.drawer?.blockScroll ?? false;
     /**
      * Inline style of the component.
      * @group Props
@@ -160,44 +163,44 @@ export class Drawer extends BaseComponent<DrawerPassThrough> {
      * Whether to automatically manage layering.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoZIndex: boolean = true;
+    @Input({ transform: booleanAttribute }) autoZIndex: boolean = this._componentDefaults?.drawer?.autoZIndex ?? true;
     /**
      * Base zIndex value to use in layering.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) baseZIndex: number = 0;
+    @Input({ transform: numberAttribute }) baseZIndex: number = this._componentDefaults?.drawer?.baseZIndex ?? 0;
     /**
      * Whether an overlay mask is displayed behind the drawer.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) modal: boolean = true;
+    @Input({ transform: booleanAttribute }) modal: boolean = this._componentDefaults?.drawer?.modal ?? true;
     /**
      * Used to pass all properties of the ButtonProps to the Button component.
      * @group Props
      */
-    @Input() closeButtonProps: ButtonProps = { severity: 'secondary', text: true, rounded: true };
+    @Input() closeButtonProps: ButtonProps = this._componentDefaults?.drawer?.closeButtonProps ?? { severity: 'secondary', text: true, rounded: true };
     /**
      * Whether to dismiss drawer on click of the mask.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) dismissible: boolean = true;
+    @Input({ transform: booleanAttribute }) dismissible: boolean = this._componentDefaults?.drawer?.dismissible ?? true;
     /**
      * Whether to display the close icon.
      * @group Props
      * @deprecated use 'closable' instead.
      */
-    @Input({ transform: booleanAttribute }) showCloseIcon: boolean = true;
+    @Input({ transform: booleanAttribute }) showCloseIcon: boolean = this._componentDefaults?.drawer?.showCloseIcon ?? true;
     /**
      * Specifies if pressing escape key should hide the drawer.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) closeOnEscape: boolean = true;
+    @Input({ transform: booleanAttribute }) closeOnEscape: boolean = this._componentDefaults?.drawer?.closeOnEscape ?? true;
     /**
      * Transition options of the animation.
      * @group Props
      * @deprecated since v21.0.0. Use `motionOptions` instead.
      */
-    @Input() transitionOptions: string = '150ms cubic-bezier(0, 0, 0.2, 1)';
+    @Input() transitionOptions: string = this._componentDefaults?.drawer?.transitionOptions ?? '150ms cubic-bezier(0, 0, 0.2, 1)';
     /**
      * The visible property is an input that determines the visibility of the component.
      * @defaultValue false
@@ -246,7 +249,7 @@ export class Drawer extends BaseComponent<DrawerPassThrough> {
      * @group Props
      * @defaultValue true
      */
-    @Input({ transform: booleanAttribute }) closable: boolean = true;
+    @Input({ transform: booleanAttribute }) closable: boolean = this._componentDefaults?.drawer?.closable ?? true;
     /**
      * Callback to invoke when dialog is shown.
      * @group Emits

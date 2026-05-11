@@ -6,6 +6,7 @@ import { Header, PrimeTemplate, SharedModule } from 'primeng/api';
 import { PARENT_INSTANCE } from 'primeng/basecomponent';
 import { BaseEditableHolder } from 'primeng/baseeditableholder';
 import { Bind, BindModule } from 'primeng/bind';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { Nullable } from 'primeng/ts-helpers';
 import { EditorBlurEvent, EditorChangeEvent, EditorFocusEvent, EditorInitEvent, EditorPassThrough, EditorSelectionChangeEvent, EditorTextChangeEvent } from 'primeng/types/editor';
 import { EditorStyle } from './style/editorstyle';
@@ -88,6 +89,8 @@ export class Editor extends BaseEditableHolder<EditorPassThrough> {
 
     bindDirectiveInstance = inject(Bind, { self: true });
 
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
     onAfterViewChecked(): void {
         this.bindDirectiveInstance.setAttrs(this.ptms(['host', 'root']));
     }
@@ -112,27 +115,27 @@ export class Editor extends BaseEditableHolder<EditorPassThrough> {
      * Whitelist of formats to display, see [here](https://quilljs.com/docs/formats/) for available options.
      * @group Props
      */
-    @Input() formats: string[] | undefined;
+    @Input() formats: string[] | undefined = this._componentDefaults?.editor?.formats;
     /**
      * Modules configuration of Editor, see [here](https://quilljs.com/docs/modules/) for available options.
      * @group Props
      */
-    @Input() modules: object | undefined;
+    @Input() modules: object | undefined = this._componentDefaults?.editor?.modules;
     /**
      * DOM Element or a CSS selector for a DOM Element, within which the editor’s p elements (i.e. tooltips, etc.) should be confined. Currently, it only considers left and right boundaries.
      * @group Props
      */
-    @Input() bounds: HTMLElement | string | undefined;
+    @Input() bounds: HTMLElement | string | undefined = this._componentDefaults?.editor?.bounds;
     /**
      * DOM Element or a CSS selector for a DOM Element, specifying which container has the scrollbars (i.e. overflow-y: auto), if is has been changed from the default ql-editor with custom CSS. Necessary to fix scroll jumping bugs when Quill is set to auto grow its height, and another ancestor container is responsible from the scrolling..
      * @group Props
      */
-    @Input() scrollingContainer: HTMLElement | string | undefined;
+    @Input() scrollingContainer: HTMLElement | string | undefined = this._componentDefaults?.editor?.scrollingContainer;
     /**
      * Shortcut for debug. Note debug is a static method and will affect other instances of Quill editors on the page. Only warning and error messages are enabled by default.
      * @group Props
      */
-    @Input() debug: string | undefined;
+    @Input() debug: string | undefined = this._componentDefaults?.editor?.debug;
     /**
      * Whether to instantiate the editor to read-only mode.
      * @group Props

@@ -24,6 +24,7 @@ import { MenuItem, PrimeTemplate, SharedModule } from 'primeng/api';
 import { Badge } from 'primeng/badge';
 import { BaseComponent, PARENT_INSTANCE } from 'primeng/basecomponent';
 import { Bind } from 'primeng/bind';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { Ripple } from 'primeng/ripple';
 import { TooltipModule } from 'primeng/tooltip';
 import { Nullable } from 'primeng/ts-helpers';
@@ -142,6 +143,8 @@ const DOCK_INSTANCE = new InjectionToken<Dock>('DOCK_INSTANCE');
 export class Dock extends BaseComponent<DockPassThrough> {
     componentName = 'Dock';
 
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
     /**
      * Current id state as a string.
      * @group Props
@@ -162,7 +165,7 @@ export class Dock extends BaseComponent<DockPassThrough> {
      * Position of element.
      * @group Props
      */
-    @Input() position: 'bottom' | 'top' | 'left' | 'right' = 'bottom';
+    @Input() position: 'bottom' | 'top' | 'left' | 'right' = this._componentDefaults?.dock?.position ?? 'bottom';
     /**
      * Defines a string that labels the input for accessibility.
      * @group Props
@@ -173,7 +176,7 @@ export class Dock extends BaseComponent<DockPassThrough> {
      * @defaultValue 960px
      * @group Props
      */
-    @Input() breakpoint: string | undefined = '960px';
+    @Input() breakpoint: string | undefined = this._componentDefaults?.dock?.breakpoint ?? '960px';
     /**
      * Defines a string that labels the dropdown button for accessibility.
      * @group Props

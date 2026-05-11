@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, inject, InjectionToken, Input, NgMo
 import { SharedModule } from 'primeng/api';
 import { BaseComponent, PARENT_INSTANCE } from 'primeng/basecomponent';
 import { Bind, BindModule } from 'primeng/bind';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { DividerStyle } from './style/dividerstyle';
 import { DividerPassThrough } from 'primeng/types/divider';
 
@@ -40,6 +41,8 @@ export class Divider extends BaseComponent<DividerPassThrough> {
 
     bindDirectiveInstance = inject(Bind, { self: true });
 
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
     onAfterViewChecked(): void {
         this.bindDirectiveInstance.setAttrs(this.ptms(['host', 'root']));
     }
@@ -53,17 +56,17 @@ export class Divider extends BaseComponent<DividerPassThrough> {
      * Specifies the orientation.
      * @group Props
      */
-    @Input() layout: 'horizontal' | 'vertical' | undefined = 'horizontal';
+    @Input() layout: 'horizontal' | 'vertical' | undefined = this._componentDefaults?.divider?.layout ?? 'horizontal';
     /**
      * Border style type.
      * @group Props
      */
-    @Input() type: 'solid' | 'dashed' | 'dotted' | undefined = 'solid';
+    @Input() type: 'solid' | 'dashed' | 'dotted' | undefined = this._componentDefaults?.divider?.type ?? 'solid';
     /**
      * Alignment of the content.
      * @group Props
      */
-    @Input() align: 'left' | 'center' | 'right' | 'top' | 'bottom' | undefined;
+    @Input() align: 'left' | 'center' | 'right' | 'top' | 'bottom' | undefined = this._componentDefaults?.divider?.align;
 
     _componentStyle = inject(DividerStyle);
 

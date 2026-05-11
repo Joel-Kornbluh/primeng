@@ -1,5 +1,6 @@
 import type { ElementRef, TemplateRef } from '@angular/core';
 import type { OverlayOptions, PassThroughOptions, Translation } from 'primeng/api';
+import type { ComponentsDefaults } from './componentdefaults';
 import type { AccordionPassThrough } from 'primeng/types/accordion';
 import type { AutoCompletePassThrough } from 'primeng/types/autocomplete';
 import type { AvatarPassThrough } from 'primeng/types/avatar';
@@ -206,4 +207,5 @@ export type PrimeNGConfigType = {
     pt?: GlobalPassThrough | null | undefined;
     ptOptions?: PassThroughOptions | null | undefined;
     filterMatchModeOptions?: any;
+    defaults?: ComponentsDefaults;
 } & ThemeConfigType;
