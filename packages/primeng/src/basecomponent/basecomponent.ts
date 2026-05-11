@@ -87,6 +87,29 @@ export class BaseComponent<PT = any> implements Lifecycle {
         return this.el?.nativeElement;
     }
 
+    /**
+     * Retrieves the global default value for a component input.
+     * Falls back to the provided hardcoded default if no global default is configured.
+     *
+     * This method is intended to be used in component field initializers to support
+     * the global component defaults configuration system. It reads from the
+     * `defaults` property of the PrimeNG configuration service.
+     *
+     * @param inputName - The name of the input property
+     * @param hardcodedDefault - The original default value to use as fallback
+     * @returns The global default if configured, otherwise the hardcoded default
+     */
+    protected getDefault<T>(inputName: string, hardcodedDefault: T): T {
+        const componentName = this['componentName'];
+        if (!componentName || !this.config?.defaults) return hardcodedDefault;
+        const configKey = componentName.charAt(0).toLowerCase() + componentName.slice(1);
+        const componentDefaults = this.config.defaults[configKey];
+        if (componentDefaults && inputName in componentDefaults) {
+            return componentDefaults[inputName] as T;
+        }
+        return hardcodedDefault;
+    }
+
     directivePT = signal<any>(undefined);
 
     directiveUnstyled = signal<boolean | undefined>(undefined);

@@ -1,5 +1,6 @@
 import type { ElementRef, TemplateRef } from '@angular/core';
 import type { OverlayOptions, PassThroughOptions, Translation } from 'primeng/api';
+import type { ComponentDefaults } from './componentdefaults';
 import type { AccordionPassThrough } from 'primeng/types/accordion';
 import type { AutoCompletePassThrough } from 'primeng/types/autocomplete';
 import type { AvatarPassThrough } from 'primeng/types/avatar';
@@ -206,4 +207,14 @@ export type PrimeNGConfigType = {
     pt?: GlobalPassThrough | null | undefined;
     ptOptions?: PassThroughOptions | null | undefined;
     filterMatchModeOptions?: any;
+    /**
+     * Global component input defaults configuration.
+     * Allows setting default values for component inputs at the application level.
+     * Each key corresponds to a PrimeNG component name in camelCase, and values are
+     * partial objects of the component's input properties.
+     *
+     * Component instances can still override any default by explicitly binding inputs.
+     * @group Props
+     */
+    defaults?: ComponentDefaults;
 } & ThemeConfigType;
