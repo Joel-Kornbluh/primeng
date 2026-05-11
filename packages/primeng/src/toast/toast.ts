@@ -302,17 +302,20 @@ export class Toast extends BaseComponent<ToastPassThrough> {
      * Whether to automatically manage layering.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoZIndex: boolean = true;
+    @Input({ transform: booleanAttribute }) autoZIndex: boolean = this.getDefault('autoZIndex', true);
+
     /**
      * Base zIndex value to use in layering.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) baseZIndex: number = 0;
+    @Input({ transform: numberAttribute }) baseZIndex: number = this.getDefault('baseZIndex', 0);
+
     /**
      * The default time to display messages for in milliseconds.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) life: number = 3000;
+    @Input({ transform: numberAttribute }) life: number = this.getDefault('life', 3000);
+
     /**
      * Inline class of the component.
      * @deprecated since v20.0.0, use `class` instead.
@@ -336,36 +339,42 @@ export class Toast extends BaseComponent<ToastPassThrough> {
      * It does not add the new message if there is already a toast displayed with the same content
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) preventOpenDuplicates: boolean = false;
+    @Input({ transform: booleanAttribute }) preventOpenDuplicates: boolean = this.getDefault('preventOpenDuplicates', false);
+
     /**
      * Displays only once a message with the same content.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) preventDuplicates: boolean = false;
+    @Input({ transform: booleanAttribute }) preventDuplicates: boolean = this.getDefault('preventDuplicates', false);
+
     /**
      * Transform options of the show animation.
      * @group Props
      * @deprecated since v21.0.0. Use `motionOptions` instead.
      */
-    @Input() showTransformOptions: string = 'translateY(100%)';
+    @Input() showTransformOptions: string = this.getDefault('showTransformOptions', 'translateY(100%)');
+
     /**
      * Transform options of the hide animation.
      * @group Props
      * @deprecated since v21.0.0. Use `motionOptions` instead.
      */
-    @Input() hideTransformOptions: string = 'translateY(-100%)';
+    @Input() hideTransformOptions: string = this.getDefault('hideTransformOptions', 'translateY(-100%)');
+
     /**
      * Transition options of the show animation.
      * @group Props
      * @deprecated since v21.0.0. Use `motionOptions` instead.
      */
-    @Input() showTransitionOptions: string = '300ms ease-out';
+    @Input() showTransitionOptions: string = this.getDefault('showTransitionOptions', '300ms ease-out');
+
     /**
      * Transition options of the hide animation.
      * @group Props
      * @deprecated since v21.0.0. Use `motionOptions` instead.
      */
-    @Input() hideTransitionOptions: string = '250ms ease-in';
+    @Input() hideTransitionOptions: string = this.getDefault('hideTransitionOptions', '250ms ease-in');
+
     /**
      * The motion options.
      * @group Props

@@ -84,7 +84,8 @@ export class Inplace extends BaseComponent<InplacePassThrough> {
      * @deprecated since v20.0.0, use `closeCallback` within content template.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) closable: boolean | undefined = false;
+    @Input({ transform: booleanAttribute }) closable: boolean | undefined = this.getDefault('closable', false);
+
     /**
      * When present, it specifies that the element should be disabled.
      * @group Props

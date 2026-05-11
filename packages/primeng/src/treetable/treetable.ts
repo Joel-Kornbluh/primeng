@@ -321,12 +321,14 @@ export class TreeTable extends BaseComponent<TreeTablePassThrough> implements Bl
      * Defines if data is loaded and interacted with in lazy manner.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) lazy: boolean = false;
+    @Input({ transform: booleanAttribute }) lazy: boolean = this.getDefault('lazy', false);
+
     /**
      * Whether to call lazy loading on initialization.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) lazyLoadOnInit: boolean = true;
+    @Input({ transform: booleanAttribute }) lazyLoadOnInit: boolean = this.getDefault('lazyLoadOnInit', true);
+
     /**
      * When specified as true, enables the pagination.
      * @group Props
@@ -341,12 +343,14 @@ export class TreeTable extends BaseComponent<TreeTablePassThrough> implements Bl
      * Index of the first row to be displayed.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) first: number = 0;
+    @Input({ transform: numberAttribute }) first: number = this.getDefault('first', 0);
+
     /**
      * Number of page links to display in paginator.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) pageLinks: number = 5;
+    @Input({ transform: numberAttribute }) pageLinks: number = this.getDefault('pageLinks', 5);
+
     /**
      * Array of integer/object values to display inside rows per page dropdown of paginator
      * @group Props
@@ -356,12 +360,14 @@ export class TreeTable extends BaseComponent<TreeTablePassThrough> implements Bl
      * Whether to show it even there is only one page.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) alwaysShowPaginator: boolean = true;
+    @Input({ transform: booleanAttribute }) alwaysShowPaginator: boolean = this.getDefault('alwaysShowPaginator', true);
+
     /**
      * Position of the paginator.
      * @group Props
      */
-    @Input() paginatorPosition: 'top' | 'bottom' | 'both' = 'bottom';
+    @Input() paginatorPosition: 'top' | 'bottom' | 'both' = this.getDefault('paginatorPosition', 'bottom');
+
     /**
      * Custom style class for paginator
      * @group Props
@@ -376,7 +382,8 @@ export class TreeTable extends BaseComponent<TreeTablePassThrough> implements Bl
      * Template of the current page report element. Available placeholders are {currentPage},{totalPages},{rows},{first},{last} and {totalRecords}
      * @group Props
      */
-    @Input() currentPageReportTemplate: string = '{currentPage} of {totalPages}';
+    @Input() currentPageReportTemplate: string = this.getDefault('currentPageReportTemplate', '{currentPage} of {totalPages}');
+
     /**
      * Whether to display current page report.
      * @group Props
@@ -391,27 +398,32 @@ export class TreeTable extends BaseComponent<TreeTablePassThrough> implements Bl
      * When enabled, icons are displayed on paginator to go first and last page.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showFirstLastIcon: boolean = true;
+    @Input({ transform: booleanAttribute }) showFirstLastIcon: boolean = this.getDefault('showFirstLastIcon', true);
+
     /**
      * Whether to show page links.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showPageLinks: boolean = true;
+    @Input({ transform: booleanAttribute }) showPageLinks: boolean = this.getDefault('showPageLinks', true);
+
     /**
      * Sort order to use when an unsorted column gets sorted by user interaction.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) defaultSortOrder: number = 1;
+    @Input({ transform: numberAttribute }) defaultSortOrder: number = this.getDefault('defaultSortOrder', 1);
+
     /**
      * Defines whether sorting works on single column or on multiple columns.
      * @group Props
      */
-    @Input() sortMode: 'single' | 'multiple' = 'single';
+    @Input() sortMode: 'single' | 'multiple' = this.getDefault('sortMode', 'single');
+
     /**
      * When true, resets paginator to first page after sorting.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) resetPageOnSort: boolean = true;
+    @Input({ transform: booleanAttribute }) resetPageOnSort: boolean = this.getDefault('resetPageOnSort', true);
+
     /**
      * Whether to use the default sorting or a custom one using sortFunction.
      * @group Props
@@ -431,7 +443,8 @@ export class TreeTable extends BaseComponent<TreeTablePassThrough> implements Bl
      * Mode of the contet menu selection.
      * @group Props
      */
-    @Input() contextMenuSelectionMode: string = 'separate';
+    @Input() contextMenuSelectionMode: string = this.getDefault('contextMenuSelectionMode', 'separate');
+
     /**
      * A property to uniquely identify a record in data.
      * @group Props
@@ -441,12 +454,14 @@ export class TreeTable extends BaseComponent<TreeTablePassThrough> implements Bl
      * Defines whether metaKey is should be considered for the selection. On touch enabled devices, metaKeySelection is turned off automatically.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) metaKeySelection: boolean | undefined = false;
+    @Input({ transform: booleanAttribute }) metaKeySelection: boolean | undefined = this.getDefault('metaKeySelection', false);
+
     /**
      * Algorithm to define if a row is selected, valid values are "equals" that compares by reference and "deepEquals" that compares all fields.
      * @group Props
      */
-    @Input() compareSelectionBy: string = 'deepEquals';
+    @Input() compareSelectionBy: string = this.getDefault('compareSelectionBy', 'deepEquals');
+
     /**
      * Adds hover effect to rows without the need for selectionMode.
      * @group Props
@@ -466,7 +481,8 @@ export class TreeTable extends BaseComponent<TreeTablePassThrough> implements Bl
      * Whether to show the loading mask when loading property is true.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showLoader: boolean = true;
+    @Input({ transform: booleanAttribute }) showLoader: boolean = this.getDefault('showLoader', true);
+
     /**
      * When specified, enables horizontal and/or vertical scrolling.
      * @group Props
@@ -496,7 +512,8 @@ export class TreeTable extends BaseComponent<TreeTablePassThrough> implements Bl
      * The delay (in milliseconds) before triggering the virtual scroll. This determines the time gap between the user's scroll action and the actual rendering of the next set of items in the virtual scroll.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) virtualScrollDelay: number = 150;
+    @Input({ transform: numberAttribute }) virtualScrollDelay: number = this.getDefault('virtualScrollDelay', 150);
+
     /**
      * Width of the frozen columns container.
      * @group Props
@@ -516,7 +533,8 @@ export class TreeTable extends BaseComponent<TreeTablePassThrough> implements Bl
      * Defines whether the overall table width should change on column resize, valid values are "fit" and "expand".
      * @group Props
      */
-    @Input() columnResizeMode: string = 'fit';
+    @Input() columnResizeMode: string = this.getDefault('columnResizeMode', 'fit');
+
     /**
      * When enabled, columns can be reordered using drag and drop.
      * @group Props
@@ -531,12 +549,14 @@ export class TreeTable extends BaseComponent<TreeTablePassThrough> implements Bl
      * Function to optimize the dom operations by delegating to ngForTrackBy, default algorithm checks for object identity.
      * @group Props
      */
-    @Input() rowTrackBy: Function = (index: number, item: any) => item;
+    @Input() rowTrackBy: Function = this.getDefault('rowTrackBy', (index: number, item: any) => item);
+
     /**
      * An array of FilterMetadata objects to provide external filters.
      * @group Props
      */
-    @Input() filters: { [s: string]: FilterMetadata | undefined } = {};
+    @Input() filters: { [s: string]: FilterMetadata | undefined } = this.getDefault('filters', {});
+
     /**
      * An array of fields as string to use in global filtering.
      * @group Props
@@ -546,12 +566,14 @@ export class TreeTable extends BaseComponent<TreeTablePassThrough> implements Bl
      * Delay in milliseconds before filtering the data.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) filterDelay: number = 300;
+    @Input({ transform: numberAttribute }) filterDelay: number = this.getDefault('filterDelay', 300);
+
     /**
      * Mode for filtering valid values are "lenient" and "strict". Default is lenient.
      * @group Props
      */
-    @Input() filterMode: string = 'lenient';
+    @Input() filterMode: string = this.getDefault('filterMode', 'lenient');
+
     /**
      * Locale to use in filtering. The default locale is the host environment's current locale.
      * @group Props
@@ -656,7 +678,8 @@ export class TreeTable extends BaseComponent<TreeTablePassThrough> implements Bl
      * @defaultValue false
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showGridlines: boolean = false;
+    @Input({ transform: booleanAttribute }) showGridlines: boolean = this.getDefault('showGridlines', false);
+
     /**
      * Callback to invoke on selected node change.
      * @param {TreeTableNode} object - Node instance.

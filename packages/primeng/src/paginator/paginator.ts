@@ -161,7 +161,8 @@ export class Paginator extends BaseComponent<PaginatorPassThrough> {
      * Number of page links to display.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) pageLinkSize: number = 5;
+    @Input({ transform: numberAttribute }) pageLinkSize: number = this.getDefault('pageLinkSize', 5);
+
     /**
      * Style class of the component.
      * @deprecated since v20.0.0, use `class` instead.
@@ -172,7 +173,8 @@ export class Paginator extends BaseComponent<PaginatorPassThrough> {
      * Whether to show it even there is only one page.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) alwaysShow: boolean = true;
+    @Input({ transform: booleanAttribute }) alwaysShow: boolean = this.getDefault('alwaysShow', true);
+
     /**
      * Target element to attach the dropdown overlay, valid values are "body" or a local ng-template variable of another element (note: use binding with brackets for template variables, e.g. [appendTo]="mydiv" for a div element having #mydiv as variable name).
      * @deprecated since v20.0.0. Use `appendTo` instead.
@@ -197,12 +199,14 @@ export class Paginator extends BaseComponent<PaginatorPassThrough> {
      * Dropdown height of the viewport in pixels, a scrollbar is defined if height of list exceeds this value.
      * @group Props
      */
-    @Input() dropdownScrollHeight: string = '200px';
+    @Input() dropdownScrollHeight: string = this.getDefault('dropdownScrollHeight', '200px');
+
     /**
      * Template of the current page report element. Available placeholders are {currentPage},{totalPages},{rows},{first},{last} and {totalRecords}
      * @group Props
      */
-    @Input() currentPageReportTemplate: string = '{currentPage} of {totalPages}';
+    @Input() currentPageReportTemplate: string = this.getDefault('currentPageReportTemplate', '{currentPage} of {totalPages}');
+
     /**
      * Whether to display current page report.
      * @group Props
@@ -212,17 +216,20 @@ export class Paginator extends BaseComponent<PaginatorPassThrough> {
      * When enabled, icons are displayed on paginator to go first and last page.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showFirstLastIcon: boolean = true;
+    @Input({ transform: booleanAttribute }) showFirstLastIcon: boolean = this.getDefault('showFirstLastIcon', true);
+
     /**
      * Number of total records.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) totalRecords: number = 0;
+    @Input({ transform: numberAttribute }) totalRecords: number = this.getDefault('totalRecords', 0);
+
     /**
      * Data count to display per page.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) rows: number = 0;
+    @Input({ transform: numberAttribute }) rows: number = this.getDefault('rows', 0);
+
     /**
      * Array of integer/object values to display inside rows per page dropdown. A object that have 'showAll' key can be added to it to show all data. Exp; [10,20,30,{showAll:'All'}]
      * @group Props
@@ -249,7 +256,8 @@ export class Paginator extends BaseComponent<PaginatorPassThrough> {
      * Whether to show page links.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showPageLinks: boolean = true;
+    @Input({ transform: booleanAttribute }) showPageLinks: boolean = this.getDefault('showPageLinks', true);
+
     /**
      * Locale to be used in formatting.
      * @group Props

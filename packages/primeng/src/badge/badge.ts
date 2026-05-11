@@ -326,7 +326,8 @@ export class Badge extends BaseComponent<BadgePassThrough> {
      * When specified, disables the component.
      * @group Props
      */
-    badgeDisabled = input<boolean, boolean>(false, { transform: booleanAttribute });
+    badgeDisabled = input<boolean, boolean>(this.getDefault('badgeDisabled', false), { transform: booleanAttribute });
+
 
     _componentStyle = inject(BadgeStyle);
 

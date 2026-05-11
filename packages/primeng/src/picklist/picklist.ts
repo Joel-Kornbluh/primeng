@@ -534,7 +534,8 @@ export class PickList extends BaseComponent {
      * Function to optimize the dom operations by delegating to ngForTrackBy, default algorithm checks for object identity. Use sourceTrackBy or targetTrackBy in case different algorithms are needed per list.
      * @group Props
      */
-    @Input() trackBy: Function = (index: number, item: any) => item;
+    @Input() trackBy: Function = this.getDefault('trackBy', (index: number, item: any) => item);
+
     /**
      * Function to optimize the dom operations by delegating to ngForTrackBy in source list, default algorithm checks for object identity.
      * @group Props
@@ -549,22 +550,26 @@ export class PickList extends BaseComponent {
      * Whether to show filter input for source list when filterBy is enabled.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showSourceFilter: boolean = true;
+    @Input({ transform: booleanAttribute }) showSourceFilter: boolean = this.getDefault('showSourceFilter', true);
+
     /**
      * Whether to show filter input for target list when filterBy is enabled.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showTargetFilter: boolean = true;
+    @Input({ transform: booleanAttribute }) showTargetFilter: boolean = this.getDefault('showTargetFilter', true);
+
     /**
      * Defines how multiple items can be selected, when true metaKey needs to be pressed to select or unselect an item and when set to false selection of each item can be toggled individually. On touch enabled devices, metaKeySelection is turned off automatically.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) metaKeySelection: boolean = false;
+    @Input({ transform: booleanAttribute }) metaKeySelection: boolean = this.getDefault('metaKeySelection', false);
+
     /**
      * Whether to enable dragdrop based reordering.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) dragdrop: boolean = false;
+    @Input({ transform: booleanAttribute }) dragdrop: boolean = this.getDefault('dragdrop', false);
+
     /**
      * Inline style of the component.
      * @group Props
@@ -589,12 +594,14 @@ export class PickList extends BaseComponent {
      * Whether to show buttons of source list.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showSourceControls: boolean = true;
+    @Input({ transform: booleanAttribute }) showSourceControls: boolean = this.getDefault('showSourceControls', true);
+
     /**
      * Whether to show buttons of target list.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showTargetControls: boolean = true;
+    @Input({ transform: booleanAttribute }) showTargetControls: boolean = this.getDefault('showTargetControls', true);
+
     /**
      * Placeholder text on source filter input.
      * @group Props
@@ -617,11 +624,13 @@ export class PickList extends BaseComponent {
      */
     @Input() sourceOptionDisabled: string | ((item: any) => boolean) | undefined;
 
+
     /**
      * Name of the disabled field of a target option or function to determine disabled state.
      * @group Props
      */
     @Input() targetOptionDisabled: string | ((item: any) => boolean) | undefined;
+
 
     /**
      * Defines a string that labels the filter input of source list.
@@ -637,7 +646,8 @@ export class PickList extends BaseComponent {
      * Defines how the items are filtered.
      * @group Props
      */
-    @Input() filterMatchMode: 'contains' | 'startsWith' | 'endsWith' | 'equals' | 'notEquals' | 'in' | 'lt' | 'lte' | 'gt' | 'gte' | string = 'contains';
+    @Input() filterMatchMode: 'contains' | 'startsWith' | 'endsWith' | 'equals' | 'notEquals' | 'in' | 'lt' | 'lte' | 'gt' | 'gte' | string = this.getDefault('filterMatchMode', 'contains');
+
     /**
      * Whether to displays rows with alternating colors.
      * @group Props
@@ -647,22 +657,26 @@ export class PickList extends BaseComponent {
      * Keeps selection on the transfer list.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) keepSelection: boolean = false;
+    @Input({ transform: booleanAttribute }) keepSelection: boolean = this.getDefault('keepSelection', false);
+
     /**
      * Height of the viewport, a scrollbar is defined if height of list exceeds this value.
      * @group Props
      */
-    @Input() scrollHeight: string = '14rem';
+    @Input() scrollHeight: string = this.getDefault('scrollHeight', '14rem');
+
     /**
      * Whether to focus on the first visible or selected element.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoOptionFocus: boolean = true;
+    @Input({ transform: booleanAttribute }) autoOptionFocus: boolean = this.getDefault('autoOptionFocus', true);
+
     /**
      * Used to pass all properties of the ButtonProps to the Button component.
      * @group Props
      */
-    @Input() buttonProps: ButtonProps = { severity: 'secondary' };
+    @Input() buttonProps: ButtonProps = this.getDefault('buttonProps', { severity: 'secondary' });
+
     /**
      * Used to pass all properties of the ButtonProps to the move up button inside the component.
      * @group Props

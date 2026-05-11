@@ -87,7 +87,8 @@ export class ScrollPanel extends BaseComponent<ScrollPanelPassThrough> {
      * Step factor to scroll the content while pressing the arrow keys.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) step: number = 5;
+    @Input({ transform: numberAttribute }) step: number = this.getDefault('step', 5);
+
 
     @ViewChild('content') contentViewChild: ElementRef | undefined;
 

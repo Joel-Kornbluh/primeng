@@ -394,7 +394,8 @@ export class Listbox extends BaseEditableHolder<ListBoxPassThrough> {
      * Whether to focus on the first visible or selected element when the overlay panel is shown.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoOptionFocus: boolean | undefined = true;
+    @Input({ transform: booleanAttribute }) autoOptionFocus: boolean | undefined = this.getDefault('autoOptionFocus', true);
+
     /**
      * Defines a string that labels the input for accessibility.
      * @group Props
@@ -414,7 +415,8 @@ export class Listbox extends BaseEditableHolder<ListBoxPassThrough> {
      * When enabled, the hovered option will be focused.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) focusOnHover: boolean | undefined = true;
+    @Input({ transform: booleanAttribute }) focusOnHover: boolean | undefined = this.getDefault('focusOnHover', true);
+
     /**
      * Text to display when filtering.
      * @group Props
@@ -429,7 +431,8 @@ export class Listbox extends BaseEditableHolder<ListBoxPassThrough> {
      * Defines if data is loaded and interacted with in lazy manner.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) lazy: boolean = false;
+    @Input({ transform: booleanAttribute }) lazy: boolean = this.getDefault('lazy', false);
+
     /**
      * Whether the data should be loaded on demand during scroll.
      * @group Props
@@ -449,7 +452,8 @@ export class Listbox extends BaseEditableHolder<ListBoxPassThrough> {
      * Height of the viewport in pixels, a scrollbar is defined if height of list exceeds this value.
      * @group Props
      */
-    @Input() scrollHeight: string = '14rem';
+    @Input() scrollHeight: string = this.getDefault('scrollHeight', '14rem');
+
     /**
      * Index of the element in tabbing order.
      * @group Props
@@ -485,12 +489,14 @@ export class Listbox extends BaseEditableHolder<ListBoxPassThrough> {
      * When specified, allows selecting items with checkboxes.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) checkbox: boolean = false;
+    @Input({ transform: booleanAttribute }) checkbox: boolean = this.getDefault('checkbox', false);
+
     /**
      * When specified, displays a filter input at header.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) filter: boolean = false;
+    @Input({ transform: booleanAttribute }) filter: boolean = this.getDefault('filter', false);
+
     /**
      * When filtering is enabled, filterBy decides which field or fields (comma separated) to search against.
      * @group Props
@@ -500,7 +506,8 @@ export class Listbox extends BaseEditableHolder<ListBoxPassThrough> {
      * Defines how the items are filtered.
      * @group Props
      */
-    @Input() filterMatchMode: 'contains' | 'startsWith' | 'endsWith' | 'equals' | 'notEquals' | 'in' | 'lt' | 'lte' | 'gt' | 'gte' | string = 'contains';
+    @Input() filterMatchMode: 'contains' | 'startsWith' | 'endsWith' | 'equals' | 'notEquals' | 'in' | 'lt' | 'lte' | 'gt' | 'gte' | string = this.getDefault('filterMatchMode', 'contains');
+
     /**
      * Locale to use in filtering. The default locale is the host environment's current locale.
      * @group Props
@@ -510,7 +517,8 @@ export class Listbox extends BaseEditableHolder<ListBoxPassThrough> {
      * Defines how multiple items can be selected, when true metaKey needs to be pressed to select or unselect an item and when set to false selection of each item can be toggled individually. On touch enabled devices, metaKeySelection is turned off automatically.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) metaKeySelection: boolean = false;
+    @Input({ transform: booleanAttribute }) metaKeySelection: boolean = this.getDefault('metaKeySelection', false);
+
     /**
      * A property to uniquely identify a value in options.
      * @group Props
@@ -520,7 +528,8 @@ export class Listbox extends BaseEditableHolder<ListBoxPassThrough> {
      * Whether header checkbox is shown in multiple mode.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showToggleAll: boolean = true;
+    @Input({ transform: booleanAttribute }) showToggleAll: boolean = this.getDefault('showToggleAll', true);
+
     /**
      * Name of the label field of an option.
      * @group Props
@@ -535,17 +544,20 @@ export class Listbox extends BaseEditableHolder<ListBoxPassThrough> {
      * Name of the options field of an option group.
      * @group Props
      */
-    @Input() optionGroupChildren: string | undefined = 'items';
+    @Input() optionGroupChildren: string | undefined = this.getDefault('optionGroupChildren', 'items');
+
     /**
      * Name of the label field of an option group.
      * @group Props
      */
-    @Input() optionGroupLabel: string | undefined = 'label';
+    @Input() optionGroupLabel: string | undefined = this.getDefault('optionGroupLabel', 'label');
+
     /**
      * Name of the disabled field of an option or function to determine disabled state.
      * @group Props
      */
     @Input() optionDisabled: string | ((item: any) => boolean) | undefined;
+
     /**
      * Defines a string that labels the filter input.
      * @group Props
@@ -606,24 +618,28 @@ export class Listbox extends BaseEditableHolder<ListBoxPassThrough> {
      * @group Props
      * @defaultValue false
      */
-    @Input({ transform: booleanAttribute }) striped: boolean | undefined = false;
+    @Input({ transform: booleanAttribute }) striped: boolean | undefined = this.getDefault('striped', false);
+
     /**
      * Whether the selected option will be add highlight class.
      * @group Props
      * @defaultValue true
      */
-    @Input({ transform: booleanAttribute }) highlightOnSelect: boolean = true;
+    @Input({ transform: booleanAttribute }) highlightOnSelect: boolean = this.getDefault('highlightOnSelect', true);
+
     /**
      * Whether the selected option will be shown with a check mark.
      * @group Props
      * @defaultValue false
      */
-    @Input({ transform: booleanAttribute }) checkmark: boolean = false;
+    @Input({ transform: booleanAttribute }) checkmark: boolean = this.getDefault('checkmark', false);
+
     /**
      * Whether to enable dragdrop based reordering.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) dragdrop: boolean = false;
+    @Input({ transform: booleanAttribute }) dragdrop: boolean = this.getDefault('dragdrop', false);
+
     /**
      * Array to use for CDK drop list data binding. When not provided, uses options array.
      * @group Props

@@ -91,7 +91,8 @@ export class Steps extends BaseComponent {
      * Index of the active item.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) activeIndex: number = 0;
+    @Input({ transform: numberAttribute }) activeIndex: number = this.getDefault('activeIndex', 0);
+
     /**
      * An array of menu items.
      * @group Props
@@ -116,7 +117,8 @@ export class Steps extends BaseComponent {
      * Whether to apply 'router-link-active-exact' class if route exactly matches the item path.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) exact: boolean = true;
+    @Input({ transform: booleanAttribute }) exact: boolean = this.getDefault('exact', true);
+
     /**
      * Callback to invoke when the new step is selected.
      * @param {number} number - current index.

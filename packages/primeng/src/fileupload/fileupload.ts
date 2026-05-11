@@ -357,7 +357,8 @@ export class FileUpload extends BaseComponent<FileUploadPassThrough> implements 
      * HTTP method to send the files to the url such as "post" and "put".
      * @group Props
      */
-    @Input() method: 'post' | 'put' | undefined = 'post';
+    @Input() method: 'post' | 'put' | undefined = this.getDefault('method', 'post');
+
     /**
      * Used to select multiple files at once from file dialog.
      * @group Props
@@ -392,32 +393,38 @@ export class FileUpload extends BaseComponent<FileUploadPassThrough> implements 
      * Summary message of the invalid file size.
      * @group Props
      */
-    @Input() invalidFileSizeMessageSummary: string = '{0}: Invalid file size, ';
+    @Input() invalidFileSizeMessageSummary: string = this.getDefault('invalidFileSizeMessageSummary', '{0}: Invalid file size, ');
+
     /**
      * Detail message of the invalid file size.
      * @group Props
      */
-    @Input() invalidFileSizeMessageDetail: string = 'maximum upload size is {0}.';
+    @Input() invalidFileSizeMessageDetail: string = this.getDefault('invalidFileSizeMessageDetail', 'maximum upload size is {0}.');
+
     /**
      * Summary message of the invalid file type.
      * @group Props
      */
-    @Input() invalidFileTypeMessageSummary: string = '{0}: Invalid file type, ';
+    @Input() invalidFileTypeMessageSummary: string = this.getDefault('invalidFileTypeMessageSummary', '{0}: Invalid file type, ');
+
     /**
      * Detail message of the invalid file type.
      * @group Props
      */
-    @Input() invalidFileTypeMessageDetail: string = 'allowed file types: {0}.';
+    @Input() invalidFileTypeMessageDetail: string = this.getDefault('invalidFileTypeMessageDetail', 'allowed file types: {0}.');
+
     /**
      * Detail message of the invalid file type.
      * @group Props
      */
-    @Input() invalidFileLimitMessageDetail: string = 'limit is {0} at most.';
+    @Input() invalidFileLimitMessageDetail: string = this.getDefault('invalidFileLimitMessageDetail', 'limit is {0} at most.');
+
     /**
      * Summary message of the invalid file type.
      * @group Props
      */
-    @Input() invalidFileLimitMessageSummary: string = 'Maximum number of files exceeded, ';
+    @Input() invalidFileLimitMessageSummary: string = this.getDefault('invalidFileLimitMessageSummary', 'Maximum number of files exceeded, ');
+
     /**
      * Inline style of the element.
      * @group Props
@@ -432,7 +439,8 @@ export class FileUpload extends BaseComponent<FileUploadPassThrough> implements 
      * Width of the image thumbnail in pixels.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) previewWidth: number = 50;
+    @Input({ transform: numberAttribute }) previewWidth: number = this.getDefault('previewWidth', 50);
+
     /**
      * Label of the choose button. Defaults to PrimeNG Locale configuration.
      * @group Props
@@ -467,17 +475,20 @@ export class FileUpload extends BaseComponent<FileUploadPassThrough> implements 
      * Whether to show the upload button.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showUploadButton: boolean = true;
+    @Input({ transform: booleanAttribute }) showUploadButton: boolean = this.getDefault('showUploadButton', true);
+
     /**
      * Whether to show the cancel button.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showCancelButton: boolean = true;
+    @Input({ transform: booleanAttribute }) showCancelButton: boolean = this.getDefault('showCancelButton', true);
+
     /**
      * Defines the UI of the component.
      * @group Props
      */
-    @Input() mode: 'advanced' | 'basic' | undefined = 'advanced';
+    @Input() mode: 'advanced' | 'basic' | undefined = this.getDefault('mode', 'advanced');
+
     /**
      * HttpHeaders class represents the header configuration options for an HTTP request.
      * @group Props
@@ -522,12 +533,14 @@ export class FileUpload extends BaseComponent<FileUploadPassThrough> implements 
      * Used to pass all properties of the ButtonProps to the upload button inside the component.
      * @group Props
      */
-    @Input() uploadButtonProps: ButtonProps = { severity: 'secondary' };
+    @Input() uploadButtonProps: ButtonProps = this.getDefault('uploadButtonProps', { severity: 'secondary' });
+
     /**
      * Used to pass all properties of the ButtonProps to the cancel button inside the component.
      * @group Props
      */
-    @Input() cancelButtonProps: ButtonProps = { severity: 'secondary' };
+    @Input() cancelButtonProps: ButtonProps = this.getDefault('cancelButtonProps', { severity: 'secondary' });
+
     /**
      * Callback to invoke before file upload is initialized.
      * @param {FileBeforeUploadEvent} event - Custom upload event.

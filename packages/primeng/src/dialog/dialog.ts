@@ -190,12 +190,14 @@ export class Dialog extends BaseComponent<DialogPassThrough> implements OnInit, 
      * Enables dragging to change the position using header.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) draggable: boolean = true;
+    @Input({ transform: booleanAttribute }) draggable: boolean = this.getDefault('draggable', true);
+
     /**
      * Enables resizing of the content.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) resizable: boolean = true;
+    @Input({ transform: booleanAttribute }) resizable: boolean = this.getDefault('resizable', true);
+
     /**
      * Style of the content section.
      * @group Props
@@ -210,27 +212,32 @@ export class Dialog extends BaseComponent<DialogPassThrough> implements OnInit, 
      * Defines if background should be blocked when dialog is displayed.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) modal: boolean = false;
+    @Input({ transform: booleanAttribute }) modal: boolean = this.getDefault('modal', false);
+
     /**
      * Specifies if pressing escape key should hide the dialog.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) closeOnEscape: boolean = true;
+    @Input({ transform: booleanAttribute }) closeOnEscape: boolean = this.getDefault('closeOnEscape', true);
+
     /**
      * Specifies if clicking the modal background should hide the dialog.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) dismissableMask: boolean = false;
+    @Input({ transform: booleanAttribute }) dismissableMask: boolean = this.getDefault('dismissableMask', false);
+
     /**
      * When enabled dialog is displayed in RTL direction.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) rtl: boolean = false;
+    @Input({ transform: booleanAttribute }) rtl: boolean = this.getDefault('rtl', false);
+
     /**
      * Adds a close icon to the header to hide the dialog.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) closable: boolean = true;
+    @Input({ transform: booleanAttribute }) closable: boolean = this.getDefault('closable', true);
+
     /**
      * Object literal to define widths per screen size.
      * @group Props
@@ -255,58 +262,69 @@ export class Dialog extends BaseComponent<DialogPassThrough> implements OnInit, 
      * Whether to show the header or not.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showHeader: boolean = true;
+    @Input({ transform: booleanAttribute }) showHeader: boolean = this.getDefault('showHeader', true);
+
     /**
      * Whether background scroll should be blocked when dialog is visible.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) blockScroll: boolean = false;
+    @Input({ transform: booleanAttribute }) blockScroll: boolean = this.getDefault('blockScroll', false);
+
     /**
      * Whether to automatically manage layering.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoZIndex: boolean = true;
+    @Input({ transform: booleanAttribute }) autoZIndex: boolean = this.getDefault('autoZIndex', true);
+
     /**
      * Base zIndex value to use in layering.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) baseZIndex: number = 0;
+    @Input({ transform: numberAttribute }) baseZIndex: number = this.getDefault('baseZIndex', 0);
+
     /**
      * Minimum value for the left coordinate of dialog in dragging.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) minX: number = 0;
+    @Input({ transform: numberAttribute }) minX: number = this.getDefault('minX', 0);
+
     /**
      * Minimum value for the top coordinate of dialog in dragging.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) minY: number = 0;
+    @Input({ transform: numberAttribute }) minY: number = this.getDefault('minY', 0);
+
     /**
      * When enabled, first focusable element receives focus on show.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) focusOnShow: boolean = true;
+    @Input({ transform: booleanAttribute }) focusOnShow: boolean = this.getDefault('focusOnShow', true);
+
     /**
      * Whether the dialog can be displayed full screen.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) maximizable: boolean = false;
+    @Input({ transform: booleanAttribute }) maximizable: boolean = this.getDefault('maximizable', false);
+
     /**
      * Keeps dialog in the viewport.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) keepInViewport: boolean = true;
+    @Input({ transform: booleanAttribute }) keepInViewport: boolean = this.getDefault('keepInViewport', true);
+
     /**
      * When enabled, can only focus on elements inside the dialog.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) focusTrap: boolean = true;
+    @Input({ transform: booleanAttribute }) focusTrap: boolean = this.getDefault('focusTrap', true);
+
     /**
      * Transition options of the animation.
      * @deprecated since v21.0.0. Use `motionOptions` instead.
      * @group Props
      */
-    @Input() transitionOptions: string = '150ms cubic-bezier(0, 0, 0.2, 1)';
+    @Input() transitionOptions: string = this.getDefault('transitionOptions', '150ms cubic-bezier(0, 0, 0.2, 1)');
+
     /**
      * The motion options for the mask.
      * @group Props
@@ -345,7 +363,8 @@ export class Dialog extends BaseComponent<DialogPassThrough> implements OnInit, 
      * Index of the close button in tabbing order.
      * @group Props
      */
-    @Input() closeTabindex: string = '0';
+    @Input() closeTabindex: string = this.getDefault('closeTabindex', '0');
+
     /**
      * Name of the minimize icon.
      * @group Props
@@ -412,7 +431,8 @@ export class Dialog extends BaseComponent<DialogPassThrough> implements OnInit, 
      * Role attribute of html element.
      * @group Emits
      */
-    @Input() role: string = 'dialog';
+    @Input() role: string = this.getDefault('role', 'dialog');
+
     /**
      * Target element to attach the overlay, valid values are "body" or a local ng-template variable of another element (note: use binding with brackets for template variables, e.g. [appendTo]="mydiv" for a div element having #mydiv as variable name).
      * @defaultValue 'self'

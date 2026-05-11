@@ -134,7 +134,8 @@ export class Chip extends BaseComponent<ChipPassThrough> {
      * Whether to display a remove icon.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) removable: boolean | undefined = false;
+    @Input({ transform: booleanAttribute }) removable: boolean | undefined = this.getDefault('removable', false);
+
     /**
      * Icon of the remove element.
      * @group Props

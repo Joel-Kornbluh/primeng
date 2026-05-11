@@ -89,7 +89,8 @@ export class Splitter extends BaseComponent<SplitterPassThrough> {
      * Defines where a stateful splitter keeps its state, valid values are 'session' for sessionStorage and 'local' for localStorage.
      * @group Props
      */
-    @Input() stateStorage: string | undefined = 'session';
+    @Input() stateStorage: string | undefined = this.getDefault('stateStorage', 'session');
+
     /**
      * Storage identifier of a stateful Splitter.
      * @group Props
@@ -99,22 +100,26 @@ export class Splitter extends BaseComponent<SplitterPassThrough> {
      * Orientation of the panels. Valid values are 'horizontal' and 'vertical'.
      * @group Props
      */
-    @Input() layout: string | undefined = 'horizontal';
+    @Input() layout: string | undefined = this.getDefault('layout', 'horizontal');
+
     /**
      * Size of the divider in pixels.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) gutterSize: number = 4;
+    @Input({ transform: numberAttribute }) gutterSize: number = this.getDefault('gutterSize', 4);
+
     /**
      * Step factor to increment/decrement the size of the panels while pressing the arrow keys.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) step: number = 5;
+    @Input({ transform: numberAttribute }) step: number = this.getDefault('step', 5);
+
     /**
      * Minimum size of the elements relative to 100%.
      * @group Props
      */
-    @Input() minSizes: number[] = [];
+    @Input() minSizes: number[] = this.getDefault('minSizes', []);
+
     /**
      * Size of the elements relative to 100%.
      * @group Props

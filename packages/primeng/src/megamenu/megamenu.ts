@@ -467,7 +467,8 @@ export class MegaMenu extends BaseComponent<MegaMenuPassThrough> {
      * Defines the orientation.
      * @group Props
      */
-    @Input() orientation: 'horizontal' | 'vertical' | string = 'horizontal';
+    @Input() orientation: 'horizontal' | 'vertical' | string = this.getDefault('orientation', 'horizontal');
+
     /**
      * Current id state as a string.
      * @group Props
@@ -487,12 +488,14 @@ export class MegaMenu extends BaseComponent<MegaMenuPassThrough> {
      * The breakpoint to define the maximum width boundary.
      * @group Props
      */
-    @Input() breakpoint: string = '960px';
+    @Input() breakpoint: string = this.getDefault('breakpoint', '960px');
+
     /**
      * Height of the viewport, a scrollbar is defined if height of list exceeds this value.
      * @group Props
      */
-    @Input() scrollHeight: string = '20rem';
+    @Input() scrollHeight: string = this.getDefault('scrollHeight', '20rem');
+
     /**
      * When present, it specifies that the component should be disabled.
      * @group Props
