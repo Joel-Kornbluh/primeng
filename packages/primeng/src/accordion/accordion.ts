@@ -23,6 +23,7 @@ import { MotionOptions } from '@primeuix/motion';
 import { findSingle, focus, getAttribute, uuid } from '@primeuix/utils';
 import { BlockableUI, SharedModule } from 'primeng/api';
 import { BaseComponent, PARENT_INSTANCE } from 'primeng/basecomponent';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { Bind, BindModule } from 'primeng/bind';
 import { ChevronDownIcon, ChevronUpIcon } from 'primeng/icons';
 import { MotionModule } from 'primeng/motion';
@@ -409,6 +410,8 @@ export class Accordion extends BaseComponent<AccordionPassThrough> implements Bl
 
     bindDirectiveInstance = inject(Bind, { self: true });
 
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
     onAfterViewChecked(): void {
         this.bindDirectiveInstance.setAttrs(this.ptm('root'));
     }
@@ -435,12 +438,12 @@ export class Accordion extends BaseComponent<AccordionPassThrough> implements Bl
      * Icon of a collapsed tab.
      * @group Props
      */
-    @Input() expandIcon: string | undefined;
+    @Input() expandIcon: string | undefined = this._componentDefaults?.accordion?.expandIcon;
     /**
      * Icon of an expanded tab.
      * @group Props
      */
-    @Input() collapseIcon: string | undefined;
+    @Input() collapseIcon: string | undefined = this._componentDefaults?.accordion?.collapseIcon;
     /**
      * When enabled, the focused tab is activated.
      * @defaultValue false
@@ -452,7 +455,7 @@ export class Accordion extends BaseComponent<AccordionPassThrough> implements Bl
      * @group Props
      * @deprecated since v21.0.0, use `motionOptions` instead.
      */
-    @Input() transitionOptions: string = '400ms cubic-bezier(0.86, 0, 0.07, 1)';
+    @Input() transitionOptions: string = this._componentDefaults?.accordion?.transitionOptions ?? '400ms cubic-bezier(0.86, 0, 0.07, 1)';
 
     /**
      * The motion options.

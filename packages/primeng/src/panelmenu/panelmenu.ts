@@ -34,6 +34,7 @@ import { MotionModule } from 'primeng/motion';
 import { TooltipModule } from 'primeng/tooltip';
 import { PanelMenuItemTemplateContext, PanelMenuPassThrough } from 'primeng/types/panelmenu';
 import { PanelMenuStyle } from './style/panelmenustyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const PANELMENU_INSTANCE = new InjectionToken<PanelMenu>('PANELMENU_INSTANCE');
 const PANELMENUSUB_INSTANCE = new InjectionToken<PanelMenuSub>('PANELMENUSUB_INSTANCE');
@@ -221,6 +222,7 @@ const PANELMENUSUB_INSTANCE = new InjectionToken<PanelMenuSub>('PANELMENUSUB_INS
     hostDirectives: [Bind]
 })
 export class PanelMenuSub extends BaseComponent {
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
     @Input() panelId: string | undefined;
 
     @Input() focusedItemId: string | undefined;
@@ -237,7 +239,7 @@ export class PanelMenuSub extends BaseComponent {
 
     @Input({ transform: numberAttribute }) tabindex: number | undefined;
 
-    @Input() transitionOptions: string | undefined;
+    @Input() transitionOptions: string | undefined = this._componentDefaults?.panelMenu?.transitionOptions;
 
     @Input({ transform: booleanAttribute }) parentExpanded: boolean | undefined;
 
@@ -965,13 +967,13 @@ export class PanelMenu extends BaseComponent<PanelMenuPassThrough> {
      * Whether multiple tabs can be activated at the same time or not.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) multiple: boolean = false;
+    @Input({ transform: booleanAttribute }) multiple: boolean = this._componentDefaults?.panelMenu?.multiple ?? false;
     /**
      * Transition options of the animation.
      * @group Props
      * @deprecated since v21.0.0, use `motionOptions` instead.
      */
-    @Input() transitionOptions: string = '400ms cubic-bezier(0.86, 0, 0.07, 1)';
+    @Input() transitionOptions: string = this._componentDefaults?.panelMenu?.transitionOptions ?? '400ms cubic-bezier(0.86, 0, 0.07, 1)';
     /**
      * The motion options.
      * @group Props

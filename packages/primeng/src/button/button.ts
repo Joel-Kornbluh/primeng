@@ -27,6 +27,7 @@ import { AutoFocus } from 'primeng/autofocus';
 import { BadgeModule } from 'primeng/badge';
 import { BaseComponent, PARENT_INSTANCE } from 'primeng/basecomponent';
 import { Bind } from 'primeng/bind';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { Fluid } from 'primeng/fluid';
 import { SpinnerIcon } from 'primeng/icons';
 import { Ripple } from 'primeng/ripple';
@@ -641,6 +642,8 @@ export class Button extends BaseComponent<ButtonPassThrough> {
 
     _componentStyle = inject(ButtonStyle);
 
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
     onAfterViewChecked(): void {
         this.bindDirectiveInstance.setAttrs(this.ptm('host'));
     }
@@ -667,37 +670,37 @@ export class Button extends BaseComponent<ButtonPassThrough> {
      * Add a shadow to indicate elevation.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) raised: boolean = false;
+    @Input({ transform: booleanAttribute }) raised: boolean = this._componentDefaults?.button?.raised ?? false;
 
     /**
      * Add a circular border radius to the button.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) rounded: boolean = false;
+    @Input({ transform: booleanAttribute }) rounded: boolean = this._componentDefaults?.button?.rounded ?? false;
 
     /**
      * Add a textual class to the button without a background initially.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) text: boolean = false;
+    @Input({ transform: booleanAttribute }) text: boolean = this._componentDefaults?.button?.text ?? false;
 
     /**
      * Add a plain textual class to the button without a background initially.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) plain: boolean = false;
+    @Input({ transform: booleanAttribute }) plain: boolean = this._componentDefaults?.button?.plain ?? false;
 
     /**
      * Add a border class without a background initially.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) outlined: boolean = false;
+    @Input({ transform: booleanAttribute }) outlined: boolean = this._componentDefaults?.button?.outlined ?? false;
 
     /**
      * Add a link style to the button.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) link: boolean = false;
+    @Input({ transform: booleanAttribute }) link: boolean = this._componentDefaults?.button?.link ?? false;
 
     /**
      * Add a tabindex to the button.
@@ -709,13 +712,13 @@ export class Button extends BaseComponent<ButtonPassThrough> {
      * Defines the size of the button.
      * @group Props
      */
-    @Input() size: 'small' | 'large' | undefined;
+    @Input() size: 'small' | 'large' | undefined = this._componentDefaults?.button?.size;
 
     /**
      * Specifies the variant of the component.
      * @group Props
      */
-    @Input() variant: 'outlined' | 'text' | undefined;
+    @Input() variant: 'outlined' | 'text' | undefined = this._componentDefaults?.button?.variant;
 
     /**
      * Inline style of the element.
@@ -759,7 +762,7 @@ export class Button extends BaseComponent<ButtonPassThrough> {
      * Position of the icon.
      * @group Props
      */
-    @Input() iconPos: ButtonIconPosition = 'left';
+    @Input() iconPos: ButtonIconPosition = this._componentDefaults?.button?.iconPos ?? 'left';
 
     /**
      * Name of the icon.
@@ -783,13 +786,13 @@ export class Button extends BaseComponent<ButtonPassThrough> {
      * Icon to display in loading state.
      * @group Props
      */
-    @Input() loadingIcon: string | undefined;
+    @Input() loadingIcon: string | undefined = this._componentDefaults?.button?.loadingIcon;
 
     /**
      * Defines the style of the button.
      * @group Props
      */
-    @Input() severity: ButtonSeverity;
+    @Input() severity: ButtonSeverity = this._componentDefaults?.button?.severity as ButtonSeverity;
 
     /**
      * Used to pass all properties of the ButtonProps to the Button component.

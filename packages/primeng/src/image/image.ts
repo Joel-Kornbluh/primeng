@@ -34,6 +34,7 @@ import { MotionModule } from 'primeng/motion';
 import { Nullable } from 'primeng/ts-helpers';
 import { ImageImageTemplateContext, ImagePassThrough, ImagePreviewTemplateContext } from 'primeng/types/image';
 import { ZIndexUtils } from 'primeng/utils';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { ImageStyle } from './style/imagestyle';
 
 const IMAGE_INSTANCE = new InjectionToken<Image>('IMAGE_INSTANCE');
@@ -155,6 +156,8 @@ export class Image extends BaseComponent<ImagePassThrough> {
     $pcImage: Image | undefined = inject(IMAGE_INSTANCE, { optional: true, skipSelf: true }) ?? undefined;
 
     bindDirectiveInstance = inject(Bind, { self: true });
+
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
     /**
      * Style class of the image element.
      * @group Props
@@ -220,12 +223,12 @@ export class Image extends BaseComponent<ImagePassThrough> {
      * Attribute of the image element.
      * @group Props
      */
-    @Input() loading: 'lazy' | 'eager' | undefined;
+    @Input() loading: 'lazy' | 'eager' | undefined = this._componentDefaults?.image?.loading;
     /**
      * Controls the preview functionality.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) preview: boolean = false;
+    @Input({ transform: booleanAttribute }) preview: boolean = this._componentDefaults?.image?.preview ?? false;
     /**
      * Transition options of the show animation
      * @group Props

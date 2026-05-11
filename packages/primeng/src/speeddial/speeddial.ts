@@ -31,6 +31,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { SpeedDialButtonTemplateContext, SpeedDialItemTemplateContext, SpeedDialPassThrough } from 'primeng/types/speeddial';
 import { asapScheduler } from 'rxjs';
 import { SpeedDialStyle } from './style/speeddialstyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const SPEED_DIAL_INSTANCE = new InjectionToken<SpeedDial>('SPEED_DIAL_INSTANCE');
 
@@ -145,6 +146,7 @@ export class SpeedDial extends BaseComponent<SpeedDialPassThrough> {
      * List of items id.
      * @group Props
      */
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
     @Input() id: string | undefined;
     /**
      * MenuModel instance to define the action items.
@@ -182,27 +184,27 @@ export class SpeedDial extends BaseComponent<SpeedDialPassThrough> {
      * Specifies the opening direction of actions.
      * @gruop Props
      */
-    @Input() direction: 'up' | 'down' | 'left' | 'right' | 'up-left' | 'up-right' | 'down-left' | 'down-right' | undefined = 'up';
+    @Input() direction: 'up' | 'down' | 'left' | 'right' | 'up-left' | 'up-right' | 'down-left' | 'down-right' | undefined = this._componentDefaults?.speedDial?.direction ?? 'up';
     /**
      * Transition delay step for each action item.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) transitionDelay: number = 30;
+    @Input({ transform: numberAttribute }) transitionDelay: number = this._componentDefaults?.speedDial?.transitionDelay ?? 30;
     /**
      * Specifies the opening type of actions.
      * @group Props
      */
-    @Input() type: 'linear' | 'circle' | 'semi-circle' | 'quarter-circle' | undefined = 'linear';
+    @Input() type: 'linear' | 'circle' | 'semi-circle' | 'quarter-circle' | undefined = this._componentDefaults?.speedDial?.type ?? 'linear';
     /**
      * Radius for *circle types.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) radius: number = 0;
+    @Input({ transform: numberAttribute }) radius: number = this._componentDefaults?.speedDial?.radius ?? 0;
     /**
      * Whether to show a mask element behind the speeddial.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) mask: boolean = false;
+    @Input({ transform: booleanAttribute }) mask: boolean = this._componentDefaults?.speedDial?.mask ?? false;
     /**
      * Whether the component is disabled.
      * @group Props
@@ -212,7 +214,7 @@ export class SpeedDial extends BaseComponent<SpeedDialPassThrough> {
      * Whether the actions close when clicked outside.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) hideOnClickOutside: boolean = true;
+    @Input({ transform: booleanAttribute }) hideOnClickOutside: boolean = this._componentDefaults?.speedDial?.hideOnClickOutside ?? true;
     /**
      * Inline style of the button element.
      * @group Props
@@ -237,17 +239,17 @@ export class SpeedDial extends BaseComponent<SpeedDialPassThrough> {
      * Show icon of the button element.
      * @group Props
      */
-    @Input() showIcon: string | undefined;
+    @Input() showIcon: string | undefined = this._componentDefaults?.speedDial?.showIcon;
     /**
      * Hide icon of the button element.
      * @group Props
      */
-    @Input() hideIcon: string | undefined;
+    @Input() hideIcon: string | undefined = this._componentDefaults?.speedDial?.hideIcon;
     /**
      * Defined to rotate showIcon when hideIcon is not present.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) rotateAnimation: boolean = true;
+    @Input({ transform: booleanAttribute }) rotateAnimation: boolean = this._componentDefaults?.speedDial?.rotateAnimation ?? true;
     /**
      * Defines a string value that labels an interactive element.
      * @group Props

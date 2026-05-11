@@ -35,6 +35,7 @@ import { Ripple } from 'primeng/ripple';
 import { Nullable } from 'primeng/ts-helpers';
 import { PaginatorDropdownItemTemplateContext, PaginatorPassThrough, PaginatorState, PaginatorTemplateContext } from 'primeng/types/paginator';
 import { PaginatorStyle } from './style/paginatorstyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const PAGINATOR_INSTANCE = new InjectionToken<Paginator>('PAGINATOR_INSTANCE');
 
@@ -161,7 +162,8 @@ export class Paginator extends BaseComponent<PaginatorPassThrough> {
      * Number of page links to display.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) pageLinkSize: number = 5;
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+    @Input({ transform: numberAttribute }) pageLinkSize: number = this._componentDefaults?.paginator?.pageLinkSize ?? 5;
     /**
      * Style class of the component.
      * @deprecated since v20.0.0, use `class` instead.
@@ -172,7 +174,7 @@ export class Paginator extends BaseComponent<PaginatorPassThrough> {
      * Whether to show it even there is only one page.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) alwaysShow: boolean = true;
+    @Input({ transform: booleanAttribute }) alwaysShow: boolean = this._componentDefaults?.paginator?.alwaysShow ?? true;
     /**
      * Target element to attach the dropdown overlay, valid values are "body" or a local ng-template variable of another element (note: use binding with brackets for template variables, e.g. [appendTo]="mydiv" for a div element having #mydiv as variable name).
      * @deprecated since v20.0.0. Use `appendTo` instead.
@@ -197,22 +199,22 @@ export class Paginator extends BaseComponent<PaginatorPassThrough> {
      * Dropdown height of the viewport in pixels, a scrollbar is defined if height of list exceeds this value.
      * @group Props
      */
-    @Input() dropdownScrollHeight: string = '200px';
+    @Input() dropdownScrollHeight: string = this._componentDefaults?.paginator?.dropdownScrollHeight ?? '200px';
     /**
      * Template of the current page report element. Available placeholders are {currentPage},{totalPages},{rows},{first},{last} and {totalRecords}
      * @group Props
      */
-    @Input() currentPageReportTemplate: string = '{currentPage} of {totalPages}';
+    @Input() currentPageReportTemplate: string = this._componentDefaults?.paginator?.currentPageReportTemplate ?? '{currentPage} of {totalPages}';
     /**
      * Whether to display current page report.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showCurrentPageReport: boolean | undefined;
+    @Input({ transform: booleanAttribute }) showCurrentPageReport: boolean | undefined = this._componentDefaults?.paginator?.showCurrentPageReport;
     /**
      * When enabled, icons are displayed on paginator to go first and last page.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showFirstLastIcon: boolean = true;
+    @Input({ transform: booleanAttribute }) showFirstLastIcon: boolean = this._componentDefaults?.paginator?.showFirstLastIcon ?? true;
     /**
      * Number of total records.
      * @group Props
@@ -227,17 +229,17 @@ export class Paginator extends BaseComponent<PaginatorPassThrough> {
      * Array of integer/object values to display inside rows per page dropdown. A object that have 'showAll' key can be added to it to show all data. Exp; [10,20,30,{showAll:'All'}]
      * @group Props
      */
-    @Input() rowsPerPageOptions: any[] | undefined;
+    @Input() rowsPerPageOptions: any[] | undefined = this._componentDefaults?.paginator?.rowsPerPageOptions;
     /**
      * Whether to display a dropdown to navigate to any page.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showJumpToPageDropdown: boolean | undefined;
+    @Input({ transform: booleanAttribute }) showJumpToPageDropdown: boolean | undefined = this._componentDefaults?.paginator?.showJumpToPageDropdown;
     /**
      * Whether to display a input to navigate to any page.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showJumpToPageInput: boolean | undefined;
+    @Input({ transform: booleanAttribute }) showJumpToPageInput: boolean | undefined = this._componentDefaults?.paginator?.showJumpToPageInput;
     /**
      * Template instance to inject into the jump to page dropdown item inside in the paginator.
      * @param {PaginatorDropdownItemTemplateContext} context - dropdown item context.
@@ -249,12 +251,12 @@ export class Paginator extends BaseComponent<PaginatorPassThrough> {
      * Whether to show page links.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showPageLinks: boolean = true;
+    @Input({ transform: booleanAttribute }) showPageLinks: boolean = this._componentDefaults?.paginator?.showPageLinks ?? true;
     /**
      * Locale to be used in formatting.
      * @group Props
      */
-    @Input() locale: string | undefined;
+    @Input() locale: string | undefined = this._componentDefaults?.paginator?.locale;
     /**
      * Template instance to inject into the rows per page dropdown item inside in the paginator.
      * @param {PaginatorDropdownItemTemplateContext} context - dropdown item context.

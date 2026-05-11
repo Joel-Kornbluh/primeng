@@ -7,6 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { TimesIcon } from 'primeng/icons';
 import { Ripple } from 'primeng/ripple';
 import { InplaceContentTemplateContext, InplacePassThrough } from 'primeng/types/inplace';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { InplaceStyle } from './style/inplacestyle';
 
 const INPLACE_INSTANCE = new InjectionToken<Inplace>('INPLACE_INSTANCE');
@@ -70,6 +71,8 @@ export class Inplace extends BaseComponent<InplacePassThrough> {
 
     bindDirectiveInstance = inject(Bind, { self: true });
 
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
     onAfterViewChecked(): void {
         this.bindDirectiveInstance.setAttrs(this.ptms(['host', 'root']));
     }
@@ -84,7 +87,7 @@ export class Inplace extends BaseComponent<InplacePassThrough> {
      * @deprecated since v20.0.0, use `closeCallback` within content template.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) closable: boolean | undefined = false;
+    @Input({ transform: booleanAttribute }) closable: boolean | undefined = this._componentDefaults?.inplace?.closable ?? false;
     /**
      * When present, it specifies that the element should be disabled.
      * @group Props
@@ -94,7 +97,7 @@ export class Inplace extends BaseComponent<InplacePassThrough> {
      * Allows to prevent clicking.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) preventClick: boolean | undefined;
+    @Input({ transform: booleanAttribute }) preventClick: boolean | undefined = this._componentDefaults?.inplace?.preventClick;
     /**
      * Class of the element.
      * @deprecated since v20.0.0, use `class` instead.
@@ -106,7 +109,7 @@ export class Inplace extends BaseComponent<InplacePassThrough> {
      * @deprecated since v20.0.0, use `class` instead.
      * @group Props
      */
-    @Input() closeIcon: string | undefined;
+    @Input() closeIcon: string | undefined = this._componentDefaults?.inplace?.closeIcon;
     /**
      * Establishes a string value that labels the close button.
      * @group Props

@@ -3,6 +3,7 @@ import { booleanAttribute, ChangeDetectionStrategy, Component, ElementRef, Event
 import Chart from 'chart.js/auto';
 import { SharedModule } from 'primeng/api';
 import { BaseComponent } from 'primeng/basecomponent';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { ChartStyle } from './style/chartstyle';
 import { Bind, BindModule } from 'primeng/bind';
 import type { ChartPassThrough } from 'primeng/types/chart';
@@ -44,6 +45,8 @@ export class UIChart extends BaseComponent<ChartPassThrough> {
 
     bindDirectiveInstance = inject(Bind, { self: true });
 
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
     onAfterViewChecked(): void {
         this.bindDirectiveInstance.setAttrs(this.ptms(['host', 'root']));
     }
@@ -52,7 +55,7 @@ export class UIChart extends BaseComponent<ChartPassThrough> {
      * Type of the chart.
      * @group Props
      */
-    @Input() type: 'bar' | 'line' | 'scatter' | 'bubble' | 'pie' | 'doughnut' | 'polarArea' | 'radar' | undefined;
+    @Input() type: 'bar' | 'line' | 'scatter' | 'bubble' | 'pie' | 'doughnut' | 'polarArea' | 'radar' | undefined = this._componentDefaults?.chart?.type;
     /**
      * Array of per-chart plugins to customize the chart behaviour.
      * @group Props
@@ -62,17 +65,17 @@ export class UIChart extends BaseComponent<ChartPassThrough> {
      * Width of the chart.
      * @group Props
      */
-    @Input() width: string | undefined;
+    @Input() width: string | undefined = this._componentDefaults?.chart?.width;
     /**
      * Height of the chart.
      * @group Props
      */
-    @Input() height: string | undefined;
+    @Input() height: string | undefined = this._componentDefaults?.chart?.height;
     /**
      * Whether the chart is redrawn on screen size change.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) responsive: boolean = true;
+    @Input({ transform: booleanAttribute }) responsive: boolean = this._componentDefaults?.chart?.responsive ?? true;
     /**
      * Used to define a string that autocomplete attribute the current element.
      * @group Props

@@ -59,6 +59,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { VoidListener } from 'primeng/ts-helpers';
 import { ContextMenuItemTemplateContext, ContextMenuPassThrough, ContextMenuSubmenuIconTemplateContext } from 'primeng/types/contextmenu';
 import { ZIndexUtils } from 'primeng/utils';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { ContextMenuStyle } from './style/contextmenustyle';
 
 const CONTEXTMENU_INSTANCE = new InjectionToken<ContextMenu>('CONTEXTMENU_INSTANCE');
@@ -491,6 +492,8 @@ export class ContextMenuSub extends BaseComponent<ContextMenuPassThrough> implem
 export class ContextMenu extends BaseComponent<ContextMenuPassThrough> {
     componentName = 'ContextMenu';
 
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
     /**
      * An array of menuitems.
      * @group Props
@@ -506,7 +509,7 @@ export class ContextMenu extends BaseComponent<ContextMenuPassThrough> {
      * Event for which the menu must be displayed.
      * @group Props
      */
-    @Input() triggerEvent: string = 'contextmenu';
+    @Input() triggerEvent: string = this._componentDefaults?.contextMenu?.triggerEvent ?? 'contextmenu';
     /**
      * Local template variable name of the element to attach the context menu.
      * @group Props
@@ -531,12 +534,12 @@ export class ContextMenu extends BaseComponent<ContextMenuPassThrough> {
      * Whether to automatically manage layering.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoZIndex: boolean = true;
+    @Input({ transform: booleanAttribute }) autoZIndex: boolean = this._componentDefaults?.contextMenu?.autoZIndex ?? true;
     /**
      * Base zIndex value to use in layering.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) baseZIndex: number = 0;
+    @Input({ transform: numberAttribute }) baseZIndex: number = this._componentDefaults?.contextMenu?.baseZIndex ?? 0;
     /**
      * Current id state as a string.
      * @group Props
@@ -546,7 +549,7 @@ export class ContextMenu extends BaseComponent<ContextMenuPassThrough> {
      * The breakpoint to define the maximum width boundary.
      * @group Props
      */
-    @Input() breakpoint: string = '960px';
+    @Input() breakpoint: string = this._componentDefaults?.contextMenu?.breakpoint ?? '960px';
     /**
      * Defines a string value that labels an interactive element.
      * @group Props
@@ -561,7 +564,7 @@ export class ContextMenu extends BaseComponent<ContextMenuPassThrough> {
      * Press delay in touch devices as miliseconds.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) pressDelay: number | undefined = 500;
+    @Input({ transform: numberAttribute }) pressDelay: number | undefined = this._componentDefaults?.contextMenu?.pressDelay ?? 500;
     /**
      * Target element to attach the overlay, valid values are "body" or a local ng-template variable of another element (note: use binding with brackets for template variables, e.g. [appendTo]="mydiv" for a div element having #mydiv as variable name).
      * @defaultValue 'self'

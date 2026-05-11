@@ -29,6 +29,7 @@ import { BaseEditableHolder } from 'primeng/baseeditableholder';
 import { Bind, BindModule } from 'primeng/bind';
 import { ToggleSwitchChangeEvent, ToggleSwitchHandleTemplateContext, ToggleSwitchPassThrough } from 'primeng/types/toggleswitch';
 import { ToggleSwitchStyle } from './style/toggleswitchstyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const TOGGLESWITCH_INSTANCE = new InjectionToken<ToggleSwitch>('TOGGLESWITCH_INSTANCE');
 
@@ -101,6 +102,7 @@ export class ToggleSwitch extends BaseEditableHolder<ToggleSwitchPassThrough> {
      * @deprecated since v20.0.0, use `class` instead.
      * @group Props
      */
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
     @Input() styleClass: string | undefined;
     /**
      * Index of the element in tabbing order.
@@ -121,12 +123,12 @@ export class ToggleSwitch extends BaseEditableHolder<ToggleSwitchPassThrough> {
      * Value in checked state.
      * @group Props
      */
-    @Input() trueValue: any = true;
+    @Input() trueValue: any = this._componentDefaults?.toggleSwitch?.trueValue ?? true;
     /**
      * Value in unchecked state.
      * @group Props
      */
-    @Input() falseValue: any = false;
+    @Input() falseValue: any = this._componentDefaults?.toggleSwitch?.falseValue ?? false;
     /**
      * Used to define a string that autocomplete attribute the current element.
      * @group Props

@@ -40,6 +40,7 @@ import { ZIndexUtils } from 'primeng/utils';
 import { interval, Subject, Subscription } from 'rxjs';
 import { debounce, filter } from 'rxjs/operators';
 import { MenuBarStyle } from './style/menubarstyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const MENUBAR_INSTANCE = new InjectionToken<Menubar>('MENUBAR_INSTANCE');
 
@@ -243,19 +244,20 @@ export class MenubarService {
     }
 })
 export class MenubarSub extends BaseComponent<MenubarPassThrough> {
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
     @Input() items: any[];
 
     @Input() itemTemplate: TemplateRef<MenubarItemTemplateContext> | undefined;
 
     @Input({ transform: booleanAttribute }) root: boolean = false;
 
-    @Input({ transform: booleanAttribute }) autoZIndex: boolean = true;
+    @Input({ transform: booleanAttribute }) autoZIndex: boolean = this._componentDefaults?.menubar?.autoZIndex ?? true;
 
-    @Input({ transform: numberAttribute }) baseZIndex: number = 0;
+    @Input({ transform: numberAttribute }) baseZIndex: number = this._componentDefaults?.menubar?.baseZIndex ?? 0;
 
     @Input({ transform: booleanAttribute }) mobileActive: boolean | undefined;
 
-    @Input({ transform: booleanAttribute }) autoDisplay: boolean | undefined;
+    @Input({ transform: booleanAttribute }) autoDisplay: boolean | undefined = this._componentDefaults?.menubar?.autoDisplay;
 
     @Input() menuId: string | undefined;
 
@@ -490,22 +492,22 @@ export class Menubar extends BaseComponent<MenubarPassThrough> {
      * @defaultValue true
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoDisplay: boolean | undefined = true;
+    @Input({ transform: booleanAttribute }) autoDisplay: boolean | undefined = this._componentDefaults?.menubar?.autoDisplay ?? true;
     /**
      * Whether to hide a root submenu when mouse leaves.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoHide: boolean | undefined;
+    @Input({ transform: booleanAttribute }) autoHide: boolean | undefined = this._componentDefaults?.menubar?.autoHide;
     /**
      * The breakpoint to define the maximum width boundary.
      * @group Props
      */
-    @Input() breakpoint: string = '960px';
+    @Input() breakpoint: string = this._componentDefaults?.menubar?.breakpoint ?? '960px';
     /**
      * Delay to hide the root submenu in milliseconds when mouse leaves.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) autoHideDelay: number = 100;
+    @Input({ transform: numberAttribute }) autoHideDelay: number = this._componentDefaults?.menubar?.autoHideDelay ?? 100;
     /**
      * Current id state as a string.
      * @group Props

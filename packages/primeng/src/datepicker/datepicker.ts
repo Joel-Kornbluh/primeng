@@ -31,6 +31,7 @@ import { PARENT_INSTANCE } from 'primeng/basecomponent';
 import { BaseInput } from 'primeng/baseinput';
 import { Bind, BindModule } from 'primeng/bind';
 import { Button } from 'primeng/button';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { blockBodyScroll, ConnectedOverlayScrollHandler, unblockBodyScroll } from 'primeng/dom';
 import { CalendarIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, ChevronUpIcon, TimesIcon } from 'primeng/icons';
 import { InputText } from 'primeng/inputtext';
@@ -544,7 +545,9 @@ export class DatePicker extends BaseInput<DatePickerPassThrough> {
 
     $pcDatePicker: DatePicker | undefined = inject(DATEPICKER_INSTANCE, { optional: true, skipSelf: true }) ?? undefined;
 
-    @Input() iconDisplay: 'input' | 'button' = 'button';
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
+    @Input() iconDisplay: 'input' | 'button' = this._componentDefaults?.datepicker?.iconDisplay ?? 'button';
     /**
      * Style class of the component.
      * @deprecated since v20.0.0, use `class` instead.
@@ -605,47 +608,47 @@ export class DatePicker extends BaseInput<DatePickerPassThrough> {
      * Separator for multiple selection mode.
      * @group Props
      */
-    @Input() multipleSeparator: string = ',';
+    @Input() multipleSeparator: string = this._componentDefaults?.datepicker?.multipleSeparator ?? ',';
     /**
      * Separator for joining start and end dates on range selection mode.
      * @group Props
      */
-    @Input() rangeSeparator: string = '-';
+    @Input() rangeSeparator: string = this._componentDefaults?.datepicker?.rangeSeparator ?? '-';
     /**
      * When enabled, displays the datepicker as inline. Default is false for popup mode.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) inline: boolean = false;
+    @Input({ transform: booleanAttribute }) inline: boolean = this._componentDefaults?.datepicker?.inline ?? false;
     /**
      * Whether to display dates in other months (non-selectable) at the start or end of the current month. To make these days selectable use the selectOtherMonths option.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showOtherMonths: boolean = true;
+    @Input({ transform: booleanAttribute }) showOtherMonths: boolean = this._componentDefaults?.datepicker?.showOtherMonths ?? true;
     /**
      * Whether days in other months shown before or after the current month are selectable. This only applies if the showOtherMonths option is set to true.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) selectOtherMonths: boolean | undefined;
+    @Input({ transform: booleanAttribute }) selectOtherMonths: boolean | undefined = this._componentDefaults?.datepicker?.selectOtherMonths;
     /**
      * When enabled, displays a button with icon next to input.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showIcon: boolean | undefined;
+    @Input({ transform: booleanAttribute }) showIcon: boolean | undefined = this._componentDefaults?.datepicker?.showIcon;
     /**
      * Icon of the datepicker button.
      * @group Props
      */
-    @Input() icon: string | undefined;
+    @Input() icon: string | undefined = this._componentDefaults?.datepicker?.icon;
     /**
      * When specified, prevents entering the date manually with keyboard.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) readonlyInput: boolean | undefined;
+    @Input({ transform: booleanAttribute }) readonlyInput: boolean | undefined = this._componentDefaults?.datepicker?.readonlyInput;
     /**
      * The cutoff year for determining the century for a date.
      * @group Props
      */
-    @Input() shortYearCutoff: any = '+10';
+    @Input() shortYearCutoff: any = this._componentDefaults?.datepicker?.shortYearCutoff ?? '+10';
     /**
      * Specifies 12 or 24 hour format.
      * @group Props
@@ -664,67 +667,67 @@ export class DatePicker extends BaseInput<DatePickerPassThrough> {
      * Whether to display timepicker only.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) timeOnly: boolean | undefined;
+    @Input({ transform: booleanAttribute }) timeOnly: boolean | undefined = this._componentDefaults?.datepicker?.timeOnly;
     /**
      * Hours to change per step.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) stepHour: number = 1;
+    @Input({ transform: numberAttribute }) stepHour: number = this._componentDefaults?.datepicker?.stepHour ?? 1;
     /**
      * Minutes to change per step.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) stepMinute: number = 1;
+    @Input({ transform: numberAttribute }) stepMinute: number = this._componentDefaults?.datepicker?.stepMinute ?? 1;
     /**
      * Seconds to change per step.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) stepSecond: number = 1;
+    @Input({ transform: numberAttribute }) stepSecond: number = this._componentDefaults?.datepicker?.stepSecond ?? 1;
     /**
      * Whether to show the seconds in time picker.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showSeconds: boolean = false;
+    @Input({ transform: booleanAttribute }) showSeconds: boolean = this._componentDefaults?.datepicker?.showSeconds ?? false;
     /**
      * When disabled, datepicker will not be visible with input focus.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showOnFocus: boolean = true;
+    @Input({ transform: booleanAttribute }) showOnFocus: boolean = this._componentDefaults?.datepicker?.showOnFocus ?? true;
     /**
      * When enabled, datepicker will show week numbers.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showWeek: boolean = false;
+    @Input({ transform: booleanAttribute }) showWeek: boolean = this._componentDefaults?.datepicker?.showWeek ?? false;
     /**
      * When enabled, datepicker will start week numbers from first day of the year.
      * @group Props
      */
-    @Input() startWeekFromFirstDayOfYear: boolean = false;
+    @Input() startWeekFromFirstDayOfYear: boolean = this._componentDefaults?.datepicker?.startWeekFromFirstDayOfYear ?? false;
     /**
      * When enabled, a clear icon is displayed to clear the value.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showClear: boolean = false;
+    @Input({ transform: booleanAttribute }) showClear: boolean = this._componentDefaults?.datepicker?.showClear ?? false;
     /**
      * Type of the value to write back to ngModel, default is date and alternative is string.
      * @group Props
      */
-    @Input() dataType: string = 'date';
+    @Input() dataType: string = this._componentDefaults?.datepicker?.dataType ?? 'date';
     /**
      * Defines the quantity of the selection, valid values are "single", "multiple" and "range".
      * @group Props
      */
-    @Input() selectionMode: 'single' | 'multiple' | 'range' | undefined = 'single';
+    @Input() selectionMode: 'single' | 'multiple' | 'range' | undefined = this._componentDefaults?.datepicker?.selectionMode ?? 'single';
     /**
      * Maximum number of selectable dates in multiple mode.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) maxDateCount: number | undefined;
+    @Input({ transform: numberAttribute }) maxDateCount: number | undefined = this._componentDefaults?.datepicker?.maxDateCount;
     /**
      * Whether to display today and clear buttons at the footer
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showButtonBar: boolean | undefined;
+    @Input({ transform: booleanAttribute }) showButtonBar: boolean | undefined = this._componentDefaults?.datepicker?.showButtonBar;
     /**
      * Style class of the today button.
      * @group Props
@@ -744,12 +747,12 @@ export class DatePicker extends BaseInput<DatePickerPassThrough> {
      * Whether to automatically manage layering.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoZIndex: boolean = true;
+    @Input({ transform: booleanAttribute }) autoZIndex: boolean = this._componentDefaults?.datepicker?.autoZIndex ?? true;
     /**
      * Base zIndex value to use in layering.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) baseZIndex: number = 0;
+    @Input({ transform: numberAttribute }) baseZIndex: number = this._componentDefaults?.datepicker?.baseZIndex ?? 0;
     /**
      * Style class of the datetimepicker container element.
      * @group Props
@@ -764,27 +767,27 @@ export class DatePicker extends BaseInput<DatePickerPassThrough> {
      * Keep invalid value when input blur.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) keepInvalid: boolean = false;
+    @Input({ transform: booleanAttribute }) keepInvalid: boolean = this._componentDefaults?.datepicker?.keepInvalid ?? false;
     /**
      * Whether to hide the overlay on date selection.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) hideOnDateTimeSelect: boolean = true;
+    @Input({ transform: booleanAttribute }) hideOnDateTimeSelect: boolean = this._componentDefaults?.datepicker?.hideOnDateTimeSelect ?? true;
     /**
      * When enabled, datepicker overlay is displayed as optimized for touch devices.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) touchUI: boolean | undefined;
+    @Input({ transform: booleanAttribute }) touchUI: boolean | undefined = this._componentDefaults?.datepicker?.touchUI;
     /**
      * Separator of time selector.
      * @group Props
      */
-    @Input() timeSeparator: string = ':';
+    @Input() timeSeparator: string = this._componentDefaults?.datepicker?.timeSeparator ?? ':';
     /**
      * When enabled, can only focus on elements inside the datepicker.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) focusTrap: boolean = true;
+    @Input({ transform: booleanAttribute }) focusTrap: boolean = this._componentDefaults?.datepicker?.focusTrap ?? true;
     /**
      * Transition options of the show animation.
      * @group Props
@@ -1103,11 +1106,11 @@ export class DatePicker extends BaseInput<DatePickerPassThrough> {
 
     _maxDate?: Date | null;
 
-    _dateFormat: string | undefined;
+    _dateFormat: string | undefined = this._componentDefaults?.datepicker?.dateFormat;
 
-    _hourFormat: string = '24';
+    _hourFormat: string = this._componentDefaults?.datepicker?.hourFormat ?? '24';
 
-    _showTime!: boolean;
+    _showTime: boolean = this._componentDefaults?.datepicker?.showTime ?? false;
 
     _yearRange!: string;
 
@@ -1258,11 +1261,11 @@ export class DatePicker extends BaseInput<DatePickerPassThrough> {
 
     panelId: Nullable<string>;
 
-    _numberOfMonths: number = 1;
+    _numberOfMonths: number = this._componentDefaults?.datepicker?.numberOfMonths ?? 1;
 
-    _firstDayOfWeek!: number;
+    _firstDayOfWeek: number = this._componentDefaults?.datepicker?.firstDayOfWeek ?? 0;
 
-    _view: DatePickerTypeView = 'date';
+    _view: DatePickerTypeView = this._componentDefaults?.datepicker?.view ?? 'date';
 
     preventFocus: Nullable<boolean>;
 

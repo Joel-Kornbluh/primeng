@@ -8,6 +8,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { Nullable } from 'primeng/ts-helpers';
 import { Subscription } from 'rxjs';
 import { StepsStyle } from './style/stepsstyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 /**
  * Steps components is an indicator for the steps in a wizard workflow.
@@ -91,6 +92,7 @@ export class Steps extends BaseComponent {
      * Index of the active item.
      * @group Props
      */
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
     @Input({ transform: numberAttribute }) activeIndex: number = 0;
     /**
      * An array of menu items.
@@ -116,7 +118,7 @@ export class Steps extends BaseComponent {
      * Whether to apply 'router-link-active-exact' class if route exactly matches the item path.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) exact: boolean = true;
+    @Input({ transform: booleanAttribute }) exact: boolean = this._componentDefaults?.steps?.exact ?? true;
     /**
      * Callback to invoke when the new step is selected.
      * @param {number} number - current index.

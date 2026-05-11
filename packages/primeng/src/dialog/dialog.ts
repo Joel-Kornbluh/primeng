@@ -32,6 +32,7 @@ import { OverlayService, PrimeTemplate, SharedModule, TranslationKeys } from 'pr
 import { BaseComponent, PARENT_INSTANCE } from 'primeng/basecomponent';
 import { Bind } from 'primeng/bind';
 import { Button, ButtonProps } from 'primeng/button';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { blockBodyScroll, DomHandler, unblockBodyScroll } from 'primeng/dom';
 import { FocusTrap } from 'primeng/focustrap';
 import { TimesIcon, WindowMaximizeIcon, WindowMinimizeIcon } from 'primeng/icons';
@@ -177,6 +178,8 @@ export class Dialog extends BaseComponent<DialogPassThrough> implements OnInit, 
 
     bindDirectiveInstance = inject(Bind, { self: true });
 
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
     onAfterViewChecked(): void {
         this.bindDirectiveInstance.setAttrs(this.ptm('host'));
     }
@@ -190,12 +193,12 @@ export class Dialog extends BaseComponent<DialogPassThrough> implements OnInit, 
      * Enables dragging to change the position using header.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) draggable: boolean = true;
+    @Input({ transform: booleanAttribute }) draggable: boolean = this._componentDefaults?.dialog?.draggable ?? true;
     /**
      * Enables resizing of the content.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) resizable: boolean = true;
+    @Input({ transform: booleanAttribute }) resizable: boolean = this._componentDefaults?.dialog?.resizable ?? true;
     /**
      * Style of the content section.
      * @group Props
@@ -210,32 +213,32 @@ export class Dialog extends BaseComponent<DialogPassThrough> implements OnInit, 
      * Defines if background should be blocked when dialog is displayed.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) modal: boolean = false;
+    @Input({ transform: booleanAttribute }) modal: boolean = this._componentDefaults?.dialog?.modal ?? false;
     /**
      * Specifies if pressing escape key should hide the dialog.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) closeOnEscape: boolean = true;
+    @Input({ transform: booleanAttribute }) closeOnEscape: boolean = this._componentDefaults?.dialog?.closeOnEscape ?? true;
     /**
      * Specifies if clicking the modal background should hide the dialog.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) dismissableMask: boolean = false;
+    @Input({ transform: booleanAttribute }) dismissableMask: boolean = this._componentDefaults?.dialog?.dismissableMask ?? false;
     /**
      * When enabled dialog is displayed in RTL direction.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) rtl: boolean = false;
+    @Input({ transform: booleanAttribute }) rtl: boolean = this._componentDefaults?.dialog?.rtl ?? false;
     /**
      * Adds a close icon to the header to hide the dialog.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) closable: boolean = true;
+    @Input({ transform: booleanAttribute }) closable: boolean = this._componentDefaults?.dialog?.closable ?? true;
     /**
      * Object literal to define widths per screen size.
      * @group Props
      */
-    @Input() breakpoints: any;
+    @Input() breakpoints: any = this._componentDefaults?.dialog?.breakpoints;
     /**
      * Style class of the component.
      * @group Props
@@ -255,58 +258,58 @@ export class Dialog extends BaseComponent<DialogPassThrough> implements OnInit, 
      * Whether to show the header or not.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showHeader: boolean = true;
+    @Input({ transform: booleanAttribute }) showHeader: boolean = this._componentDefaults?.dialog?.showHeader ?? true;
     /**
      * Whether background scroll should be blocked when dialog is visible.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) blockScroll: boolean = false;
+    @Input({ transform: booleanAttribute }) blockScroll: boolean = this._componentDefaults?.dialog?.blockScroll ?? false;
     /**
      * Whether to automatically manage layering.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoZIndex: boolean = true;
+    @Input({ transform: booleanAttribute }) autoZIndex: boolean = this._componentDefaults?.dialog?.autoZIndex ?? true;
     /**
      * Base zIndex value to use in layering.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) baseZIndex: number = 0;
+    @Input({ transform: numberAttribute }) baseZIndex: number = this._componentDefaults?.dialog?.baseZIndex ?? 0;
     /**
      * Minimum value for the left coordinate of dialog in dragging.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) minX: number = 0;
+    @Input({ transform: numberAttribute }) minX: number = this._componentDefaults?.dialog?.minX ?? 0;
     /**
      * Minimum value for the top coordinate of dialog in dragging.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) minY: number = 0;
+    @Input({ transform: numberAttribute }) minY: number = this._componentDefaults?.dialog?.minY ?? 0;
     /**
      * When enabled, first focusable element receives focus on show.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) focusOnShow: boolean = true;
+    @Input({ transform: booleanAttribute }) focusOnShow: boolean = this._componentDefaults?.dialog?.focusOnShow ?? true;
     /**
      * Whether the dialog can be displayed full screen.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) maximizable: boolean = false;
+    @Input({ transform: booleanAttribute }) maximizable: boolean = this._componentDefaults?.dialog?.maximizable ?? false;
     /**
      * Keeps dialog in the viewport.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) keepInViewport: boolean = true;
+    @Input({ transform: booleanAttribute }) keepInViewport: boolean = this._componentDefaults?.dialog?.keepInViewport ?? true;
     /**
      * When enabled, can only focus on elements inside the dialog.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) focusTrap: boolean = true;
+    @Input({ transform: booleanAttribute }) focusTrap: boolean = this._componentDefaults?.dialog?.focusTrap ?? true;
     /**
      * Transition options of the animation.
      * @deprecated since v21.0.0. Use `motionOptions` instead.
      * @group Props
      */
-    @Input() transitionOptions: string = '150ms cubic-bezier(0, 0, 0.2, 1)';
+    @Input() transitionOptions: string = this._componentDefaults?.dialog?.transitionOptions ?? '150ms cubic-bezier(0, 0, 0.2, 1)';
     /**
      * The motion options for the mask.
      * @group Props
@@ -335,7 +338,7 @@ export class Dialog extends BaseComponent<DialogPassThrough> implements OnInit, 
      * Name of the close icon.
      * @group Props
      */
-    @Input() closeIcon: string | undefined;
+    @Input() closeIcon: string | undefined = this._componentDefaults?.dialog?.closeIcon;
     /**
      * Defines a string that labels the close button for accessibility.
      * @group Props
@@ -345,22 +348,22 @@ export class Dialog extends BaseComponent<DialogPassThrough> implements OnInit, 
      * Index of the close button in tabbing order.
      * @group Props
      */
-    @Input() closeTabindex: string = '0';
+    @Input() closeTabindex: string = this._componentDefaults?.dialog?.closeTabindex ?? '0';
     /**
      * Name of the minimize icon.
      * @group Props
      */
-    @Input() minimizeIcon: string | undefined;
+    @Input() minimizeIcon: string | undefined = this._componentDefaults?.dialog?.minimizeIcon;
     /**
      * Name of the maximize icon.
      * @group Props
      */
-    @Input() maximizeIcon: string | undefined;
+    @Input() maximizeIcon: string | undefined = this._componentDefaults?.dialog?.maximizeIcon;
     /**
      * Used to pass all properties of the ButtonProps to the Button component.
      * @group Props
      */
-    @Input() closeButtonProps: ButtonProps = {
+    @Input() closeButtonProps: ButtonProps = this._componentDefaults?.dialog?.closeButtonProps ?? {
         severity: 'secondary',
         variant: 'text',
         rounded: true
@@ -369,7 +372,7 @@ export class Dialog extends BaseComponent<DialogPassThrough> implements OnInit, 
      * Used to pass all properties of the ButtonProps to the Button component.
      * @group Props
      */
-    @Input() maximizeButtonProps: ButtonProps = {
+    @Input() maximizeButtonProps: ButtonProps = this._componentDefaults?.dialog?.maximizeButtonProps ?? {
         severity: 'secondary',
         variant: 'text',
         rounded: true
@@ -407,12 +410,12 @@ export class Dialog extends BaseComponent<DialogPassThrough> implements OnInit, 
      * Position of the dialog.
      * @group Props
      */
-    @Input() position: 'center' | 'top' | 'bottom' | 'left' | 'right' | 'topleft' | 'topright' | 'bottomleft' | 'bottomright';
+    @Input() position: 'center' | 'top' | 'bottom' | 'left' | 'right' | 'topleft' | 'topright' | 'bottomleft' | 'bottomright' = this._componentDefaults?.dialog?.position;
     /**
      * Role attribute of html element.
      * @group Emits
      */
-    @Input() role: string = 'dialog';
+    @Input() role: string = this._componentDefaults?.dialog?.role ?? 'dialog';
     /**
      * Target element to attach the overlay, valid values are "body" or a local ng-template variable of another element (note: use binding with brackets for template variables, e.g. [appendTo]="mydiv" for a div element having #mydiv as variable name).
      * @defaultValue 'self'

@@ -35,6 +35,7 @@ import { PopoverContentTemplateContext, PopoverPassThrough } from 'primeng/types
 import { ZIndexUtils } from 'primeng/utils';
 import { Subscription } from 'rxjs';
 import { PopoverStyle } from './style/popoverstyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const POPOVER_INSTANCE = new InjectionToken<Popover>('POPOVER_INSTANCE');
 
@@ -92,6 +93,7 @@ export class Popover extends BaseComponent<PopoverPassThrough> {
      * Defines a string that labels the input for accessibility.
      * @group Props
      */
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
     @Input() ariaLabel: string | undefined;
     /**
      * Establishes relationships between the component and label(s) where its value should be one or more element IDs.
@@ -102,7 +104,7 @@ export class Popover extends BaseComponent<PopoverPassThrough> {
      * Enables to hide the overlay when outside is clicked.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) dismissable: boolean = true;
+    @Input({ transform: booleanAttribute }) dismissable: boolean = this._componentDefaults?.popover?.dismissable ?? true;
     /**
      * Inline style of the component.
      * @group Props
@@ -123,7 +125,7 @@ export class Popover extends BaseComponent<PopoverPassThrough> {
      * Whether to automatically manage layering.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoZIndex: boolean = true;
+    @Input({ transform: booleanAttribute }) autoZIndex: boolean = this._componentDefaults?.popover?.autoZIndex ?? true;
     /**
      * Aria label of the close icon.
      * @group Props
@@ -133,12 +135,12 @@ export class Popover extends BaseComponent<PopoverPassThrough> {
      * Base zIndex value to use in layering.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) baseZIndex: number = 0;
+    @Input({ transform: numberAttribute }) baseZIndex: number = this._componentDefaults?.popover?.baseZIndex ?? 0;
     /**
      * When enabled, first button receives focus on show.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) focusOnShow: boolean = true;
+    @Input({ transform: booleanAttribute }) focusOnShow: boolean = this._componentDefaults?.popover?.focusOnShow ?? true;
     /**
      * Transition options of the show animation.
      * @group Props

@@ -47,6 +47,7 @@ import {
     PickListTransferIconTemplateContext
 } from 'primeng/types/picklist';
 import { PickListStyle } from './style/pickliststyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const PICKLIST_INSTANCE = new InjectionToken<PickList>('PICKLIST_INSTANCE');
 
@@ -425,6 +426,7 @@ const PICKLIST_INSTANCE = new InjectionToken<PickList>('PICKLIST_INSTANCE');
 })
 export class PickList extends BaseComponent {
     componentName = 'PickList';
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
 
     @Input() hostName: any = '';
 
@@ -519,7 +521,7 @@ export class PickList extends BaseComponent {
      * When enabled orderlist adjusts its controls based on screen size.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) responsive: boolean | undefined;
+    @Input({ transform: booleanAttribute }) responsive: boolean | undefined = this._componentDefaults?.pickList?.responsive;
     /**
      * When specified displays an input field to filter the items on keyup and decides which field to search (Accepts multiple fields with a comma).
      * @group Props
@@ -529,7 +531,7 @@ export class PickList extends BaseComponent {
      * Locale to use in filtering. The default locale is the host environment's current locale.
      * @group Props
      */
-    @Input() filterLocale: string | undefined;
+    @Input() filterLocale: string | undefined = this._componentDefaults?.pickList?.filterLocale;
     /**
      * Function to optimize the dom operations by delegating to ngForTrackBy, default algorithm checks for object identity. Use sourceTrackBy or targetTrackBy in case different algorithms are needed per list.
      * @group Props
@@ -549,22 +551,22 @@ export class PickList extends BaseComponent {
      * Whether to show filter input for source list when filterBy is enabled.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showSourceFilter: boolean = true;
+    @Input({ transform: booleanAttribute }) showSourceFilter: boolean = this._componentDefaults?.pickList?.showSourceFilter ?? true;
     /**
      * Whether to show filter input for target list when filterBy is enabled.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showTargetFilter: boolean = true;
+    @Input({ transform: booleanAttribute }) showTargetFilter: boolean = this._componentDefaults?.pickList?.showTargetFilter ?? true;
     /**
      * Defines how multiple items can be selected, when true metaKey needs to be pressed to select or unselect an item and when set to false selection of each item can be toggled individually. On touch enabled devices, metaKeySelection is turned off automatically.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) metaKeySelection: boolean = false;
+    @Input({ transform: booleanAttribute }) metaKeySelection: boolean = this._componentDefaults?.pickList?.metaKeySelection ?? false;
     /**
      * Whether to enable dragdrop based reordering.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) dragdrop: boolean = false;
+    @Input({ transform: booleanAttribute }) dragdrop: boolean = this._componentDefaults?.pickList?.dragdrop ?? false;
     /**
      * Inline style of the component.
      * @group Props
@@ -589,12 +591,12 @@ export class PickList extends BaseComponent {
      * Whether to show buttons of source list.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showSourceControls: boolean = true;
+    @Input({ transform: booleanAttribute }) showSourceControls: boolean = this._componentDefaults?.pickList?.showSourceControls ?? true;
     /**
      * Whether to show buttons of target list.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showTargetControls: boolean = true;
+    @Input({ transform: booleanAttribute }) showTargetControls: boolean = this._componentDefaults?.pickList?.showTargetControls ?? true;
     /**
      * Placeholder text on source filter input.
      * @group Props
@@ -637,12 +639,12 @@ export class PickList extends BaseComponent {
      * Defines how the items are filtered.
      * @group Props
      */
-    @Input() filterMatchMode: 'contains' | 'startsWith' | 'endsWith' | 'equals' | 'notEquals' | 'in' | 'lt' | 'lte' | 'gt' | 'gte' | string = 'contains';
+    @Input() filterMatchMode: 'contains' | 'startsWith' | 'endsWith' | 'equals' | 'notEquals' | 'in' | 'lt' | 'lte' | 'gt' | 'gte' | string = this._componentDefaults?.pickList?.filterMatchMode ?? 'contains';
     /**
      * Whether to displays rows with alternating colors.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) stripedRows: boolean | undefined;
+    @Input({ transform: booleanAttribute }) stripedRows: boolean | undefined = this._componentDefaults?.pickList?.stripedRows;
     /**
      * Keeps selection on the transfer list.
      * @group Props

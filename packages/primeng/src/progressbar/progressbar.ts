@@ -5,6 +5,7 @@ import { BaseComponent, PARENT_INSTANCE } from 'primeng/basecomponent';
 import { Bind } from 'primeng/bind';
 import { ProgressBarContentTemplateContext, ProgressBarPassThrough } from 'primeng/types/progressbar';
 import { ProgressBarStyle } from './style/progressbarstyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const PROGRESSBAR_INSTANCE = new InjectionToken<ProgressBar>('PROGRESSBAR_INSTANCE');
 
@@ -50,12 +51,13 @@ export class ProgressBar extends BaseComponent<ProgressBarPassThrough> {
      * Current value of the progress.
      * @group Props
      */
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
     @Input({ transform: numberAttribute }) value: number | undefined;
     /**
      * Whether to display the progress bar value.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showValue: boolean = true;
+    @Input({ transform: booleanAttribute }) showValue: boolean = this._componentDefaults?.progressBar?.showValue ?? true;
     /**
      * Style class of the element.
      * @deprecated since v20.0.0, use `class` instead.
@@ -71,18 +73,18 @@ export class ProgressBar extends BaseComponent<ProgressBarPassThrough> {
      * Unit sign appended to the value.
      * @group Props
      */
-    @Input() unit: string = '%';
+    @Input() unit: string = this._componentDefaults?.progressBar?.unit ?? '%';
     /**
      * Defines the mode of the progress
      * @defaultValue 'determinate'
      * @group Props
      */
-    @Input() mode: 'determinate' | 'indeterminate' = 'determinate';
+    @Input() mode: 'determinate' | 'indeterminate' = this._componentDefaults?.progressBar?.mode ?? 'determinate';
     /**
      * Color for the background of the progress.
      * @group Props
      */
-    @Input() color: string | undefined;
+    @Input() color: string | undefined = this._componentDefaults?.progressBar?.color;
     /**
      * Template of the content.
      * @param {ProgressBarContentTemplateContext} context - content context.

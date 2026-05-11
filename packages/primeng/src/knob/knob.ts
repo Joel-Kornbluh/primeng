@@ -10,6 +10,7 @@ import { BindModule } from 'primeng/bind';
 import { VoidListener } from 'primeng/ts-helpers';
 import { KnobPassThrough } from 'primeng/types/knob';
 import { KnobStyle } from './style/knobstyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const KNOB_INSTANCE = new InjectionToken<Knob>('KNOB_INSTANCE');
 
@@ -78,6 +79,7 @@ export class Knob extends BaseEditableHolder<KnobPassThrough> {
      * @deprecated since v20.0.0, use `class` instead.
      * @group Props
      */
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
     @Input() styleClass: string | undefined;
     /**
      * Defines a string that labels the input for accessibility.
@@ -98,52 +100,52 @@ export class Knob extends BaseEditableHolder<KnobPassThrough> {
      * Background of the value.
      * @group Props
      */
-    @Input() valueColor: string = $dt('knob.value.background').variable;
+    @Input() valueColor: string = this._componentDefaults?.knob?.valueColor ?? $dt('knob.value.background').variable;
     /**
      * Background color of the range.
      * @group Props
      */
-    @Input() rangeColor: string = $dt('knob.range.background').variable;
+    @Input() rangeColor: string = this._componentDefaults?.knob?.rangeColor ?? $dt('knob.range.background').variable;
     /**
      * Color of the value text.
      * @group Props
      */
-    @Input() textColor: string = $dt('knob.text.color').variable;
+    @Input() textColor: string = this._componentDefaults?.knob?.textColor ?? $dt('knob.text.color').variable;
     /**
      * Template string of the value.
      * @group Props
      */
-    @Input() valueTemplate: string = '{value}';
+    @Input() valueTemplate: string = this._componentDefaults?.knob?.valueTemplate ?? '{value}';
     /**
      * Size of the component in pixels.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) size: number = 100;
+    @Input({ transform: numberAttribute }) size: number = this._componentDefaults?.knob?.size ?? 100;
     /**
      * Mininum boundary value.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) min: number = 0;
+    @Input({ transform: numberAttribute }) min: number = this._componentDefaults?.knob?.min ?? 0;
     /**
      * Maximum boundary value.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) max: number = 100;
+    @Input({ transform: numberAttribute }) max: number = this._componentDefaults?.knob?.max ?? 100;
     /**
      * Step factor to increment/decrement the value.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) step: number = 1;
+    @Input({ transform: numberAttribute }) step: number = this._componentDefaults?.knob?.step ?? 1;
     /**
      * Width of the knob stroke.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) strokeWidth: number = 14;
+    @Input({ transform: numberAttribute }) strokeWidth: number = this._componentDefaults?.knob?.strokeWidth ?? 14;
     /**
      * Whether the show the value inside the knob.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showValue: boolean = true;
+    @Input({ transform: booleanAttribute }) showValue: boolean = this._componentDefaults?.knob?.showValue ?? true;
     /**
      * When present, it specifies that the component value cannot be edited.
      * @group Props

@@ -10,6 +10,7 @@ import { TooltipPassThroughOptions } from 'primeng/types/tooltip';
 import { ZIndexUtils } from 'primeng/utils';
 import { TooltipStyle } from './style/tooltipstyle';
 import type { TooltipPassThrough } from 'primeng/types/tooltip';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const TOOLTIP_INSTANCE = new InjectionToken<Tooltip>('TOOLTIP_INSTANCE');
 
@@ -31,17 +32,18 @@ export class Tooltip extends BaseComponent<TooltipPassThroughOptions> {
      * Position of the tooltip.
      * @group Props
      */
-    @Input() tooltipPosition: 'right' | 'left' | 'top' | 'bottom' | string | undefined;
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+    @Input() tooltipPosition: 'right' | 'left' | 'top' | 'bottom' | string | undefined = this._componentDefaults?.tooltip?.tooltipPosition;
     /**
      * Event to show the tooltip.
      * @group Props
      */
-    @Input() tooltipEvent: 'hover' | 'focus' | 'both' = 'hover';
+    @Input() tooltipEvent: 'hover' | 'focus' | 'both' = this._componentDefaults?.tooltip?.tooltipEvent ?? 'hover';
     /**
      * Type of CSS position.
      * @group Props
      */
-    @Input() positionStyle: string | undefined;
+    @Input() positionStyle: string | undefined = this._componentDefaults?.tooltip?.positionStyle;
     /**
      * Style class of the tooltip.
      * @group Props
@@ -56,52 +58,52 @@ export class Tooltip extends BaseComponent<TooltipPassThroughOptions> {
      * By default the tooltip contents are rendered as text. Set to false to support html tags in the content.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) escape: boolean = true;
+    @Input({ transform: booleanAttribute }) escape: boolean = this._componentDefaults?.tooltip?.escape ?? true;
     /**
      * Delay to show the tooltip in milliseconds.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) showDelay: number | undefined;
+    @Input({ transform: numberAttribute }) showDelay: number | undefined = this._componentDefaults?.tooltip?.showDelay;
     /**
      * Delay to hide the tooltip in milliseconds.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) hideDelay: number | undefined;
+    @Input({ transform: numberAttribute }) hideDelay: number | undefined = this._componentDefaults?.tooltip?.hideDelay;
     /**
      * Time to wait in milliseconds to hide the tooltip even it is active.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) life: number | undefined;
+    @Input({ transform: numberAttribute }) life: number | undefined = this._componentDefaults?.tooltip?.life;
     /**
      * Specifies the additional vertical offset of the tooltip from its default position.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) positionTop: number | undefined;
+    @Input({ transform: numberAttribute }) positionTop: number | undefined = this._componentDefaults?.tooltip?.positionTop;
     /**
      * Specifies the additional horizontal offset of the tooltip from its default position.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) positionLeft: number | undefined;
+    @Input({ transform: numberAttribute }) positionLeft: number | undefined = this._componentDefaults?.tooltip?.positionLeft;
     /**
      * Whether to hide tooltip when hovering over tooltip content.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoHide: boolean = true;
+    @Input({ transform: booleanAttribute }) autoHide: boolean = this._componentDefaults?.tooltip?.autoHide ?? true;
     /**
      * Automatically adjusts the element position when there is not enough space on the selected position.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) fitContent: boolean = true;
+    @Input({ transform: booleanAttribute }) fitContent: boolean = this._componentDefaults?.tooltip?.fitContent ?? true;
     /**
      * Whether to hide tooltip on escape key press.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) hideOnEscape: boolean = true;
+    @Input({ transform: booleanAttribute }) hideOnEscape: boolean = this._componentDefaults?.tooltip?.hideOnEscape ?? true;
     /**
      * Whether to show the tooltip only when the target text overflows (e.g., ellipsis is active).
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showOnEllipsis: boolean = false;
+    @Input({ transform: booleanAttribute }) showOnEllipsis: boolean = this._componentDefaults?.tooltip?.showOnEllipsis ?? false;
     /**
      * Content of the tooltip.
      * @group Props

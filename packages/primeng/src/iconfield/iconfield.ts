@@ -3,6 +3,7 @@ import { AfterViewChecked, ChangeDetectionStrategy, Component, inject, Injection
 import { BaseComponent, PARENT_INSTANCE } from 'primeng/basecomponent';
 import { Bind, BindModule } from 'primeng/bind';
 import { IconFieldPassThrough } from 'primeng/types/iconfield';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { IconFieldStyle } from './style/iconfieldstyle';
 
 const ICONFIELD_INSTANCE = new InjectionToken<IconField>('ICONFIELD_INSTANCE');
@@ -27,6 +28,8 @@ const ICONFIELD_INSTANCE = new InjectionToken<IconField>('ICONFIELD_INSTANCE');
 export class IconField extends BaseComponent<IconFieldPassThrough> implements AfterViewChecked {
     componentName = 'IconField';
 
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
     @Input() hostName: any = '';
 
     _componentStyle = inject(IconFieldStyle);
@@ -43,7 +46,7 @@ export class IconField extends BaseComponent<IconFieldPassThrough> implements Af
      * Position of the icon.
      * @group Props
      */
-    @Input() iconPosition: 'right' | 'left' = 'left';
+    @Input() iconPosition: 'right' | 'left' = this._componentDefaults?.iconField?.iconPosition ?? 'left';
     /**
      * Style class of the component.
      * @deprecated since v20.0.0, use `class` instead.

@@ -41,6 +41,7 @@ import { Nullable, VoidListener } from 'primeng/ts-helpers';
 import { TieredMenuItemTemplateContext, TieredMenuPassThrough } from 'primeng/types/tieredmenu';
 import { ZIndexUtils } from 'primeng/utils';
 import { TieredMenuStyle } from './style/tieredmenustyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const TIEREDMENU_INSTANCE = new InjectionToken<TieredMenu>('TIEREDMENU_INSTANCE');
 const TIEREDMENUSUB_INSTANCE = new InjectionToken<TieredMenuSub>('TIEREDMENUSUB_INSTANCE');
@@ -250,6 +251,7 @@ const TIEREDMENUSUB_INSTANCE = new InjectionToken<TieredMenuSub>('TIEREDMENUSUB_
     hostDirectives: [Bind]
 })
 export class TieredMenuSub extends BaseComponent<TieredMenuPassThrough> {
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
     @Input() get visible(): boolean {
         return this._visible;
     }
@@ -267,13 +269,13 @@ export class TieredMenuSub extends BaseComponent<TieredMenuPassThrough> {
 
     @Input({ transform: booleanAttribute }) root: boolean | undefined = false;
 
-    @Input({ transform: booleanAttribute }) autoDisplay: boolean | undefined;
+    @Input({ transform: booleanAttribute }) autoDisplay: boolean | undefined = this._componentDefaults?.tieredMenu?.autoDisplay;
 
-    @Input({ transform: booleanAttribute }) autoZIndex: boolean = true;
+    @Input({ transform: booleanAttribute }) autoZIndex: boolean = this._componentDefaults?.tieredMenu?.autoZIndex ?? true;
 
-    @Input({ transform: numberAttribute }) baseZIndex: number = 0;
+    @Input({ transform: numberAttribute }) baseZIndex: number = this._componentDefaults?.tieredMenu?.baseZIndex ?? 0;
 
-    @Input({ transform: booleanAttribute }) popup: boolean | undefined;
+    @Input({ transform: booleanAttribute }) popup: boolean | undefined = this._componentDefaults?.tieredMenu?.popup;
 
     @Input() menuId: string | undefined;
 
@@ -521,7 +523,7 @@ export class TieredMenu extends BaseComponent<TieredMenuPassThrough> {
      * The breakpoint to define the maximum width boundary.
      * @group Props
      */
-    @Input() breakpoint: string = '960px';
+    @Input() breakpoint: string = this._componentDefaults?.tieredMenu?.breakpoint ?? '960px';
     /**
      * Whether to automatically manage layering.
      * @group Props
@@ -537,7 +539,7 @@ export class TieredMenu extends BaseComponent<TieredMenuPassThrough> {
      * @defaultValue true
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoDisplay: boolean | undefined = true;
+    @Input({ transform: booleanAttribute }) autoDisplay: boolean | undefined = this._componentDefaults?.tieredMenu?.autoDisplay ?? true;
     /**
      * Transition options of the show animation.
      * @group Props

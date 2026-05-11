@@ -28,6 +28,7 @@ import {
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MotionOptions } from '@primeuix/motion';
 import { calculateScrollbarWidth, equals, findLastIndex, findSingle, focus, getHiddenElementOuterWidth, getOffset, getOuterWidth, getViewport, isEmpty, isNotEmpty, isPrintableCharacter, resolveFieldData, uuid } from '@primeuix/utils';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { OverlayOptions, OverlayService, PrimeTemplate, SharedModule, TranslationKeys } from 'primeng/api';
 import { AutoFocus } from 'primeng/autofocus';
 import { BaseComponent, PARENT_INSTANCE } from 'primeng/basecomponent';
@@ -398,6 +399,8 @@ export class CascadeSelect extends BaseEditableHolder<CascadeSelectPassThrough> 
 
     bindDirectiveInstance = inject(Bind, { self: true });
 
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
     onAfterViewChecked(): void {
         this.bindDirectiveInstance.setAttrs(this.ptms(['host', 'root']));
     }
@@ -450,17 +453,17 @@ export class CascadeSelect extends BaseEditableHolder<CascadeSelectPassThrough> 
      * Fields used when filtering the options, defaults to optionLabel.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) focusOnHover: boolean = true;
+    @Input({ transform: booleanAttribute }) focusOnHover: boolean = this._componentDefaults?.cascadeSelect?.focusOnHover ?? true;
     /**
      * Determines if the option will be selected on focus.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) selectOnFocus: boolean = false;
+    @Input({ transform: booleanAttribute }) selectOnFocus: boolean = this._componentDefaults?.cascadeSelect?.selectOnFocus ?? false;
     /**
      * Whether to focus on the first visible or selected element when the overlay panel is shown.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoOptionFocus: boolean = false;
+    @Input({ transform: booleanAttribute }) autoOptionFocus: boolean = this._componentDefaults?.cascadeSelect?.autoOptionFocus ?? false;
     /**
      * Style class of the component.
      * @deprecated since v20.0.0, use `class` instead.
@@ -476,22 +479,22 @@ export class CascadeSelect extends BaseEditableHolder<CascadeSelectPassThrough> 
      * Property name or getter function to use as the label of an option.
      * @group Props
      */
-    @Input() optionLabel: string | undefined;
+    @Input() optionLabel: string | undefined = this._componentDefaults?.cascadeSelect?.optionLabel;
     /**
      * Property name or getter function to use as the value of an option, defaults to the option itself when not defined.
      * @group Props
      */
-    @Input() optionValue: string | undefined;
+    @Input() optionValue: string | undefined = this._componentDefaults?.cascadeSelect?.optionValue;
     /**
      * Property name or getter function to use as the label of an option group.
      * @group Props
      */
-    @Input() optionGroupLabel: string | undefined;
+    @Input() optionGroupLabel: string | undefined = this._componentDefaults?.cascadeSelect?.optionGroupLabel;
     /**
      * Property name or getter function to retrieve the items of a group.
      * @group Props
      */
-    @Input() optionGroupChildren: string[] | string | undefined | null;
+    @Input() optionGroupChildren: string[] | string | undefined | null = this._componentDefaults?.cascadeSelect?.optionGroupChildren;
     /**
      * Default text to display when no option is selected.
      * @group Props
@@ -536,7 +539,7 @@ export class CascadeSelect extends BaseEditableHolder<CascadeSelectPassThrough> 
      * When enabled, a clear icon is displayed to clear the value.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showClear: boolean = false;
+    @Input({ transform: booleanAttribute }) showClear: boolean = this._componentDefaults?.cascadeSelect?.showClear ?? false;
     /**
      * Style class of the overlay panel.
      * @group Props

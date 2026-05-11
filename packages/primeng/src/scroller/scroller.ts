@@ -37,6 +37,7 @@ import {
     VirtualScrollerPassThrough
 } from 'primeng/types/scroller';
 import { ScrollerStyle } from './style/scrollerstyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const SCROLLER_INSTANCE = new InjectionToken<Scroller>('SCROLLER_INSTANCE');
 
@@ -104,6 +105,7 @@ export class Scroller extends BaseComponent<VirtualScrollerPassThrough> {
     bindDirectiveInstance = inject(Bind, { self: true });
 
     $pcScroller: Scroller | undefined = inject(SCROLLER_INSTANCE, { optional: true, skipSelf: true }) ?? undefined;
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
 
     @Input() hostName = '';
     /**
@@ -404,15 +406,15 @@ export class Scroller extends BaseComponent<VirtualScrollerPassThrough> {
 
     _orientation: 'vertical' | 'horizontal' | 'both' = 'vertical';
 
-    _step: number = 0;
+    _step: number = this._componentDefaults?.scroller?.step ?? 0;
 
-    _delay: number = 0;
+    _delay: number = this._componentDefaults?.scroller?.delay ?? 0;
 
-    _resizeDelay: number = 10;
+    _resizeDelay: number = this._componentDefaults?.scroller?.resizeDelay ?? 10;
 
-    _appendOnly: boolean = false;
+    _appendOnly: boolean = this._componentDefaults?.scroller?.appendOnly ?? false;
 
-    _inline: boolean = false;
+    _inline: boolean = this._componentDefaults?.scroller?.inline ?? false;
 
     _lazy: boolean = false;
 
@@ -422,15 +424,15 @@ export class Scroller extends BaseComponent<VirtualScrollerPassThrough> {
 
     _columns: any[] | undefined | null;
 
-    _showSpacer: boolean = true;
+    _showSpacer: boolean = this._componentDefaults?.scroller?.showSpacer ?? true;
 
-    _showLoader: boolean = false;
+    _showLoader: boolean = this._componentDefaults?.scroller?.showLoader ?? false;
 
     _numToleratedItems: any;
 
     _loading: boolean | undefined;
 
-    _autoSize: boolean = false;
+    _autoSize: boolean = this._componentDefaults?.scroller?.autoSize ?? false;
 
     _trackBy: any;
 

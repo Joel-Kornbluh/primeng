@@ -31,6 +31,7 @@ import { Ripple } from 'primeng/ripple';
 import { Nullable } from 'primeng/ts-helpers';
 import { OrderListFilterEvent, OrderListFilterOptions, OrderListFilterTemplateContext, OrderListItemTemplateContext, OrderListPassThrough, OrderListSelectionChangeEvent } from 'primeng/types/orderlist';
 import { OrderListStyle } from './style/orderliststyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const ORDERLIST_INSTANCE = new InjectionToken<OrderList>('ORDERLIST_INSTANCE');
 
@@ -165,6 +166,7 @@ export class OrderList extends BaseComponent<OrderListPassThrough> {
      * Text for the caption.
      * @group Props
      */
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
     @Input() header: string | undefined;
 
     /**
@@ -202,7 +204,7 @@ export class OrderList extends BaseComponent<OrderListPassThrough> {
      * A boolean value that indicates whether the component should be responsive.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) responsive: boolean | undefined;
+    @Input({ transform: booleanAttribute }) responsive: boolean | undefined = this._componentDefaults?.orderList?.responsive;
 
     /**
      * When specified displays an input field to filter the items on keyup and decides which fields to search against.
@@ -220,25 +222,25 @@ export class OrderList extends BaseComponent<OrderListPassThrough> {
      * Locale to use in filtering. The default locale is the host environment's current locale.
      * @group Props
      */
-    @Input() filterLocale: string | undefined;
+    @Input() filterLocale: string | undefined = this._componentDefaults?.orderList?.filterLocale;
 
     /**
      * When true metaKey needs to be pressed to select or unselect an item and when set to false selection of each item can be toggled individually. On touch enabled devices, metaKeySelection is turned off automatically.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) metaKeySelection: boolean = false;
+    @Input({ transform: booleanAttribute }) metaKeySelection: boolean = this._componentDefaults?.orderList?.metaKeySelection ?? false;
 
     /**
      * Whether to enable dragdrop based reordering.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) dragdrop: boolean = false;
+    @Input({ transform: booleanAttribute }) dragdrop: boolean = this._componentDefaults?.orderList?.dragdrop ?? false;
 
     /**
      * Defines the location of the buttons with respect to the list.
      * @group Props
      */
-    @Input() controlsPosition: 'left' | 'right' = 'left';
+    @Input() controlsPosition: 'left' | 'right' = this._componentDefaults?.orderList?.controlsPosition ?? 'left';
 
     /**
      * Defines a string that labels the filter input.
@@ -250,19 +252,19 @@ export class OrderList extends BaseComponent<OrderListPassThrough> {
      * Defines how the items are filtered.
      * @group Props
      */
-    @Input() filterMatchMode: 'contains' | 'startsWith' | 'endsWith' | 'equals' | 'notEquals' | 'in' | 'lt' | 'lte' | 'gt' | 'gte' = 'contains';
+    @Input() filterMatchMode: 'contains' | 'startsWith' | 'endsWith' | 'equals' | 'notEquals' | 'in' | 'lt' | 'lte' | 'gt' | 'gte' = this._componentDefaults?.orderList?.filterMatchMode ?? 'contains';
 
     /**
      * Indicates the width of the screen at which the component should change its behavior.
      * @group Props
      */
-    @Input() breakpoint: string = '960px';
+    @Input() breakpoint: string = this._componentDefaults?.orderList?.breakpoint ?? '960px';
 
     /**
      * Whether to displays rows with alternating colors.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) stripedRows: boolean | undefined;
+    @Input({ transform: booleanAttribute }) stripedRows: boolean | undefined = this._componentDefaults?.orderList?.stripedRows;
 
     /**
      * When present, it specifies that the component should be disabled.
@@ -286,7 +288,7 @@ export class OrderList extends BaseComponent<OrderListPassThrough> {
      * Whether to focus on the first visible or selected element.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoOptionFocus: boolean = true;
+    @Input({ transform: booleanAttribute }) autoOptionFocus: boolean = this._componentDefaults?.orderList?.autoOptionFocus ?? true;
     /**
      * Name of the field that uniquely identifies the record in the data.
      * @group Props

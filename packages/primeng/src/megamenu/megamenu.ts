@@ -34,6 +34,7 @@ import { VoidListener } from 'primeng/ts-helpers';
 import { MegaMenuItemTemplateContext, MegaMenuPassThrough } from 'primeng/types/megamenu';
 import { ZIndexUtils } from 'primeng/utils';
 import { MegaMenuStyle } from './style/megamenustyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const MEGAMENU_INSTANCE = new InjectionToken<MegaMenu>('MEGAMENU_INSTANCE');
 const MEGAMENU_SUB_INSTANCE = new InjectionToken<MegaMenuSub>('MEGAMENU_SUB_INSTANCE');
@@ -238,6 +239,7 @@ export class MegaMenuSub extends BaseComponent<MegaMenuPassThrough> {
     $pcMegaMenu: MegaMenu | undefined = inject(MEGAMENU_INSTANCE, { optional: true, skipSelf: true }) ?? undefined;
 
     $pcMegaMenuSub: MegaMenuSub | undefined = inject(MEGAMENU_SUB_INSTANCE, { optional: true, skipSelf: true }) ?? undefined;
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
 
     @Input() id: string | undefined;
 
@@ -257,7 +259,7 @@ export class MegaMenuSub extends BaseComponent<MegaMenuPassThrough> {
 
     @Input({ transform: booleanAttribute }) disabled: boolean = false;
 
-    @Input() orientation: string | undefined;
+    @Input() orientation: string | undefined = this._componentDefaults?.megaMenu?.orientation;
 
     @Input() activeItem: any;
 
@@ -267,7 +269,7 @@ export class MegaMenuSub extends BaseComponent<MegaMenuPassThrough> {
 
     @Input({ transform: booleanAttribute }) mobileActive: boolean = false;
 
-    @Input() scrollHeight: string;
+    @Input() scrollHeight: string = this._componentDefaults?.megaMenu?.scrollHeight;
 
     @Input({ transform: numberAttribute }) tabindex: number = 0;
 
@@ -467,7 +469,7 @@ export class MegaMenu extends BaseComponent<MegaMenuPassThrough> {
      * Defines the orientation.
      * @group Props
      */
-    @Input() orientation: 'horizontal' | 'vertical' | string = 'horizontal';
+    @Input() orientation: 'horizontal' | 'vertical' | string = this._componentDefaults?.megaMenu?.orientation ?? 'horizontal';
     /**
      * Current id state as a string.
      * @group Props
@@ -487,12 +489,12 @@ export class MegaMenu extends BaseComponent<MegaMenuPassThrough> {
      * The breakpoint to define the maximum width boundary.
      * @group Props
      */
-    @Input() breakpoint: string = '960px';
+    @Input() breakpoint: string = this._componentDefaults?.megaMenu?.breakpoint ?? '960px';
     /**
      * Height of the viewport, a scrollbar is defined if height of list exceeds this value.
      * @group Props
      */
-    @Input() scrollHeight: string = '20rem';
+    @Input() scrollHeight: string = this._componentDefaults?.megaMenu?.scrollHeight ?? '20rem';
     /**
      * When present, it specifies that the component should be disabled.
      * @group Props

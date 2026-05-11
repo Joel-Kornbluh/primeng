@@ -1,6 +1,7 @@
 import { ElementRef, inject, Injectable, PLATFORM_ID, signal, TemplateRef } from '@angular/core';
 import { FilterMatchMode, OverlayOptions, Translation } from 'primeng/api';
 import { Subject } from 'rxjs';
+import type { ComponentsDefaults } from './componentdefaults';
 import type { PrimeNGConfigType, ThemeConfigType, ZIndex } from './primeng.types';
 import { ThemeProvider } from './themeprovider';
 
@@ -27,6 +28,8 @@ export class PrimeNG extends ThemeProvider {
     pt = signal<PrimeNGConfigType['pt']>(undefined);
 
     ptOptions = signal<PrimeNGConfigType['ptOptions']>(undefined);
+
+    defaults = signal<ComponentsDefaults | undefined>(undefined);
 
     filterMatchModeOptions = {
         text: [FilterMatchMode.STARTS_WITH, FilterMatchMode.CONTAINS, FilterMatchMode.NOT_CONTAINS, FilterMatchMode.ENDS_WITH, FilterMatchMode.EQUALS, FilterMatchMode.NOT_EQUALS],
@@ -186,7 +189,7 @@ export class PrimeNG extends ThemeProvider {
     }
 
     setConfig(config: PrimeNGConfigType): void {
-        const { csp, ripple, inputStyle, inputVariant, theme, overlayOptions, translation, filterMatchModeOptions, overlayAppendTo, zIndex, ptOptions, pt, unstyled } = config || {};
+        const { csp, ripple, inputStyle, inputVariant, theme, overlayOptions, translation, filterMatchModeOptions, overlayAppendTo, zIndex, ptOptions, pt, unstyled, defaults } = config || {};
 
         if (csp) this.csp.set(csp);
         if (overlayAppendTo) this.overlayAppendTo.set(overlayAppendTo);
@@ -200,6 +203,8 @@ export class PrimeNG extends ThemeProvider {
         if (pt) this.pt.set(pt);
         if (ptOptions) this.ptOptions.set(ptOptions);
         if (unstyled) this.unstyled.set(unstyled);
+
+        if (defaults) this.defaults.set(defaults);
 
         if (theme)
             this.setThemeConfig({

@@ -33,6 +33,7 @@ import { CheckIcon } from 'primeng/icons/check';
 import { MinusIcon } from 'primeng/icons/minus';
 import { Nullable } from 'primeng/ts-helpers';
 import { CheckboxChangeEvent, CheckboxIconTemplateContext, CheckboxPassThrough } from 'primeng/types/checkbox';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { CheckboxStyle } from './style/checkboxstyle';
 
 const CHECKBOX_INSTANCE = new InjectionToken<Checkbox>('CHECKBOX_INSTANCE');
@@ -97,6 +98,8 @@ export const CHECKBOX_VALUE_ACCESSOR: any = {
 export class Checkbox extends BaseEditableHolder<CheckboxPassThrough> {
     componentName = 'Checkbox';
 
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
     @Input() hostName: any = '';
     /**
      * Value of the checkbox.
@@ -107,7 +110,7 @@ export class Checkbox extends BaseEditableHolder<CheckboxPassThrough> {
      * Allows to select a boolean value instead of multiple values.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) binary: boolean | undefined;
+    @Input({ transform: booleanAttribute }) binary: boolean | undefined = this._componentDefaults?.checkbox?.binary;
     /**
      * Establishes relationships between the component and label(s) where its value should be one or more element IDs.
      * @group Props
@@ -148,7 +151,7 @@ export class Checkbox extends BaseEditableHolder<CheckboxPassThrough> {
      * When present, it specifies input state as indeterminate.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) indeterminate: boolean = false;
+    @Input({ transform: booleanAttribute }) indeterminate: boolean = this._componentDefaults?.checkbox?.indeterminate ?? false;
     /**
      * Form control value.
      * @group Props
@@ -158,7 +161,7 @@ export class Checkbox extends BaseEditableHolder<CheckboxPassThrough> {
      * Icon class of the checkbox icon.
      * @group Props
      */
-    @Input() checkboxIcon: string | undefined;
+    @Input() checkboxIcon: string | undefined = this._componentDefaults?.checkbox?.checkboxIcon;
     /**
      * When present, it specifies that the component cannot be edited.
      * @group Props
@@ -173,12 +176,12 @@ export class Checkbox extends BaseEditableHolder<CheckboxPassThrough> {
      * Value in checked state.
      * @group Props
      */
-    @Input() trueValue: any = true;
+    @Input() trueValue: any = this._componentDefaults?.checkbox?.trueValue ?? true;
     /**
      * Value in unchecked state.
      * @group Props
      */
-    @Input() falseValue: any = false;
+    @Input() falseValue: any = this._componentDefaults?.checkbox?.falseValue ?? false;
     /**
      * Specifies the input variant of the component.
      * @defaultValue undefined

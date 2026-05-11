@@ -5,6 +5,7 @@ import { BaseComponent, PARENT_INSTANCE } from 'primeng/basecomponent';
 import { Bind } from 'primeng/bind';
 import { ProgressSpinnerPassThrough } from 'primeng/types/progressspinner';
 import { ProgressSpinnerStyle } from './style/progressspinnerstyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const PROGRESSSPINNER_INSTANCE = new InjectionToken<ProgressSpinner>('PROGRESSSPINNER_INSTANCE');
 
@@ -44,22 +45,23 @@ export class ProgressSpinner extends BaseComponent<ProgressSpinnerPassThrough> {
      * @deprecated since v20.0.0, use `class` instead.
      * @group Props
      */
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
     @Input() styleClass: string | undefined;
     /**
      * Width of the circle stroke.
      * @group Props
      */
-    @Input() strokeWidth: string = '2';
+    @Input() strokeWidth: string = this._componentDefaults?.progressSpinner?.strokeWidth ?? '2';
     /**
      * Color for the background of the circle.
      * @group Props
      */
-    @Input() fill: string = 'none';
+    @Input() fill: string = this._componentDefaults?.progressSpinner?.fill ?? 'none';
     /**
      * Duration of the rotate animation.
      * @group Props
      */
-    @Input() animationDuration: string = '2s';
+    @Input() animationDuration: string = this._componentDefaults?.progressSpinner?.animationDuration ?? '2s';
     /**
      * Used to define a aria label attribute the current element.
      * @group Props

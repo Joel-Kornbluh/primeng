@@ -33,6 +33,7 @@ import { ToastCloseEvent, ToastHeadlessTemplateContext, ToastItemCloseEvent, Toa
 import { ZIndexUtils } from 'primeng/utils';
 import { Subscription } from 'rxjs';
 import { ToastStyle } from './style/toaststyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const TOAST_INSTANCE = new InjectionToken<Toast>('TOAST_INSTANCE');
 
@@ -122,19 +123,20 @@ const TOAST_INSTANCE = new InjectionToken<Toast>('TOAST_INSTANCE');
     providers: [ToastStyle]
 })
 export class ToastItem extends BaseComponent<ToastPassThrough> {
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
     @Input() message: ToastMessageOptions | null | undefined;
 
     @Input({ transform: numberAttribute }) index: number | null | undefined;
 
-    @Input({ transform: numberAttribute }) life: number;
+    @Input({ transform: numberAttribute }) life: number = this._componentDefaults?.toast?.life;
 
     @Input() template: TemplateRef<ToastMessageTemplateContext> | undefined;
 
     @Input() headlessTemplate: TemplateRef<ToastHeadlessTemplateContext> | undefined;
 
-    @Input() showTransformOptions: string | undefined;
+    @Input() showTransformOptions: string | undefined = this._componentDefaults?.toast?.showTransformOptions;
 
-    @Input() hideTransformOptions: string | undefined;
+    @Input() hideTransformOptions: string | undefined = this._componentDefaults?.toast?.hideTransformOptions;
 
     @Input() showTransitionOptions: string | undefined;
 
@@ -302,17 +304,17 @@ export class Toast extends BaseComponent<ToastPassThrough> {
      * Whether to automatically manage layering.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoZIndex: boolean = true;
+    @Input({ transform: booleanAttribute }) autoZIndex: boolean = this._componentDefaults?.toast?.autoZIndex ?? true;
     /**
      * Base zIndex value to use in layering.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) baseZIndex: number = 0;
+    @Input({ transform: numberAttribute }) baseZIndex: number = this._componentDefaults?.toast?.baseZIndex ?? 0;
     /**
      * The default time to display messages for in milliseconds.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) life: number = 3000;
+    @Input({ transform: numberAttribute }) life: number = this._componentDefaults?.toast?.life ?? 3000;
     /**
      * Inline class of the component.
      * @deprecated since v20.0.0, use `class` instead.
@@ -336,24 +338,24 @@ export class Toast extends BaseComponent<ToastPassThrough> {
      * It does not add the new message if there is already a toast displayed with the same content
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) preventOpenDuplicates: boolean = false;
+    @Input({ transform: booleanAttribute }) preventOpenDuplicates: boolean = this._componentDefaults?.toast?.preventOpenDuplicates ?? false;
     /**
      * Displays only once a message with the same content.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) preventDuplicates: boolean = false;
+    @Input({ transform: booleanAttribute }) preventDuplicates: boolean = this._componentDefaults?.toast?.preventDuplicates ?? false;
     /**
      * Transform options of the show animation.
      * @group Props
      * @deprecated since v21.0.0. Use `motionOptions` instead.
      */
-    @Input() showTransformOptions: string = 'translateY(100%)';
+    @Input() showTransformOptions: string = this._componentDefaults?.toast?.showTransformOptions ?? 'translateY(100%)';
     /**
      * Transform options of the hide animation.
      * @group Props
      * @deprecated since v21.0.0. Use `motionOptions` instead.
      */
-    @Input() hideTransformOptions: string = 'translateY(-100%)';
+    @Input() hideTransformOptions: string = this._componentDefaults?.toast?.hideTransformOptions ?? 'translateY(-100%)';
     /**
      * Transition options of the show animation.
      * @group Props
@@ -382,7 +384,7 @@ export class Toast extends BaseComponent<ToastPassThrough> {
      * Object literal to define styles per screen size.
      * @group Props
      */
-    @Input() breakpoints: { [key: string]: any } | undefined;
+    @Input() breakpoints: { [key: string]: any } | undefined = this._componentDefaults?.toast?.breakpoints;
     /**
      * Callback to invoke when a message is closed.
      * @param {ToastCloseEvent} event - custom close event.
@@ -412,7 +414,7 @@ export class Toast extends BaseComponent<ToastPassThrough> {
 
     messagesArchieve: ToastMessageOptions[] | undefined;
 
-    _position: ToastPositionType = 'top-right';
+    _position: ToastPositionType = this._componentDefaults?.toast?.position ?? 'top-right';
 
     messageService: MessageService = inject(MessageService);
 

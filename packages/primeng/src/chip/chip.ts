@@ -22,6 +22,7 @@ import { BaseComponent, PARENT_INSTANCE } from 'primeng/basecomponent';
 import { Bind } from 'primeng/bind';
 import { TimesCircleIcon } from 'primeng/icons';
 import { ChipProps, ChipPassThrough } from 'primeng/types/chip';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { ChipStyle } from './style/chipstyle';
 
 const CHIP_INSTANCE = new InjectionToken<Chip>('CHIP_INSTANCE');
@@ -96,6 +97,8 @@ export class Chip extends BaseComponent<ChipPassThrough> {
 
     bindDirectiveInstance = inject(Bind, { self: true });
 
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
     onAfterViewChecked(): void {
         this.bindDirectiveInstance.setAttrs(this.ptms(['host', 'root']));
     }
@@ -134,12 +137,12 @@ export class Chip extends BaseComponent<ChipPassThrough> {
      * Whether to display a remove icon.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) removable: boolean | undefined = false;
+    @Input({ transform: booleanAttribute }) removable: boolean | undefined = this._componentDefaults?.chip?.removable ?? false;
     /**
      * Icon of the remove element.
      * @group Props
      */
-    @Input() removeIcon: string | undefined;
+    @Input() removeIcon: string | undefined = this._componentDefaults?.chip?.removeIcon;
     /**
      * Callback to invoke when a chip is removed.
      * @param {MouseEvent} event - Mouse event.

@@ -5,6 +5,7 @@ import { BaseComponent, PARENT_INSTANCE } from 'primeng/basecomponent';
 import { Bind } from 'primeng/bind';
 import { SkeletonPassThrough } from 'primeng/types/skeleton';
 import { SkeletonStyle } from './style/skeletonstyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const SKELETON_INSTANCE = new InjectionToken<Skeleton>('SKELETON_INSTANCE');
 
@@ -43,37 +44,38 @@ export class Skeleton extends BaseComponent<SkeletonPassThrough> {
      * @deprecated since v20.0.0, use `class` instead.
      * @group Props
      */
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
     @Input() styleClass: string | undefined;
     /**
      * Shape of the element.
      * @group Props
      */
-    @Input() shape: string = 'rectangle';
+    @Input() shape: string = this._componentDefaults?.skeleton?.shape ?? 'rectangle';
     /**
      * Type of the animation.
      * @gruop Props
      */
-    @Input() animation: string = 'wave';
+    @Input() animation: string = this._componentDefaults?.skeleton?.animation ?? 'wave';
     /**
      * Border radius of the element, defaults to value from theme.
      * @group Props
      */
-    @Input() borderRadius: string | undefined;
+    @Input() borderRadius: string | undefined = this._componentDefaults?.skeleton?.borderRadius;
     /**
      * Size of the skeleton.
      * @group Props
      */
-    @Input() size: string | undefined;
+    @Input() size: string | undefined = this._componentDefaults?.skeleton?.size;
     /**
      * Width of the element.
      * @group Props
      */
-    @Input() width: string = '100%';
+    @Input() width: string = this._componentDefaults?.skeleton?.width ?? '100%';
     /**
      * Height of the element.
      * @group Props
      */
-    @Input() height: string = '1rem';
+    @Input() height: string = this._componentDefaults?.skeleton?.height ?? '1rem';
 
     _componentStyle = inject(SkeletonStyle);
 

@@ -33,6 +33,7 @@ import { PARENT_INSTANCE } from 'primeng/basecomponent';
 import { BaseInput } from 'primeng/baseinput';
 import { Bind, BindModule } from 'primeng/bind';
 import { Chip } from 'primeng/chip';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { ConnectedOverlayScrollHandler } from 'primeng/dom';
 import { ChevronDownIcon, SpinnerIcon, TimesCircleIcon, TimesIcon } from 'primeng/icons';
 import { InputText } from 'primeng/inputtext';
@@ -343,22 +344,24 @@ export class AutoComplete extends BaseInput<AutoCompletePassThrough> {
 
     bindDirectiveInstance = inject(Bind, { self: true });
 
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
     /**
      * Minimum number of characters to initiate a search.
      * @deprecated since v20.0.0, use `minQueryLength` instead.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) minLength: number = 1;
+    @Input({ transform: numberAttribute }) minLength: number = this._componentDefaults?.autocomplete?.minLength ?? 1;
     /**
      * Minimum number of characters to initiate a search.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) minQueryLength: number | undefined;
+    @Input({ transform: numberAttribute }) minQueryLength: number | undefined = this._componentDefaults?.autocomplete?.minQueryLength;
     /**
      * Delay between keystrokes to wait before sending a query.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) delay: number = 300;
+    @Input({ transform: numberAttribute }) delay: number = this._componentDefaults?.autocomplete?.delay ?? 300;
     /**
      * Inline style of the overlay panel element.
      * @group Props
@@ -404,7 +407,7 @@ export class AutoComplete extends BaseInput<AutoCompletePassThrough> {
      * Maximum height of the suggestions panel.
      * @group Props
      */
-    @Input() scrollHeight: string = '200px';
+    @Input() scrollHeight: string = this._componentDefaults?.autocomplete?.scrollHeight ?? '200px';
     /**
      * Defines if data is loaded and interacted with in lazy manner.
      * @group Props
@@ -414,12 +417,12 @@ export class AutoComplete extends BaseInput<AutoCompletePassThrough> {
      * Whether the data should be loaded on demand during scroll.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) virtualScroll: boolean | undefined;
+    @Input({ transform: booleanAttribute }) virtualScroll: boolean | undefined = this._componentDefaults?.autocomplete?.virtualScroll;
     /**
      * Height of an item in the list for VirtualScrolling.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) virtualScrollItemSize: number | undefined;
+    @Input({ transform: numberAttribute }) virtualScrollItemSize: number | undefined = this._componentDefaults?.autocomplete?.virtualScrollItemSize;
     /**
      * Whether to use the scroller feature. The properties of scroller component can be used like an object in it.
      * @group Props
@@ -429,27 +432,27 @@ export class AutoComplete extends BaseInput<AutoCompletePassThrough> {
      * When enabled, highlights the first item in the list by default.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoHighlight: boolean | undefined;
+    @Input({ transform: booleanAttribute }) autoHighlight: boolean | undefined = this._componentDefaults?.autocomplete?.autoHighlight;
     /**
      * When present, autocomplete clears the manual input if it does not match of the suggestions to force only accepting values from the suggestions.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) forceSelection: boolean | undefined;
+    @Input({ transform: booleanAttribute }) forceSelection: boolean | undefined = this._componentDefaults?.autocomplete?.forceSelection;
     /**
      * Type of the input, defaults to "text".
      * @group Props
      */
-    @Input() type: string = 'text';
+    @Input() type: string = this._componentDefaults?.autocomplete?.type ?? 'text';
     /**
      * Whether to automatically manage layering.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoZIndex: boolean = true;
+    @Input({ transform: booleanAttribute }) autoZIndex: boolean = this._componentDefaults?.autocomplete?.autoZIndex ?? true;
     /**
      * Base zIndex value to use in layering.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) baseZIndex: number = 0;
+    @Input({ transform: numberAttribute }) baseZIndex: number = this._componentDefaults?.autocomplete?.baseZIndex ?? 0;
     /**
      * Defines a string that labels the input for accessibility.
      * @group Props
@@ -469,52 +472,52 @@ export class AutoComplete extends BaseInput<AutoCompletePassThrough> {
      * Icon class of the dropdown icon.
      * @group Props
      */
-    @Input() dropdownIcon: string | undefined;
+    @Input() dropdownIcon: string | undefined = this._componentDefaults?.autocomplete?.dropdownIcon;
     /**
      * Ensures uniqueness of selected items on multiple mode.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) unique: boolean = true;
+    @Input({ transform: booleanAttribute }) unique: boolean = this._componentDefaults?.autocomplete?.unique ?? true;
     /**
      * Whether to display options as grouped when nested options are provided.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) group: boolean | undefined;
+    @Input({ transform: booleanAttribute }) group: boolean | undefined = this._componentDefaults?.autocomplete?.group;
     /**
      * Whether to run a query when input receives focus.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) completeOnFocus: boolean = false;
+    @Input({ transform: booleanAttribute }) completeOnFocus: boolean = this._componentDefaults?.autocomplete?.completeOnFocus ?? false;
     /**
      * When enabled, a clear icon is displayed to clear the value.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showClear: boolean = false;
+    @Input({ transform: booleanAttribute }) showClear: boolean = this._componentDefaults?.autocomplete?.showClear ?? false;
     /**
      * Displays a button next to the input field when enabled.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) dropdown: boolean | undefined;
+    @Input({ transform: booleanAttribute }) dropdown: boolean | undefined = this._componentDefaults?.autocomplete?.dropdown;
     /**
      * Whether to show the empty message or not.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showEmptyMessage: boolean | undefined = true;
+    @Input({ transform: booleanAttribute }) showEmptyMessage: boolean | undefined = this._componentDefaults?.autocomplete?.showEmptyMessage ?? true;
     /**
      * Specifies the behavior dropdown button. Default "blank" mode sends an empty string and "current" mode sends the input value.
      * @group Props
      */
-    @Input() dropdownMode: string = 'blank';
+    @Input() dropdownMode: string = this._componentDefaults?.autocomplete?.dropdownMode ?? 'blank';
     /**
      * Specifies if multiple values can be selected.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) multiple: boolean | undefined;
+    @Input({ transform: booleanAttribute }) multiple: boolean | undefined = this._componentDefaults?.autocomplete?.multiple;
     /**
      * When enabled, the input value is added to the selected items on tab key press when multiple is true and typeahead is false.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) addOnTab: boolean = false;
+    @Input({ transform: booleanAttribute }) addOnTab: boolean = this._componentDefaults?.autocomplete?.addOnTab ?? false;
     /**
      * Index of the element in tabbing order.
      * @group Props
@@ -529,7 +532,7 @@ export class AutoComplete extends BaseInput<AutoCompletePassThrough> {
      * Text to display when there is no data. Defaults to global value in i18n translation configuration.
      * @group Props
      */
-    @Input() emptyMessage: string | undefined;
+    @Input() emptyMessage: string | undefined = this._componentDefaults?.autocomplete?.emptyMessage;
     /**
      * Transition options of the show animation.
      * @group Props
@@ -551,17 +554,17 @@ export class AutoComplete extends BaseInput<AutoCompletePassThrough> {
      * Used to define a string that autocomplete attribute the current element.
      * @group Props
      */
-    @Input() autocomplete: string = 'off';
+    @Input() autocomplete: string = this._componentDefaults?.autocomplete?.autocomplete ?? 'off';
     /**
      * Name of the options field of an option group.
      * @group Props
      */
-    @Input() optionGroupChildren: string | undefined = 'items';
+    @Input() optionGroupChildren: string | undefined = this._componentDefaults?.autocomplete?.optionGroupChildren ?? 'items';
     /**
      * Name of the label field of an option group.
      * @group Props
      */
-    @Input() optionGroupLabel: string | undefined = 'label';
+    @Input() optionGroupLabel: string | undefined = this._componentDefaults?.autocomplete?.optionGroupLabel ?? 'label';
     /**
      * Options for the overlay element.
      * @group Props
@@ -585,12 +588,12 @@ export class AutoComplete extends BaseInput<AutoCompletePassThrough> {
      * Property name or getter function to use as the label of an option.
      * @group Props
      */
-    @Input() optionLabel: string | ((item: any) => string) | undefined;
+    @Input() optionLabel: string | ((item: any) => string) | undefined = this._componentDefaults?.autocomplete?.optionLabel;
     /**
      * Property name or getter function to use as the value of an option.
      * @group Props
      */
-    @Input() optionValue: string | ((item: any) => string) | undefined;
+    @Input() optionValue: string | ((item: any) => string) | undefined = this._componentDefaults?.autocomplete?.optionValue;
     /**
      * Unique identifier of the component.
      * @group Props
@@ -618,44 +621,44 @@ export class AutoComplete extends BaseInput<AutoCompletePassThrough> {
      * Whether to focus on the first visible or selected element when the overlay panel is shown.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoOptionFocus: boolean | undefined = false;
+    @Input({ transform: booleanAttribute }) autoOptionFocus: boolean | undefined = this._componentDefaults?.autocomplete?.autoOptionFocus ?? false;
     /**
      * When enabled, the focused option is selected.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) selectOnFocus: boolean | undefined;
+    @Input({ transform: booleanAttribute }) selectOnFocus: boolean | undefined = this._componentDefaults?.autocomplete?.selectOnFocus;
     /**
      * Locale to use in searching. The default locale is the host environment's current locale.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) searchLocale: boolean | undefined;
+    @Input({ transform: booleanAttribute }) searchLocale: boolean | undefined = this._componentDefaults?.autocomplete?.searchLocale;
     /**
      * Property name or getter function to use as the disabled flag of an option, defaults to false when not defined.
      * @group Props
      */
-    @Input() optionDisabled: string | ((item: any) => string) | undefined;
+    @Input() optionDisabled: string | ((item: any) => string) | undefined = this._componentDefaults?.autocomplete?.optionDisabled;
     /**
      * When enabled, the hovered option will be focused.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) focusOnHover: boolean | undefined = true;
+    @Input({ transform: booleanAttribute }) focusOnHover: boolean | undefined = this._componentDefaults?.autocomplete?.focusOnHover ?? true;
     /**
      * Whether typeahead is active or not.
      * @defaultValue true
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) typeahead: boolean = true;
+    @Input({ transform: booleanAttribute }) typeahead: boolean = this._componentDefaults?.autocomplete?.typeahead ?? true;
     /**
      * Whether to add an item on blur event if the input has value and typeahead is false with multiple mode.
      * @defaultValue false
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) addOnBlur: boolean = false;
+    @Input({ transform: booleanAttribute }) addOnBlur: boolean = this._componentDefaults?.autocomplete?.addOnBlur ?? false;
     /**
      * Separator char to add item when typeahead is false and multiple mode is enabled.
      * @group Props
      */
-    @Input() separator: string | RegExp | undefined;
+    @Input() separator: string | RegExp | undefined = this._componentDefaults?.autocomplete?.separator;
     /**
      * Target element to attach the overlay, valid values are "body" or a local ng-template variable of another element (note: use binding with brackets for template variables, e.g. [appendTo]="mydiv" for a div element having #mydiv as variable name).
      * @defaultValue 'self'

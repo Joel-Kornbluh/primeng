@@ -26,6 +26,7 @@ import { Bind, BindModule } from 'primeng/bind';
 import { ButtonModule, ButtonProps } from 'primeng/button';
 import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, ChevronUpIcon } from 'primeng/icons';
 import { CarouselItemTemplateContext, CarouselPageEvent, CarouselResponsiveOptions } from 'primeng/types/carousel';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { CarouselStyle } from './style/carouselstyle';
 
 /**
@@ -163,6 +164,8 @@ export class Carousel extends BaseComponent {
 
     bindDirectiveInstance = inject(Bind, { self: true });
 
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
     onAfterViewChecked(): void {
         this.bindDirectiveInstance.setAttrs(this.ptm('root'));
     }
@@ -228,12 +231,12 @@ export class Carousel extends BaseComponent {
      * Specifies the layout of the component.
      * @group Props
      */
-    @Input() orientation: 'horizontal' | 'vertical' = 'horizontal';
+    @Input() orientation: 'horizontal' | 'vertical' = this._componentDefaults?.carousel?.orientation ?? 'horizontal';
     /**
      * Height of the viewport in vertical layout.
      * @group Props
      */
-    @Input() verticalViewPortHeight: string = '300px';
+    @Input() verticalViewPortHeight: string = this._componentDefaults?.carousel?.verticalViewPortHeight ?? '300px';
     /**
      * Style class of main content.
      * @group Props
@@ -277,22 +280,22 @@ export class Carousel extends BaseComponent {
      * Defines if scrolling would be infinite.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) circular: boolean = false;
+    @Input({ transform: booleanAttribute }) circular: boolean = this._componentDefaults?.carousel?.circular ?? false;
     /**
      * Whether to display indicator container.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showIndicators: boolean = true;
+    @Input({ transform: booleanAttribute }) showIndicators: boolean = this._componentDefaults?.carousel?.showIndicators ?? true;
     /**
      * Whether to display navigation buttons in container.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showNavigators: boolean = true;
+    @Input({ transform: booleanAttribute }) showNavigators: boolean = this._componentDefaults?.carousel?.showNavigators ?? true;
     /**
      * Time in milliseconds to scroll items automatically.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) autoplayInterval: number = 0;
+    @Input({ transform: numberAttribute }) autoplayInterval: number = this._componentDefaults?.carousel?.autoplayInterval ?? 0;
     /**
      * Style class of the viewport container.
      * @deprecated since v20.0.0, use `class` instead.
@@ -332,9 +335,9 @@ export class Carousel extends BaseComponent {
 
     @ContentChild(Footer) footerFacet: QueryList<Footer> | undefined;
 
-    _numVisible: number = 1;
+    _numVisible: number = this._componentDefaults?.carousel?.numVisible ?? 3;
 
-    _numScroll: number = 1;
+    _numScroll: number = this._componentDefaults?.carousel?.numScroll ?? 1;
 
     _oldNumScroll: number = 0;
 

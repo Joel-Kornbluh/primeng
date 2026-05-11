@@ -8,6 +8,7 @@ import { Nullable, VoidListener } from 'primeng/ts-helpers';
 import type { SplitterResizeEndEvent, SplitterResizeStartEvent } from 'primeng/types/splitter';
 import { SplitterStyle } from './style/splitterstyle';
 import { SplitterPassThrough } from 'primeng/types/splitter';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const SPLITTER_INSTANCE = new InjectionToken<Splitter>('SPLITTER_INSTANCE');
 
@@ -74,6 +75,7 @@ export class Splitter extends BaseComponent<SplitterPassThrough> {
      * @deprecated since v20. Use `class` instead.
      * @group Props
      */
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
     @Input() styleClass: string | undefined;
     /**
      * Style class of the panel.
@@ -99,22 +101,22 @@ export class Splitter extends BaseComponent<SplitterPassThrough> {
      * Orientation of the panels. Valid values are 'horizontal' and 'vertical'.
      * @group Props
      */
-    @Input() layout: string | undefined = 'horizontal';
+    @Input() layout: string | undefined = this._componentDefaults?.splitter?.layout ?? 'horizontal';
     /**
      * Size of the divider in pixels.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) gutterSize: number = 4;
+    @Input({ transform: numberAttribute }) gutterSize: number = this._componentDefaults?.splitter?.gutterSize ?? 4;
     /**
      * Step factor to increment/decrement the size of the panels while pressing the arrow keys.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) step: number = 5;
+    @Input({ transform: numberAttribute }) step: number = this._componentDefaults?.splitter?.step ?? 5;
     /**
      * Minimum size of the elements relative to 100%.
      * @group Props
      */
-    @Input() minSizes: number[] = [];
+    @Input() minSizes: number[] = this._componentDefaults?.splitter?.minSizes ?? [];
     /**
      * Size of the elements relative to 100%.
      * @group Props
