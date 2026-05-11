@@ -34,6 +34,7 @@ import { TieredMenu } from 'primeng/tieredmenu';
 import { TooltipModule } from 'primeng/tooltip';
 import { ButtonProps, MenuButtonProps, SplitButtonPassThrough } from 'primeng/types/splitbutton';
 import { SplitButtonStyle } from './style/splitbuttonstyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const SPLITBUTTON_INSTANCE = new InjectionToken<SplitButton>('SPLITBUTTON_INSTANCE');
 
@@ -161,42 +162,43 @@ export class SplitButton extends BaseComponent<SplitButtonPassThrough> {
      * MenuModel instance to define the overlay items.
      * @group Props
      */
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
     @Input() model: MenuItem[] | undefined;
     /**
      * Defines the style of the button.
      * @group Props
      */
-    @Input() severity: 'success' | 'info' | 'warn' | 'danger' | 'help' | 'primary' | 'secondary' | 'contrast' | null | undefined;
+    @Input() severity: 'success' | 'info' | 'warn' | 'danger' | 'help' | 'primary' | 'secondary' | 'contrast' | null | undefined = this._componentDefaults?.splitButton?.severity;
     /**
      * Add a shadow to indicate elevation.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) raised: boolean = false;
+    @Input({ transform: booleanAttribute }) raised: boolean = this._componentDefaults?.splitButton?.raised ?? false;
     /**
      * Add a circular border radius to the button.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) rounded: boolean = false;
+    @Input({ transform: booleanAttribute }) rounded: boolean = this._componentDefaults?.splitButton?.rounded ?? false;
     /**
      * Add a textual class to the button without a background initially.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) text: boolean = false;
+    @Input({ transform: booleanAttribute }) text: boolean = this._componentDefaults?.splitButton?.text ?? false;
     /**
      * Add a border class without a background initially.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) outlined: boolean = false;
+    @Input({ transform: booleanAttribute }) outlined: boolean = this._componentDefaults?.splitButton?.outlined ?? false;
     /**
      * Defines the size of the button.
      * @group Props
      */
-    @Input() size: 'small' | 'large' | undefined | null = null;
+    @Input() size: 'small' | 'large' | undefined | null = this._componentDefaults?.splitButton?.size ?? null;
     /**
      * Add a plain textual class to the button without a background initially.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) plain: boolean = false;
+    @Input({ transform: booleanAttribute }) plain: boolean = this._componentDefaults?.splitButton?.plain ?? false;
     /**
      * Name of the icon.
      * @group Props
@@ -206,7 +208,7 @@ export class SplitButton extends BaseComponent<SplitButtonPassThrough> {
      * Position of the icon.
      * @group Props
      */
-    @Input() iconPos: SplitButtonIconPosition = 'left';
+    @Input() iconPos: SplitButtonIconPosition = this._componentDefaults?.splitButton?.iconPos ?? 'left';
     /**
      * Text of the button.
      * @group Props
@@ -242,7 +244,7 @@ export class SplitButton extends BaseComponent<SplitButtonPassThrough> {
      * Name of the dropdown icon.
      * @group Props
      */
-    @Input() dropdownIcon: string | undefined;
+    @Input() dropdownIcon: string | undefined = this._componentDefaults?.splitButton?.dropdownIcon;
     /**
      * Target element to attach the overlay, valid values are "body" or a local ng-template variable of another element (note: use binding with brackets for template variables, e.g. [appendTo]="mydiv" for a div element having #mydiv as variable name).
      * @defaultValue 'body'
@@ -253,7 +255,7 @@ export class SplitButton extends BaseComponent<SplitButtonPassThrough> {
      * Indicates the direction of the element.
      * @group Props
      */
-    @Input() dir: string | undefined;
+    @Input() dir: string | undefined = this._componentDefaults?.splitButton?.dir;
     /**
      * Defines a string that labels the expand button for accessibility.
      * @group Props
@@ -317,12 +319,12 @@ export class SplitButton extends BaseComponent<SplitButtonPassThrough> {
      * When present, it specifies that the menu button element should be disabled.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) menuButtonDisabled: boolean = false;
+    @Input({ transform: booleanAttribute }) menuButtonDisabled: boolean = this._componentDefaults?.splitButton?.menuButtonDisabled ?? false;
     /**
      * When present, it specifies that the button element should be disabled.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) buttonDisabled: boolean = false;
+    @Input({ transform: booleanAttribute }) buttonDisabled: boolean = this._componentDefaults?.splitButton?.buttonDisabled ?? false;
     /**
      * Callback to invoke when default command button is clicked.
      * @param {MouseEvent} event - Mouse event.

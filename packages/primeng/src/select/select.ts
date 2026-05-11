@@ -59,6 +59,7 @@ import {
     SelectSelectedItemTemplateContext
 } from 'primeng/types/select';
 import { SelectStyle } from './style/selectstyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const SELECT_INSTANCE = new InjectionToken<Select>('SELECT_INSTANCE');
 const SELECT_ITEM_INSTANCE = new InjectionToken<SelectItem>('SELECT_ITEM_INSTANCE');
@@ -108,6 +109,7 @@ export class SelectItem extends BaseComponent {
     $pcSelectItem: SelectItem | undefined = inject(SELECT_ITEM_INSTANCE, { optional: true, skipSelf: true }) ?? undefined;
 
     $pcSelect: Select | undefined = inject(SELECT_INSTANCE, { optional: true, skipSelf: true }) ?? undefined;
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
 
     @Input() id: string | undefined;
 
@@ -131,7 +133,7 @@ export class SelectItem extends BaseComponent {
 
     @Input() template: TemplateRef<any> | undefined;
 
-    @Input({ transform: booleanAttribute }) checkmark: boolean;
+    @Input({ transform: booleanAttribute }) checkmark: boolean = this._componentDefaults?.select?.checkmark;
 
     @Input() index: number | undefined;
 
@@ -443,12 +445,12 @@ export class Select extends BaseInput<SelectPassThrough> implements AfterViewIni
      * Height of the viewport in pixels, a scrollbar is defined if height of list exceeds this value.
      * @group Props
      */
-    @Input() scrollHeight: string = '200px';
+    @Input() scrollHeight: string = this._componentDefaults?.select?.scrollHeight ?? '200px';
     /**
      * When specified, displays an input field to filter the items on keyup.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) filter: boolean | undefined;
+    @Input({ transform: booleanAttribute }) filter: boolean | undefined = this._componentDefaults?.select?.filter;
     /**
      * Inline style of the overlay panel element.
      * @group Props
@@ -474,7 +476,7 @@ export class Select extends BaseInput<SelectPassThrough> implements AfterViewIni
      * When present, custom value instead of predefined options can be entered using the editable input field.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) editable: boolean | undefined;
+    @Input({ transform: booleanAttribute }) editable: boolean | undefined = this._componentDefaults?.select?.editable;
     /**
      * Index of the element in tabbing order.
      * @group Props
@@ -494,7 +496,7 @@ export class Select extends BaseInput<SelectPassThrough> implements AfterViewIni
      * Icon to display in loading state.
      * @group Props
      */
-    @Input() loadingIcon: string | undefined;
+    @Input() loadingIcon: string | undefined = this._componentDefaults?.select?.loadingIcon;
     /**
      * Placeholder text to show when filter input is empty.
      * @group Props
@@ -504,7 +506,7 @@ export class Select extends BaseInput<SelectPassThrough> implements AfterViewIni
      * Locale to use in filtering. The default locale is the host environment's current locale.
      * @group Props
      */
-    @Input() filterLocale: string | undefined;
+    @Input() filterLocale: string | undefined = this._componentDefaults?.select?.filterLocale;
     /**
      * Identifier of the accessible input element.
      * @group Props
@@ -534,17 +536,17 @@ export class Select extends BaseInput<SelectPassThrough> implements AfterViewIni
      * Clears the filter value when hiding the select.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) resetFilterOnHide: boolean = false;
+    @Input({ transform: booleanAttribute }) resetFilterOnHide: boolean = this._componentDefaults?.select?.resetFilterOnHide ?? false;
     /**
      * Whether the selected option will be shown with a check mark.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) checkmark: boolean = false;
+    @Input({ transform: booleanAttribute }) checkmark: boolean = this._componentDefaults?.select?.checkmark ?? false;
     /**
      * Icon class of the select icon.
      * @group Props
      */
-    @Input() dropdownIcon: string | undefined;
+    @Input() dropdownIcon: string | undefined = this._componentDefaults?.select?.dropdownIcon;
     /**
      * Whether the select is in loading state.
      * @group Props
@@ -554,47 +556,47 @@ export class Select extends BaseInput<SelectPassThrough> implements AfterViewIni
      * Name of the label field of an option.
      * @group Props
      */
-    @Input() optionLabel: string | undefined;
+    @Input() optionLabel: string | undefined = this._componentDefaults?.select?.optionLabel;
     /**
      * Name of the value field of an option.
      * @group Props
      */
-    @Input() optionValue: string | undefined;
+    @Input() optionValue: string | undefined = this._componentDefaults?.select?.optionValue;
     /**
      * Name of the disabled field of an option.
      * @group Props
      */
-    @Input() optionDisabled: string | undefined;
+    @Input() optionDisabled: string | undefined = this._componentDefaults?.select?.optionDisabled;
     /**
      * Name of the label field of an option group.
      * @group Props
      */
-    @Input() optionGroupLabel: string | undefined = 'label';
+    @Input() optionGroupLabel: string | undefined = this._componentDefaults?.select?.optionGroupLabel ?? 'label';
     /**
      * Name of the options field of an option group.
      * @group Props
      */
-    @Input() optionGroupChildren: string = 'items';
+    @Input() optionGroupChildren: string = this._componentDefaults?.select?.optionGroupChildren ?? 'items';
     /**
      * Whether to display options as grouped when nested options are provided.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) group: boolean | undefined;
+    @Input({ transform: booleanAttribute }) group: boolean | undefined = this._componentDefaults?.select?.group;
     /**
      * When enabled, a clear icon is displayed to clear the value.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showClear: boolean | undefined;
+    @Input({ transform: booleanAttribute }) showClear: boolean | undefined = this._componentDefaults?.select?.showClear;
     /**
      * Text to display when filtering does not return any results. Defaults to global value in i18n translation configuration.
      * @group Props
      */
-    @Input() emptyFilterMessage: string = '';
+    @Input() emptyFilterMessage: string = this._componentDefaults?.select?.emptyFilterMessage ?? '';
     /**
      * Text to display when there is no data. Defaults to global value in i18n translation configuration.
      * @group Props
      */
-    @Input() emptyMessage: string = '';
+    @Input() emptyMessage: string = this._componentDefaults?.select?.emptyMessage ?? '';
     /**
      * Defines if data is loaded and interacted with in lazy manner.
      * @group Props
@@ -604,12 +606,12 @@ export class Select extends BaseInput<SelectPassThrough> implements AfterViewIni
      * Whether the data should be loaded on demand during scroll.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) virtualScroll: boolean | undefined;
+    @Input({ transform: booleanAttribute }) virtualScroll: boolean | undefined = this._componentDefaults?.select?.virtualScroll;
     /**
      * Height of an item in the list for VirtualScrolling.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) virtualScrollItemSize: number | undefined;
+    @Input({ transform: numberAttribute }) virtualScrollItemSize: number | undefined = this._componentDefaults?.select?.virtualScrollItemSize;
     /**
      * Whether to use the scroller feature. The properties of scroller component can be used like an object in it.
      * @group Props
@@ -639,22 +641,22 @@ export class Select extends BaseInput<SelectPassThrough> implements AfterViewIni
      * Defines how the items are filtered.
      * @group Props
      */
-    @Input() filterMatchMode: 'contains' | 'startsWith' | 'endsWith' | 'equals' | 'notEquals' | 'in' | 'lt' | 'lte' | 'gt' | 'gte' = 'contains';
+    @Input() filterMatchMode: 'contains' | 'startsWith' | 'endsWith' | 'equals' | 'notEquals' | 'in' | 'lt' | 'lte' | 'gt' | 'gte' = this._componentDefaults?.select?.filterMatchMode ?? 'contains';
     /**
      * Advisory information to display in a tooltip on hover.
      * @group Props
      */
-    @Input() tooltip: string = '';
+    @Input() tooltip: string = this._componentDefaults?.select?.tooltip ?? '';
     /**
      * Position of the tooltip.
      * @group Props
      */
-    @Input() tooltipPosition: 'top' | 'left' | 'right' | 'bottom' = 'right';
+    @Input() tooltipPosition: 'top' | 'left' | 'right' | 'bottom' = this._componentDefaults?.select?.tooltipPosition ?? 'right';
     /**
      * Type of CSS position.
      * @group Props
      */
-    @Input() tooltipPositionStyle: string = 'absolute';
+    @Input() tooltipPositionStyle: string = this._componentDefaults?.select?.tooltipPositionStyle ?? 'absolute';
     /**
      * Style class of the tooltip.
      * @group Props
@@ -664,22 +666,22 @@ export class Select extends BaseInput<SelectPassThrough> implements AfterViewIni
      * Fields used when filtering the options, defaults to optionLabel.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) focusOnHover: boolean = true;
+    @Input({ transform: booleanAttribute }) focusOnHover: boolean = this._componentDefaults?.select?.focusOnHover ?? true;
     /**
      * Determines if the option will be selected on focus.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) selectOnFocus: boolean = false;
+    @Input({ transform: booleanAttribute }) selectOnFocus: boolean = this._componentDefaults?.select?.selectOnFocus ?? false;
     /**
      * Whether to focus on the first visible or selected element when the overlay panel is shown.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoOptionFocus: boolean = false;
+    @Input({ transform: booleanAttribute }) autoOptionFocus: boolean = this._componentDefaults?.select?.autoOptionFocus ?? false;
     /**
      * Applies focus to the filter element when the overlay is shown.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autofocusFilter: boolean = true;
+    @Input({ transform: booleanAttribute }) autofocusFilter: boolean = this._componentDefaults?.select?.autofocusFilter ?? true;
     /**
      * When specified, filter displays with this value.
      * @group Props

@@ -4,6 +4,7 @@ import { SharedModule } from 'primeng/api';
 import { BaseComponent, PARENT_INSTANCE } from 'primeng/basecomponent';
 import { Bind, BindModule } from 'primeng/bind';
 import { FloatLabelPassThrough } from 'primeng/types/floatlabel';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { FloatLabelStyle } from './style/floatlabelstyle';
 
 const FLOATLABEL_INSTANCE = new InjectionToken<FloatLabel>('FLOATLABEL_INSTANCE');
@@ -34,6 +35,8 @@ export class FloatLabel extends BaseComponent<FloatLabelPassThrough> implements 
 
     bindDirectiveInstance = inject(Bind, { self: true });
 
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
     onAfterViewChecked(): void {
         this.bindDirectiveInstance.setAttrs(this.ptms(['host', 'root']));
     }
@@ -42,7 +45,7 @@ export class FloatLabel extends BaseComponent<FloatLabelPassThrough> implements 
      * Defines the positioning of the label relative to the input.
      * @group Props
      */
-    @Input() variant: 'in' | 'over' | 'on' = 'over';
+    @Input() variant: 'in' | 'over' | 'on' = this._componentDefaults?.floatLabel?.variant ?? 'over';
 }
 
 @NgModule({

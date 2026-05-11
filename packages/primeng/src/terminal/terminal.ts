@@ -9,6 +9,7 @@ import { TerminalPassThrough } from 'primeng/types/terminal';
 import { Subscription } from 'rxjs';
 import { TerminalStyle } from './style/terminalstyle';
 import { TerminalService } from './terminalservice';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const TERMINAL_INSTANCE = new InjectionToken<Terminal>('TERMINAL_INSTANCE');
 
@@ -52,12 +53,13 @@ export class Terminal extends BaseComponent<TerminalPassThrough> implements Afte
      * Initial text to display on terminal.
      * @group Props
      */
-    @Input() welcomeMessage: string | undefined;
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+    @Input() welcomeMessage: string | undefined = this._componentDefaults?.terminal?.welcomeMessage;
     /**
      * Prompt text for each command.
      * @group Props
      */
-    @Input() prompt: string | undefined;
+    @Input() prompt: string | undefined = this._componentDefaults?.terminal?.prompt;
     /**
      * Style class of the component.
      * @deprecated since v20.0.0, use `class` instead.

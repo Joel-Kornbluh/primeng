@@ -31,6 +31,7 @@ import { Nullable } from 'primeng/ts-helpers';
 import { RadioButtonPassThrough } from 'primeng/types/radiobutton';
 import type { RadioButtonClickEvent } from 'primeng/types/radiobutton';
 import { RadioButtonStyle } from './style/radiobuttonstyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const RADIOBUTTON_INSTANCE = new InjectionToken<RadioButton>('RADIOBUTTON_INSTANCE');
 
@@ -130,6 +131,7 @@ export class RadioButton extends BaseEditableHolder<RadioButtonPassThrough> {
      * Value of the radiobutton.
      * @group Props
      */
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
     @Input() value: any;
     /**
      * Index of the element in tabbing order.
@@ -166,7 +168,7 @@ export class RadioButton extends BaseEditableHolder<RadioButtonPassThrough> {
      * Allows to select a boolean value.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) binary: boolean | undefined;
+    @Input({ transform: booleanAttribute }) binary: boolean | undefined = this._componentDefaults?.radioButton?.binary;
     /**
      * Specifies the input variant of the component.
      * @defaultValue undefined

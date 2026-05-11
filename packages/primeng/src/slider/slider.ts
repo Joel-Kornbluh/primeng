@@ -11,6 +11,7 @@ import { Nullable, VoidListener } from 'primeng/ts-helpers';
 import type { SliderChangeEvent, SliderSlideEndEvent } from 'primeng/types/slider';
 import { SliderPassThrough } from 'primeng/types/slider';
 import { SliderStyle } from './style/sliderstyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const SLIDER_INSTANCE = new InjectionToken<Slider>('SLIDER_INSTANCE');
 
@@ -158,32 +159,33 @@ export class Slider extends BaseEditableHolder<SliderPassThrough> {
      * When enabled, displays an animation on click of the slider bar.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) animate: boolean | undefined;
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+    @Input({ transform: booleanAttribute }) animate: boolean | undefined = this._componentDefaults?.slider?.animate;
     /**
      * Mininum boundary value.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) min: number = 0;
+    @Input({ transform: numberAttribute }) min: number = this._componentDefaults?.slider?.min ?? 0;
     /**
      * Maximum boundary value.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) max: number = 100;
+    @Input({ transform: numberAttribute }) max: number = this._componentDefaults?.slider?.max ?? 100;
     /**
      * Orientation of the slider.
      * @group Props
      */
-    @Input() orientation: 'horizontal' | 'vertical' = 'horizontal';
+    @Input() orientation: 'horizontal' | 'vertical' = this._componentDefaults?.slider?.orientation ?? 'horizontal';
     /**
      * Step factor to increment/decrement the value.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) step: number | undefined;
+    @Input({ transform: numberAttribute }) step: number | undefined = this._componentDefaults?.slider?.step;
     /**
      * When specified, allows two boundary values to be picked.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) range: boolean | undefined;
+    @Input({ transform: booleanAttribute }) range: boolean | undefined = this._componentDefaults?.slider?.range;
     /**
      * Style class of the component.
      * @deprecated since v20.0.0, use `class` instead.

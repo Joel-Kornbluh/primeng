@@ -46,6 +46,7 @@ import { Nullable, VoidListener } from 'primeng/ts-helpers';
 import type { PasswordIconTemplateContext, PasswordPassThrough } from 'primeng/types/password';
 import { Subscription } from 'rxjs';
 import { PasswordStyle } from './style/passwordstyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const PASSWORD_DIRECTIVE_INSTANCE = new InjectionToken<PasswordDirective>('PASSWORD_DIRECTIVE_INSTANCE');
 
@@ -93,27 +94,28 @@ export class PasswordDirective extends BaseEditableHolder {
      * Text to prompt password entry. Defaults to PrimeNG I18N API configuration.
      * @group Props
      */
-    @Input() promptLabel: string = 'Enter a password';
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+    @Input() promptLabel: string = this._componentDefaults?.password?.promptLabel ?? 'Enter a password';
     /**
      * Text for a weak password. Defaults to PrimeNG I18N API configuration.
      * @group Props
      */
-    @Input() weakLabel: string = 'Weak';
+    @Input() weakLabel: string = this._componentDefaults?.password?.weakLabel ?? 'Weak';
     /**
      * Text for a medium password. Defaults to PrimeNG I18N API configuration.
      * @group Props
      */
-    @Input() mediumLabel: string = 'Medium';
+    @Input() mediumLabel: string = this._componentDefaults?.password?.mediumLabel ?? 'Medium';
     /**
      * Text for a strong password. Defaults to PrimeNG I18N API configuration.
      * @group Props
      */
-    @Input() strongLabel: string = 'Strong';
+    @Input() strongLabel: string = this._componentDefaults?.password?.strongLabel ?? 'Strong';
     /**
      * Whether to show the strength indicator or not.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) feedback: boolean = true;
+    @Input({ transform: booleanAttribute }) feedback: boolean = this._componentDefaults?.password?.feedback ?? true;
     /**
      * Sets the visibility of the password field.
      * @defaultValue false
@@ -547,38 +549,38 @@ export class Password extends BaseInput<PasswordPassThrough> {
      * Text to prompt password entry. Defaults to PrimeNG I18N API configuration.
      * @group Props
      */
-    @Input() promptLabel: string | undefined;
+    @Input() promptLabel: string | undefined = this._componentDefaults?.password?.promptLabel;
     /**
      * Regex value for medium regex.
      * @group Props
      */
-    @Input() mediumRegex: string = '^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})';
+    @Input() mediumRegex: string = this._componentDefaults?.password?.mediumRegex ?? '^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})';
     /**
      * Regex value for strong regex.
      * @group Props
      */
-    @Input() strongRegex: string = '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})';
+    @Input() strongRegex: string = this._componentDefaults?.password?.strongRegex ?? '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})';
     /**
      * Text for a weak password. Defaults to PrimeNG I18N API configuration.
      * @group Props
      */
-    @Input() weakLabel: string | undefined;
+    @Input() weakLabel: string | undefined = this._componentDefaults?.password?.weakLabel;
     /**
      * Text for a medium password. Defaults to PrimeNG I18N API configuration.
      * @group Props
      */
-    @Input() mediumLabel: string | undefined;
+    @Input() mediumLabel: string | undefined = this._componentDefaults?.password?.mediumLabel;
     /**
      * specifies the maximum number of characters allowed in the input element.
      * @deprecated since v20.0.0, use maxlength instead.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) maxLength: number | undefined;
+    @Input({ transform: numberAttribute }) maxLength: number | undefined = this._componentDefaults?.password?.maxLength;
     /**
      * Text for a strong password. Defaults to PrimeNG I18N API configuration.
      * @group Props
      */
-    @Input() strongLabel: string | undefined;
+    @Input() strongLabel: string | undefined = this._componentDefaults?.password?.strongLabel;
     /**
      * Identifier of the accessible input element.
      * @group Props
@@ -593,7 +595,7 @@ export class Password extends BaseInput<PasswordPassThrough> {
      * Whether to show an icon to display the password as plain text.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) toggleMask: boolean | undefined;
+    @Input({ transform: booleanAttribute }) toggleMask: boolean | undefined = this._componentDefaults?.password?.toggleMask;
     /**
      * Style class of the input field.
      * @group Props
@@ -626,7 +628,7 @@ export class Password extends BaseInput<PasswordPassThrough> {
      * Specify automated assistance in filling out password by browser.
      * @group Props
      */
-    @Input() autocomplete: string | undefined;
+    @Input() autocomplete: string | undefined = this._componentDefaults?.password?.autocomplete;
     /**
      * Advisory information to display on input.
      * @group Props
@@ -636,7 +638,7 @@ export class Password extends BaseInput<PasswordPassThrough> {
      * When enabled, a clear icon is displayed to clear the value.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showClear: boolean = false;
+    @Input({ transform: booleanAttribute }) showClear: boolean = this._componentDefaults?.password?.showClear ?? false;
     /**
      * When present, it specifies that the component should automatically get focus on load.
      * @group Props

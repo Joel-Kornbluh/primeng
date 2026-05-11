@@ -30,6 +30,7 @@ import { MotionModule } from 'primeng/motion';
 import { Nullable } from 'primeng/ts-helpers';
 import type { PanelAfterToggleEvent, PanelBeforeToggleEvent, PanelHeaderIconsTemplateContext, PanelPassThrough } from 'primeng/types/panel';
 import { PanelStyle } from './style/panelstyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const PANEL_INSTANCE = new InjectionToken<Panel>('PANEL_INSTANCE');
 
@@ -134,12 +135,13 @@ export class Panel extends BaseComponent<PanelPassThrough> implements BlockableU
     /**
      * Id of the component.
      */
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
     @Input() id: string | undefined = uuid('pn_id_');
     /**
      * Defines if content of panel can be expanded and collapsed.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) toggleable: boolean | undefined;
+    @Input({ transform: booleanAttribute }) toggleable: boolean | undefined = this._componentDefaults?.panel?.toggleable;
 
     /**
      * Header text of the panel.
@@ -175,32 +177,32 @@ export class Panel extends BaseComponent<PanelPassThrough> implements BlockableU
      * Position of the icons.
      * @group Props
      */
-    @Input() iconPos: 'start' | 'end' | 'center' = 'end';
+    @Input() iconPos: 'start' | 'end' | 'center' = this._componentDefaults?.panel?.iconPos ?? 'end';
 
     /**
      * Specifies if header of panel cannot be displayed.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showHeader: boolean = true;
+    @Input({ transform: booleanAttribute }) showHeader: boolean = this._componentDefaults?.panel?.showHeader ?? true;
 
     /**
      * Specifies the toggler element to toggle the panel content.
      * @group Props
      */
-    @Input() toggler: 'icon' | 'header' = 'icon';
+    @Input() toggler: 'icon' | 'header' = this._componentDefaults?.panel?.toggler ?? 'icon';
 
     /**
      * Transition options of the animation.
      * @group Props
      * @deprecated since v21.0.0, use `motionOptions` instead.
      */
-    @Input() transitionOptions: string = '400ms cubic-bezier(0.86, 0, 0.07, 1)';
+    @Input() transitionOptions: string = this._componentDefaults?.panel?.transitionOptions ?? '400ms cubic-bezier(0.86, 0, 0.07, 1)';
 
     /**
      * Used to pass all properties of the ButtonProps to the Button component.
      * @group Props
      */
-    @Input() toggleButtonProps: any;
+    @Input() toggleButtonProps: any = this._componentDefaults?.panel?.toggleButtonProps;
 
     /**
      * The motion options.

@@ -5,6 +5,7 @@ import { BaseComponent, PARENT_INSTANCE } from 'primeng/basecomponent';
 import { Bind } from 'primeng/bind';
 import { TagPassThrough } from 'primeng/types/tag';
 import { TagStyle } from './style/tagstyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const TAG_INSTANCE = new InjectionToken<Tag>('TAG_INSTANCE');
 
@@ -50,12 +51,13 @@ export class Tag extends BaseComponent<TagPassThrough> implements AfterContentIn
      * @deprecated since v20.0.0, use `class` instead.
      * @group Props
      */
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
     @Input() styleClass: string | undefined;
     /**
      * Severity type of the tag.
      * @group Props
      */
-    @Input() severity: 'success' | 'secondary' | 'info' | 'warn' | 'danger' | 'contrast' | undefined | null;
+    @Input() severity: 'success' | 'secondary' | 'info' | 'warn' | 'danger' | 'contrast' | undefined | null = this._componentDefaults?.tag?.severity;
     /**
      * Value to display inside the tag.
      * @group Props
@@ -65,12 +67,12 @@ export class Tag extends BaseComponent<TagPassThrough> implements AfterContentIn
      * Icon of the tag to display next to the value.
      * @group Props
      */
-    @Input() icon: string | undefined;
+    @Input() icon: string | undefined = this._componentDefaults?.tag?.icon;
     /**
      * Whether the corners of the tag are rounded.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) rounded: boolean | undefined;
+    @Input({ transform: booleanAttribute }) rounded: boolean | undefined = this._componentDefaults?.tag?.rounded;
 
     /**
      * Custom icon template.

@@ -28,6 +28,7 @@ import { Ripple } from 'primeng/ripple';
 import { Nullable } from 'primeng/ts-helpers';
 import { ToggleButtonChangeEvent, ToggleButtonContentTemplateContext, ToggleButtonIconTemplateContext, ToggleButtonPassThrough } from 'primeng/types/togglebutton';
 import { ToggleButtonStyle } from './style/togglebuttonstyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const TOGGLEBUTTON_INSTANCE = new InjectionToken<ToggleButton>('TOGGLEBUTTON_INSTANCE');
 
@@ -117,22 +118,23 @@ export class ToggleButton extends BaseEditableHolder<ToggleButtonPassThrough> {
      * Label for the on state.
      * @group Props
      */
-    @Input() onLabel: string = 'Yes';
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+    @Input() onLabel: string = this._componentDefaults?.toggleButton?.onLabel ?? 'Yes';
     /**
      * Label for the off state.
      * @group Props
      */
-    @Input() offLabel: string = 'No';
+    @Input() offLabel: string = this._componentDefaults?.toggleButton?.offLabel ?? 'No';
     /**
      * Icon for the on state.
      * @group Props
      */
-    @Input() onIcon: string | undefined;
+    @Input() onIcon: string | undefined = this._componentDefaults?.toggleButton?.onIcon;
     /**
      * Icon for the off state.
      * @group Props
      */
-    @Input() offIcon: string | undefined;
+    @Input() offIcon: string | undefined = this._componentDefaults?.toggleButton?.offIcon;
     /**
      * Defines a string that labels the input for accessibility.
      * @group Props
@@ -163,7 +165,7 @@ export class ToggleButton extends BaseEditableHolder<ToggleButtonPassThrough> {
      * Position of the icon.
      * @group Props
      */
-    @Input() iconPos: 'left' | 'right' = 'left';
+    @Input() iconPos: 'left' | 'right' = this._componentDefaults?.toggleButton?.iconPos ?? 'left';
     /**
      * When present, it specifies that the component should automatically get focus on load.
      * @group Props
@@ -173,12 +175,12 @@ export class ToggleButton extends BaseEditableHolder<ToggleButtonPassThrough> {
      * Defines the size of the component.
      * @group Props
      */
-    @Input() size: 'large' | 'small';
+    @Input() size: 'large' | 'small' = this._componentDefaults?.toggleButton?.size;
     /**
      * Whether selection can not be cleared.
      * @group Props
      */
-    @Input() allowEmpty: boolean | undefined;
+    @Input() allowEmpty: boolean | undefined = this._componentDefaults?.toggleButton?.allowEmpty;
     /**
      * Spans 100% width of the container when enabled.
      * @defaultValue undefined

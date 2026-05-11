@@ -29,6 +29,7 @@ import { Bind, BindModule } from 'primeng/bind';
 import { InputText } from 'primeng/inputtext';
 import { Nullable } from 'primeng/ts-helpers';
 import { InputOtpChangeEvent, InputOtpInputTemplateContext, InputOtpPassThrough } from 'primeng/types/inputotp';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { InputOtpStyle } from './style/inputotpstyle';
 
 const INPUTOTP_INSTANCE = new InjectionToken<InputOtp>('INPUTOTP_INSTANCE');
@@ -105,6 +106,8 @@ export class InputOtp extends BaseEditableHolder<InputOtpPassThrough> implements
         this.bindDirectiveInstance.setAttrs(this.ptms(['host', 'root']));
     }
 
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
     /**
      * When present, it specifies that an input field is read-only.
      * @group Props
@@ -119,7 +122,7 @@ export class InputOtp extends BaseEditableHolder<InputOtpPassThrough> implements
      * Number of characters to initiate.
      * @group Props
      */
-    @Input() length: number = 4;
+    @Input() length: number = this._componentDefaults?.inputOtp?.length ?? 4;
     /**
      * Style class of the input element.
      * @group Props
@@ -129,12 +132,12 @@ export class InputOtp extends BaseEditableHolder<InputOtpPassThrough> implements
      * Mask pattern.
      * @group Props
      */
-    @Input() mask: boolean = false;
+    @Input() mask: boolean = this._componentDefaults?.inputOtp?.mask ?? false;
     /**
      * When present, it specifies that an input field is integer-only.
      * @group Props
      */
-    @Input() integerOnly: boolean = false;
+    @Input() integerOnly: boolean = this._componentDefaults?.inputOtp?.integerOnly ?? false;
     /**
      * When present, it specifies that the component should automatically get focus on load.
      * @group Props

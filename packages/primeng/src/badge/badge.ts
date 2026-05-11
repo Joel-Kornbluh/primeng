@@ -6,6 +6,7 @@ import { BaseComponent, PARENT_INSTANCE } from 'primeng/basecomponent';
 import { Bind, BindModule } from 'primeng/bind';
 import type { BadgePassThrough } from 'primeng/types/badge';
 import { BadgeStyle } from './style/badgestyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const BADGE_INSTANCE = new InjectionToken<Badge>('BADGE_INSTANCE');
 
@@ -46,6 +47,7 @@ export class BadgeDirective extends BaseComponent {
      * When specified, disables the component.
      * @group Props
      */
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
     @Input('badgeDisabled') public disabled: boolean;
     /**
      * Size of the badge, valid options are "large" and "xlarge".
@@ -69,7 +71,7 @@ export class BadgeDirective extends BaseComponent {
      * Severity type of the badge.
      * @group Props
      */
-    @Input() severity: 'secondary' | 'info' | 'success' | 'warn' | 'danger' | 'contrast' | null | undefined;
+    @Input() severity: 'secondary' | 'info' | 'success' | 'warn' | 'danger' | 'contrast' | null | undefined = this._componentDefaults?.badge?.severity;
     /**
      * Value to display inside the badge.
      * @group Props

@@ -49,6 +49,7 @@ import {
     RemoveUploadedFileEvent
 } from 'primeng/types/fileupload';
 import { Subscription } from 'rxjs';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { FileUploadStyle } from './style/fileuploadstyle';
 
 const FILEUPLOAD_INSTANCE = new InjectionToken<FileUpload>('FILEUPLOAD_INSTANCE');
@@ -343,6 +344,8 @@ export class FileUpload extends BaseComponent<FileUploadPassThrough> implements 
         this.bindDirectiveInstance.setAttrs(this.ptm('host'));
     }
 
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
     /**
      * Name of the request parameter to identify the files at backend.
      * @group Props
@@ -357,17 +360,17 @@ export class FileUpload extends BaseComponent<FileUploadPassThrough> implements 
      * HTTP method to send the files to the url such as "post" and "put".
      * @group Props
      */
-    @Input() method: 'post' | 'put' | undefined = 'post';
+    @Input() method: 'post' | 'put' | undefined = this._componentDefaults?.fileUpload?.method ?? 'post';
     /**
      * Used to select multiple files at once from file dialog.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) multiple: boolean | undefined;
+    @Input({ transform: booleanAttribute }) multiple: boolean | undefined = this._componentDefaults?.fileUpload?.multiple;
     /**
      * Comma-separated list of pattern to restrict the allowed file types. Can be any combination of either the MIME types (such as "image/*") or the file extensions (such as ".jpg").
      * @group Props
      */
-    @Input() accept: string | undefined;
+    @Input() accept: string | undefined = this._componentDefaults?.fileUpload?.accept;
     /**
      * Disables the upload functionality.
      * @group Props
@@ -377,47 +380,47 @@ export class FileUpload extends BaseComponent<FileUploadPassThrough> implements 
      * When enabled, upload begins automatically after selection is completed.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) auto: boolean | undefined;
+    @Input({ transform: booleanAttribute }) auto: boolean | undefined = this._componentDefaults?.fileUpload?.auto;
     /**
      * Cross-site Access-Control requests should be made using credentials such as cookies, authorization headers or TLS client certificates.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) withCredentials: boolean | undefined;
+    @Input({ transform: booleanAttribute }) withCredentials: boolean | undefined = this._componentDefaults?.fileUpload?.withCredentials;
     /**
      * Maximum file size allowed in bytes.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) maxFileSize: number | undefined;
+    @Input({ transform: numberAttribute }) maxFileSize: number | undefined = this._componentDefaults?.fileUpload?.maxFileSize;
     /**
      * Summary message of the invalid file size.
      * @group Props
      */
-    @Input() invalidFileSizeMessageSummary: string = '{0}: Invalid file size, ';
+    @Input() invalidFileSizeMessageSummary: string = this._componentDefaults?.fileUpload?.invalidFileSizeMessageSummary ?? '{0}: Invalid file size, ';
     /**
      * Detail message of the invalid file size.
      * @group Props
      */
-    @Input() invalidFileSizeMessageDetail: string = 'maximum upload size is {0}.';
+    @Input() invalidFileSizeMessageDetail: string = this._componentDefaults?.fileUpload?.invalidFileSizeMessageDetail ?? 'maximum upload size is {0}.';
     /**
      * Summary message of the invalid file type.
      * @group Props
      */
-    @Input() invalidFileTypeMessageSummary: string = '{0}: Invalid file type, ';
+    @Input() invalidFileTypeMessageSummary: string = this._componentDefaults?.fileUpload?.invalidFileTypeMessageSummary ?? '{0}: Invalid file type, ';
     /**
      * Detail message of the invalid file type.
      * @group Props
      */
-    @Input() invalidFileTypeMessageDetail: string = 'allowed file types: {0}.';
+    @Input() invalidFileTypeMessageDetail: string = this._componentDefaults?.fileUpload?.invalidFileTypeMessageDetail ?? 'allowed file types: {0}.';
     /**
      * Detail message of the invalid file type.
      * @group Props
      */
-    @Input() invalidFileLimitMessageDetail: string = 'limit is {0} at most.';
+    @Input() invalidFileLimitMessageDetail: string = this._componentDefaults?.fileUpload?.invalidFileLimitMessageDetail ?? 'limit is {0} at most.';
     /**
      * Summary message of the invalid file type.
      * @group Props
      */
-    @Input() invalidFileLimitMessageSummary: string = 'Maximum number of files exceeded, ';
+    @Input() invalidFileLimitMessageSummary: string = this._componentDefaults?.fileUpload?.invalidFileLimitMessageSummary ?? 'Maximum number of files exceeded, ';
     /**
      * Inline style of the element.
      * @group Props
@@ -432,52 +435,52 @@ export class FileUpload extends BaseComponent<FileUploadPassThrough> implements 
      * Width of the image thumbnail in pixels.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) previewWidth: number = 50;
+    @Input({ transform: numberAttribute }) previewWidth: number = this._componentDefaults?.fileUpload?.previewWidth ?? 50;
     /**
      * Label of the choose button. Defaults to PrimeNG Locale configuration.
      * @group Props
      */
-    @Input() chooseLabel: string | undefined;
+    @Input() chooseLabel: string | undefined = this._componentDefaults?.fileUpload?.chooseLabel;
     /**
      * Label of the upload button. Defaults to PrimeNG Locale configuration.
      * @group Props
      */
-    @Input() uploadLabel: string | undefined;
+    @Input() uploadLabel: string | undefined = this._componentDefaults?.fileUpload?.uploadLabel;
     /**
      * Label of the cancel button. Defaults to PrimeNG Locale configuration.
      * @group Props
      */
-    @Input() cancelLabel: string | undefined;
+    @Input() cancelLabel: string | undefined = this._componentDefaults?.fileUpload?.cancelLabel;
     /**
      * Icon of the choose button.
      * @group Props
      */
-    @Input() chooseIcon: string | undefined;
+    @Input() chooseIcon: string | undefined = this._componentDefaults?.fileUpload?.chooseIcon;
     /**
      * Icon of the upload button.
      * @group Props
      */
-    @Input() uploadIcon: string | undefined;
+    @Input() uploadIcon: string | undefined = this._componentDefaults?.fileUpload?.uploadIcon;
     /**
      * Icon of the cancel button.
      * @group Props
      */
-    @Input() cancelIcon: string | undefined;
+    @Input() cancelIcon: string | undefined = this._componentDefaults?.fileUpload?.cancelIcon;
     /**
      * Whether to show the upload button.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showUploadButton: boolean = true;
+    @Input({ transform: booleanAttribute }) showUploadButton: boolean = this._componentDefaults?.fileUpload?.showUploadButton ?? true;
     /**
      * Whether to show the cancel button.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showCancelButton: boolean = true;
+    @Input({ transform: booleanAttribute }) showCancelButton: boolean = this._componentDefaults?.fileUpload?.showCancelButton ?? true;
     /**
      * Defines the UI of the component.
      * @group Props
      */
-    @Input() mode: 'advanced' | 'basic' | undefined = 'advanced';
+    @Input() mode: 'advanced' | 'basic' | undefined = this._componentDefaults?.fileUpload?.mode ?? 'advanced';
     /**
      * HttpHeaders class represents the header configuration options for an HTTP request.
      * @group Props
@@ -487,12 +490,12 @@ export class FileUpload extends BaseComponent<FileUploadPassThrough> implements 
      * Whether to use the default upload or a manual implementation defined in uploadHandler callback. Defaults to PrimeNG Locale configuration.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) customUpload: boolean | undefined;
+    @Input({ transform: booleanAttribute }) customUpload: boolean | undefined = this._componentDefaults?.fileUpload?.customUpload;
     /**
      * Maximum number of files that can be uploaded.
      * @group Props
      */
-    @Input({ transform: (value: unknown) => numberAttribute(value, undefined) }) fileLimit: number | undefined;
+    @Input({ transform: (value: unknown) => numberAttribute(value, undefined) }) fileLimit: number | undefined = this._componentDefaults?.fileUpload?.fileLimit;
     /**
      * Style class of the upload button.
      * @group Props
@@ -517,17 +520,17 @@ export class FileUpload extends BaseComponent<FileUploadPassThrough> implements 
      * Used to pass all properties of the ButtonProps to the choose button inside the component.
      * @group Props
      */
-    @Input() chooseButtonProps: ButtonProps;
+    @Input() chooseButtonProps: ButtonProps = this._componentDefaults?.fileUpload?.chooseButtonProps as ButtonProps;
     /**
      * Used to pass all properties of the ButtonProps to the upload button inside the component.
      * @group Props
      */
-    @Input() uploadButtonProps: ButtonProps = { severity: 'secondary' };
+    @Input() uploadButtonProps: ButtonProps = this._componentDefaults?.fileUpload?.uploadButtonProps ?? { severity: 'secondary' };
     /**
      * Used to pass all properties of the ButtonProps to the cancel button inside the component.
      * @group Props
      */
-    @Input() cancelButtonProps: ButtonProps = { severity: 'secondary' };
+    @Input() cancelButtonProps: ButtonProps = this._componentDefaults?.fileUpload?.cancelButtonProps ?? { severity: 'secondary' };
     /**
      * Callback to invoke before file upload is initialized.
      * @param {FileBeforeUploadEvent} event - Custom upload event.

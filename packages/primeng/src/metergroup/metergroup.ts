@@ -6,6 +6,7 @@ import { BaseComponent, PARENT_INSTANCE } from 'primeng/basecomponent';
 import { Bind } from 'primeng/bind';
 import { MeterGroupIconTemplateContext, MeterGroupLabelTemplateContext, MeterGroupMeterTemplateContext, MeterGroupPassThrough, MeterItem } from 'primeng/types/metergroup';
 import { MeterGroupStyle } from './style/metergroupstyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const METERGROUP_INSTANCE = new InjectionToken<MeterGroup>('METERGROUP_INSTANCE');
 
@@ -27,11 +28,12 @@ const METERGROUP_INSTANCE = new InjectionToken<MeterGroup>('METERGROUP_INSTANCE'
     `
 })
 export class MeterGroupLabel extends BaseComponent<MeterGroupPassThrough> {
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
     @Input() value: any[] = [];
 
-    @Input() labelPosition: 'start' | 'end' = 'end';
+    @Input() labelPosition: 'start' | 'end' = this._componentDefaults?.meterGroup?.labelPosition ?? 'end';
 
-    @Input() labelOrientation: 'horizontal' | 'vertical' = 'horizontal';
+    @Input() labelOrientation: 'horizontal' | 'vertical' = this._componentDefaults?.meterGroup?.labelOrientation ?? 'horizontal';
 
     @Input() min: number;
 
@@ -150,7 +152,7 @@ export class MeterGroup extends BaseComponent<MeterGroupPassThrough> {
      * Specifies the layout of the component, valid values are 'horizontal' and 'vertical'.
      * @group Props
      */
-    @Input() orientation: 'horizontal' | 'vertical' = 'horizontal';
+    @Input() orientation: 'horizontal' | 'vertical' = this._componentDefaults?.meterGroup?.orientation ?? 'horizontal';
     /**
      * Specifies the label position of the component, valid values are 'start' and 'end'.
      * @group Props

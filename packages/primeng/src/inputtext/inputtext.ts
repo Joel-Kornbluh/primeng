@@ -5,6 +5,7 @@ import { BaseModelHolder } from 'primeng/basemodelholder';
 import { Bind } from 'primeng/bind';
 import { Fluid } from 'primeng/fluid';
 import { InputTextPassThrough } from 'primeng/types/inputtext';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { InputTextStyle } from './style/inputtextstyle';
 
 const INPUTTEXT_INSTANCE = new InjectionToken<InputText>('INPUTTEXT_INSTANCE');
@@ -25,6 +26,8 @@ const INPUTTEXT_INSTANCE = new InjectionToken<InputText>('INPUTTEXT_INSTANCE');
 })
 export class InputText extends BaseModelHolder<InputTextPassThrough> {
     componentName = 'InputText';
+
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
 
     @Input() hostName: any = '';
 
@@ -60,7 +63,7 @@ export class InputText extends BaseModelHolder<InputTextPassThrough> {
      * Defines the size of the component.
      * @group Props
      */
-    @Input('pSize') pSize: 'large' | 'small' | undefined;
+    @Input('pSize') pSize: 'large' | 'small' | undefined = this._componentDefaults?.inputText?.pSize;
     /**
      * Specifies the input variant of the component.
      * @defaultValue undefined

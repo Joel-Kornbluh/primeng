@@ -6,6 +6,7 @@ import { Bind } from 'primeng/bind';
 import { Nullable } from 'primeng/ts-helpers';
 import { TimelineItemTemplateContext, TimelinePassThrough } from 'primeng/types/timeline';
 import { TimelineStyle } from './style/timelinestyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const TIMELINE_INSTANCE = new InjectionToken<Timeline>('TIMELINE_INSTANCE');
 
@@ -59,6 +60,7 @@ export class Timeline extends BaseComponent<TimelinePassThrough> implements Bloc
      * An array of events to display.
      * @group Props
      */
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
     @Input() value: any[] | undefined;
     /**
      * Style class of the component.
@@ -70,12 +72,12 @@ export class Timeline extends BaseComponent<TimelinePassThrough> implements Bloc
      * Position of the timeline bar relative to the content. Valid values are "left", "right" for vertical layout and "top", "bottom" for horizontal layout.
      * @group Props
      */
-    @Input() align: string = 'left';
+    @Input() align: string = this._componentDefaults?.timeline?.align ?? 'left';
     /**
      * Orientation of the timeline.
      * @group Props
      */
-    @Input() layout: 'vertical' | 'horizontal' = 'vertical';
+    @Input() layout: 'vertical' | 'horizontal' = this._componentDefaults?.timeline?.layout ?? 'vertical';
     /**
      * Custom content template.
      * @param {TimelineItemTemplateContext} context - item context.

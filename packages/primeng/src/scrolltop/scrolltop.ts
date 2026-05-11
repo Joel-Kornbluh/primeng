@@ -11,6 +11,7 @@ import { MotionDirective } from 'primeng/motion';
 import { ScrollTopIconTemplateContext, ScrollTopPassThrough } from 'primeng/types/scrolltop';
 import { ZIndexUtils } from 'primeng/utils';
 import { ScrollTopStyle } from './style/scrolltopstyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const SCROLLTOP_INSTANCE = new InjectionToken<ScrollTop>('SCROLLTOP_INSTANCE');
 
@@ -71,6 +72,7 @@ export class ScrollTop extends BaseComponent<ScrollTopPassThrough> {
      * Class of the element.
      * @group Props
      */
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
     @Input() styleClass: string | undefined;
     /**
      * Inline style of the element.
@@ -81,12 +83,12 @@ export class ScrollTop extends BaseComponent<ScrollTopPassThrough> {
      * Target of the ScrollTop.
      * @group Props
      */
-    @Input() target: 'window' | 'parent' | undefined = 'window';
+    @Input() target: 'window' | 'parent' | undefined = this._componentDefaults?.scrollTop?.target ?? 'window';
     /**
      * Defines the threshold value of the vertical scroll position of the target to toggle the visibility.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) threshold: number = 400;
+    @Input({ transform: numberAttribute }) threshold: number = this._componentDefaults?.scrollTop?.threshold ?? 400;
     /**
      * Name of the icon or JSX.Element for icon.
      * @group Props
@@ -98,7 +100,7 @@ export class ScrollTop extends BaseComponent<ScrollTopPassThrough> {
      * Defines the scrolling behavior, "smooth" adds an animation and "auto" scrolls with a jump.
      * @group Props
      */
-    @Input() behavior: 'auto' | 'smooth' | undefined = 'smooth';
+    @Input() behavior: 'auto' | 'smooth' | undefined = this._componentDefaults?.scrollTop?.behavior ?? 'smooth';
     /**
      * A string value used to determine the display transition options.
      * @group Props

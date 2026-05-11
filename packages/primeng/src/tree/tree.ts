@@ -59,6 +59,7 @@ import {
 } from 'primeng/types/tree';
 import { Subscription } from 'rxjs';
 import { TreeStyle } from './style/treestyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const TREE_INSTANCE = new InjectionToken<Tree>('TREE_INSTANCE');
 const TREENODE_INSTANCE = new InjectionToken<UITreeNode>('TREENODE_INSTANCE');
@@ -186,6 +187,7 @@ export class UITreeNode extends BaseComponent<TreePassThrough> {
     $pcTreeNode: UITreeNode | undefined = inject(TREENODE_INSTANCE, { optional: true, skipSelf: true }) ?? undefined;
 
     static ICON_CLASS: string = 'p-tree-node-icon ';
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
 
     @Input() rowNode: any;
 
@@ -203,11 +205,11 @@ export class UITreeNode extends BaseComponent<TreePassThrough> {
 
     @Input({ transform: numberAttribute }) level: number | undefined;
 
-    @Input({ transform: numberAttribute }) indentation: number | undefined;
+    @Input({ transform: numberAttribute }) indentation: number | undefined = this._componentDefaults?.tree?.indentation;
 
     @Input({ transform: numberAttribute }) itemSize: number | undefined;
 
-    @Input() loadingMode: string;
+    @Input() loadingMode: string = this._componentDefaults?.tree?.loadingMode;
 
     tree: Tree = inject(forwardRef(() => Tree));
 
@@ -884,12 +886,12 @@ export class Tree extends BaseComponent<TreePassThrough> implements BlockableUI 
      * Defines the selection mode.
      * @group Props
      */
-    @Input() selectionMode: 'single' | 'multiple' | 'checkbox' | null | undefined;
+    @Input() selectionMode: 'single' | 'multiple' | 'checkbox' | null | undefined = this._componentDefaults?.tree?.selectionMode;
     /**
      * Loading mode display.
      * @group Props
      */
-    @Input() loadingMode: 'mask' | 'icon' = 'mask';
+    @Input() loadingMode: 'mask' | 'icon' = this._componentDefaults?.tree?.loadingMode ?? 'mask';
     /**
      * A single treenode instance or an array to refer to the selections.
      * @group Props
@@ -910,7 +912,7 @@ export class Tree extends BaseComponent<TreePassThrough> implements BlockableUI 
      * Defines the behavior of context menu selection, in "separate" mode context menu updates contextMenuSelection property whereas in joint mode selection property is used instead so that when row selection is enabled, both row selection and context menu selection use the same property.
      * @group Props
      */
-    @Input() contextMenuSelectionMode: 'separate' | 'joint' = 'joint';
+    @Input() contextMenuSelectionMode: 'separate' | 'joint' = this._componentDefaults?.tree?.contextMenuSelectionMode ?? 'joint';
     /**
      * Selected node with a context menu.
      * @group Props
@@ -920,37 +922,37 @@ export class Tree extends BaseComponent<TreePassThrough> implements BlockableUI 
      * Scope of the draggable nodes to match a droppableScope.
      * @group Props
      */
-    @Input() draggableScope: any;
+    @Input() draggableScope: any = this._componentDefaults?.tree?.draggableScope;
     /**
      * Scope of the droppable nodes to match a draggableScope.
      * @group Props
      */
-    @Input() droppableScope: any;
+    @Input() droppableScope: any = this._componentDefaults?.tree?.droppableScope;
     /**
      * Whether the nodes are draggable.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) draggableNodes: boolean | undefined;
+    @Input({ transform: booleanAttribute }) draggableNodes: boolean | undefined = this._componentDefaults?.tree?.draggableNodes;
     /**
      * Whether the nodes are droppable.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) droppableNodes: boolean | undefined;
+    @Input({ transform: booleanAttribute }) droppableNodes: boolean | undefined = this._componentDefaults?.tree?.droppableNodes;
     /**
      * Defines how multiple items can be selected, when true metaKey needs to be pressed to select or unselect an item and when set to false selection of each item can be toggled individually. On touch enabled devices, metaKeySelection is turned off automatically.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) metaKeySelection: boolean = false;
+    @Input({ transform: booleanAttribute }) metaKeySelection: boolean = this._componentDefaults?.tree?.metaKeySelection ?? false;
     /**
      * Whether checkbox selections propagate to ancestor nodes.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) propagateSelectionUp: boolean = true;
+    @Input({ transform: booleanAttribute }) propagateSelectionUp: boolean = this._componentDefaults?.tree?.propagateSelectionUp ?? true;
     /**
      * Whether checkbox selections propagate to descendant nodes.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) propagateSelectionDown: boolean = true;
+    @Input({ transform: booleanAttribute }) propagateSelectionDown: boolean = this._componentDefaults?.tree?.propagateSelectionDown ?? true;
     /**
      * Displays a loader to indicate data load is in progress.
      * @group Props
@@ -960,12 +962,12 @@ export class Tree extends BaseComponent<TreePassThrough> implements BlockableUI 
      * The icon to show while indicating data load is in progress.
      * @group Props
      */
-    @Input() loadingIcon: string | undefined;
+    @Input() loadingIcon: string | undefined = this._componentDefaults?.tree?.loadingIcon;
     /**
      * Text to display when there is no data.
      * @group Props
      */
-    @Input() emptyMessage: string = '';
+    @Input() emptyMessage: string = this._componentDefaults?.tree?.emptyMessage ?? '';
     /**
      * Used to define a string that labels the tree.
      * @group Props
@@ -985,17 +987,17 @@ export class Tree extends BaseComponent<TreePassThrough> implements BlockableUI 
      * When enabled, drop can be accepted or rejected based on condition defined at onNodeDrop.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) validateDrop: boolean | undefined;
+    @Input({ transform: booleanAttribute }) validateDrop: boolean | undefined = this._componentDefaults?.tree?.validateDrop;
     /**
      * When specified, displays an input field to filter the items.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) filter: boolean | undefined;
+    @Input({ transform: booleanAttribute }) filter: boolean | undefined = this._componentDefaults?.tree?.filter;
     /**
      * Determines whether the filter input should be automatically focused when the component is rendered.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) filterInputAutoFocus: boolean = false;
+    @Input({ transform: booleanAttribute }) filterInputAutoFocus: boolean = this._componentDefaults?.tree?.filterInputAutoFocus ?? false;
     /**
      * When filtering is enabled, filterBy decides which field or fields (comma separated) to search against.
      * @group Props
@@ -1005,7 +1007,7 @@ export class Tree extends BaseComponent<TreePassThrough> implements BlockableUI 
      * Mode for filtering valid values are "lenient" and "strict". Default is lenient.
      * @group Props
      */
-    @Input() filterMode: string = 'lenient';
+    @Input() filterMode: string = this._componentDefaults?.tree?.filterMode ?? 'lenient';
     /**
      * Mode for filtering valid values are "lenient" and "strict". Default is lenient.
      * @group Props
@@ -1025,12 +1027,12 @@ export class Tree extends BaseComponent<TreePassThrough> implements BlockableUI 
      * Locale to use in filtering. The default locale is the host environment's current locale.
      * @group Props
      */
-    @Input() filterLocale: string | undefined;
+    @Input() filterLocale: string | undefined = this._componentDefaults?.tree?.filterLocale;
     /**
      * Height of the scrollable viewport.
      * @group Props
      */
-    @Input() scrollHeight: string | undefined;
+    @Input() scrollHeight: string | undefined = this._componentDefaults?.tree?.scrollHeight;
     /**
      * Defines if data is loaded and interacted with in lazy manner.
      * @group Props
@@ -1040,12 +1042,12 @@ export class Tree extends BaseComponent<TreePassThrough> implements BlockableUI 
      * Whether the data should be loaded on demand during scroll.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) virtualScroll: boolean | undefined;
+    @Input({ transform: booleanAttribute }) virtualScroll: boolean | undefined = this._componentDefaults?.tree?.virtualScroll;
     /**
      * Height of an item in the list for VirtualScrolling.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) virtualScrollItemSize: number | undefined;
+    @Input({ transform: numberAttribute }) virtualScrollItemSize: number | undefined = this._componentDefaults?.tree?.virtualScrollItemSize;
     /**
      * Whether to use the scroller feature. The properties of scroller component can be used like an object in it.
      * @group Props
@@ -1055,7 +1057,7 @@ export class Tree extends BaseComponent<TreePassThrough> implements BlockableUI 
      * Indentation factor for spacing of the nested node when virtual scrolling is enabled.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) indentation: number = 1.5;
+    @Input({ transform: numberAttribute }) indentation: number = this._componentDefaults?.tree?.indentation ?? 1.5;
     /**
      * Custom templates of the component.
      * @group Props
@@ -1070,7 +1072,7 @@ export class Tree extends BaseComponent<TreePassThrough> implements BlockableUI 
      * Highlights the node on select.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) highlightOnSelect: boolean = false;
+    @Input({ transform: booleanAttribute }) highlightOnSelect: boolean = this._componentDefaults?.tree?.highlightOnSelect ?? false;
     /**
      * Callback to invoke when a node is selected.
      * @param {TreeNodeSelectEvent} event - Node select event.

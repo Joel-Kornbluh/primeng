@@ -7,6 +7,7 @@ import { Bind, BindModule } from 'primeng/bind';
 import { Nullable } from 'primeng/ts-helpers';
 import { ScrollPanelPassThrough } from 'primeng/types/scrollpanel';
 import { ScrollPanelStyle } from './style/scrollpanelstyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const SCROLLPANEL_INSTANCE = new InjectionToken<ScrollPanel>('SCROLLPANEL_INSTANCE');
 
@@ -82,12 +83,13 @@ export class ScrollPanel extends BaseComponent<ScrollPanelPassThrough> {
      * @deprecated since v20.0.0, use `class` instead.
      * @group Props
      */
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
     @Input() styleClass: string | undefined;
     /**
      * Step factor to scroll the content while pressing the arrow keys.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) step: number = 5;
+    @Input({ transform: numberAttribute }) step: number = this._componentDefaults?.scrollPanel?.step ?? 5;
 
     @ViewChild('content') contentViewChild: ElementRef | undefined;
 

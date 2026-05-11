@@ -37,6 +37,7 @@ import { Ripple } from 'primeng/ripple';
 import { VoidListener } from 'primeng/ts-helpers';
 import { GalleriaCaptionTemplateContext, GalleriaIndicatorTemplateContext, GalleriaItemTemplateContext, GalleriaPassThrough, GalleriaResponsiveOptions, GalleriaThumbnailTemplateContext } from 'primeng/types/galleria';
 import { ZIndexUtils } from 'primeng/utils';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { GalleriaStyle } from './style/galleriastyle';
 
 const GALLERIA_INSTANCE = new InjectionToken<Galleria>('GALLERIA_INSTANCE');
@@ -111,6 +112,9 @@ export class Galleria extends BaseComponent<GalleriaPassThrough> {
     onAfterViewChecked(): void {
         this.bindDirectiveInstance.setAttrs(this.ptm('host'));
     }
+
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
     /**
      * Index of the first item.
      * @group Props
@@ -125,7 +129,7 @@ export class Galleria extends BaseComponent<GalleriaPassThrough> {
      * Whether to display the component on fullscreen.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) fullScreen: boolean = false;
+    @Input({ transform: booleanAttribute }) fullScreen: boolean = this._componentDefaults?.galleria?.fullScreen ?? false;
     /**
      * Unique identifier of the element.
      * @group Props
@@ -140,7 +144,7 @@ export class Galleria extends BaseComponent<GalleriaPassThrough> {
      * Number of items per page.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) numVisible: number = 3;
+    @Input({ transform: numberAttribute }) numVisible: number = this._componentDefaults?.galleria?.numVisible ?? 3;
     /**
      * An array of options for responsive design.
      * @see {GalleriaResponsiveOptions}
@@ -151,77 +155,77 @@ export class Galleria extends BaseComponent<GalleriaPassThrough> {
      * Whether to display navigation buttons in item section.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showItemNavigators: boolean = false;
+    @Input({ transform: booleanAttribute }) showItemNavigators: boolean = this._componentDefaults?.galleria?.showItemNavigators ?? false;
     /**
      * Whether to display navigation buttons in thumbnail container.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showThumbnailNavigators: boolean = true;
+    @Input({ transform: booleanAttribute }) showThumbnailNavigators: boolean = this._componentDefaults?.galleria?.showThumbnailNavigators ?? true;
     /**
      * Whether to display navigation buttons on item hover.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showItemNavigatorsOnHover: boolean = false;
+    @Input({ transform: booleanAttribute }) showItemNavigatorsOnHover: boolean = this._componentDefaults?.galleria?.showItemNavigatorsOnHover ?? false;
     /**
      * When enabled, item is changed on indicator hover.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) changeItemOnIndicatorHover: boolean = false;
+    @Input({ transform: booleanAttribute }) changeItemOnIndicatorHover: boolean = this._componentDefaults?.galleria?.changeItemOnIndicatorHover ?? false;
     /**
      * Defines if scrolling would be infinite.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) circular: boolean = false;
+    @Input({ transform: booleanAttribute }) circular: boolean = this._componentDefaults?.galleria?.circular ?? false;
     /**
      * Items are displayed with a slideshow in autoPlay mode.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoPlay: boolean = false;
+    @Input({ transform: booleanAttribute }) autoPlay: boolean = this._componentDefaults?.galleria?.autoPlay ?? false;
     /**
      * When enabled, autorun should stop by click.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) shouldStopAutoplayByClick: boolean = true;
+    @Input({ transform: booleanAttribute }) shouldStopAutoplayByClick: boolean = this._componentDefaults?.galleria?.shouldStopAutoplayByClick ?? true;
     /**
      * Time in milliseconds to scroll items.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) transitionInterval: number = 4000;
+    @Input({ transform: numberAttribute }) transitionInterval: number = this._componentDefaults?.galleria?.transitionInterval ?? 4000;
     /**
      * Whether to display thumbnail container.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showThumbnails: boolean = true;
+    @Input({ transform: booleanAttribute }) showThumbnails: boolean = this._componentDefaults?.galleria?.showThumbnails ?? true;
     /**
      * Position of thumbnails.
      * @group Props
      */
-    @Input() thumbnailsPosition: 'bottom' | 'top' | 'left' | 'right' | undefined = 'bottom';
+    @Input() thumbnailsPosition: 'bottom' | 'top' | 'left' | 'right' | undefined = this._componentDefaults?.galleria?.thumbnailsPosition ?? 'bottom';
     /**
      * Height of the viewport in vertical thumbnail.
      * @group Props
      */
-    @Input() verticalThumbnailViewPortHeight: string = '300px';
+    @Input() verticalThumbnailViewPortHeight: string = this._componentDefaults?.galleria?.verticalThumbnailViewPortHeight ?? '300px';
     /**
      * Whether to display indicator container.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showIndicators: boolean = false;
+    @Input({ transform: booleanAttribute }) showIndicators: boolean = this._componentDefaults?.galleria?.showIndicators ?? false;
     /**
      * When enabled, indicator container is displayed on item container.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showIndicatorsOnItem: boolean = false;
+    @Input({ transform: booleanAttribute }) showIndicatorsOnItem: boolean = this._componentDefaults?.galleria?.showIndicatorsOnItem ?? false;
     /**
      * Position of indicators.
      * @group Props
      */
-    @Input() indicatorsPosition: 'bottom' | 'top' | 'left' | 'right' | undefined = 'bottom';
+    @Input() indicatorsPosition: 'bottom' | 'top' | 'left' | 'right' | undefined = this._componentDefaults?.galleria?.indicatorsPosition ?? 'bottom';
     /**
      * Base zIndex value to use in layering.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) baseZIndex: number = 0;
+    @Input({ transform: numberAttribute }) baseZIndex: number = this._componentDefaults?.galleria?.baseZIndex ?? 0;
     /**
      * Style class of the mask on fullscreen mode.
      * @group Props

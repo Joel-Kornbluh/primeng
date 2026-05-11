@@ -57,6 +57,7 @@ import {
 } from 'primeng/types/listbox';
 import { Subscription } from 'rxjs';
 import { ListBoxStyle } from './style/listboxstyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const LISTBOX_INSTANCE = new InjectionToken<Listbox>('LISTBOX_INSTANCE');
 
@@ -356,6 +357,7 @@ export const LISTBOX_VALUE_ACCESSOR: any = {
 })
 export class Listbox extends BaseEditableHolder<ListBoxPassThrough> {
     componentName = 'Listbox';
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
 
     @Input() hostName: any = '';
 
@@ -394,7 +396,7 @@ export class Listbox extends BaseEditableHolder<ListBoxPassThrough> {
      * Whether to focus on the first visible or selected element when the overlay panel is shown.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoOptionFocus: boolean | undefined = true;
+    @Input({ transform: booleanAttribute }) autoOptionFocus: boolean | undefined = this._componentDefaults?.listbox?.autoOptionFocus ?? true;
     /**
      * Defines a string that labels the input for accessibility.
      * @group Props
@@ -404,17 +406,17 @@ export class Listbox extends BaseEditableHolder<ListBoxPassThrough> {
      * When enabled, the focused option is selected.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) selectOnFocus: boolean | undefined;
+    @Input({ transform: booleanAttribute }) selectOnFocus: boolean | undefined = this._componentDefaults?.listbox?.selectOnFocus;
     /**
      * Locale to use in searching. The default locale is the host environment's current locale.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) searchLocale: boolean | undefined;
+    @Input({ transform: booleanAttribute }) searchLocale: boolean | undefined = this._componentDefaults?.listbox?.searchLocale;
     /**
      * When enabled, the hovered option will be focused.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) focusOnHover: boolean | undefined = true;
+    @Input({ transform: booleanAttribute }) focusOnHover: boolean | undefined = this._componentDefaults?.listbox?.focusOnHover ?? true;
     /**
      * Text to display when filtering.
      * @group Props
@@ -434,12 +436,12 @@ export class Listbox extends BaseEditableHolder<ListBoxPassThrough> {
      * Whether the data should be loaded on demand during scroll.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) virtualScroll: boolean | undefined;
+    @Input({ transform: booleanAttribute }) virtualScroll: boolean | undefined = this._componentDefaults?.listbox?.virtualScroll;
     /**
      * Height of an item in the list for VirtualScrolling.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) virtualScrollItemSize: number | undefined;
+    @Input({ transform: numberAttribute }) virtualScrollItemSize: number | undefined = this._componentDefaults?.listbox?.virtualScrollItemSize;
     /**
      * Whether to use the scroller feature. The properties of scroller component can be used like an object in it.
      * @group Props
@@ -449,7 +451,7 @@ export class Listbox extends BaseEditableHolder<ListBoxPassThrough> {
      * Height of the viewport in pixels, a scrollbar is defined if height of list exceeds this value.
      * @group Props
      */
-    @Input() scrollHeight: string = '14rem';
+    @Input() scrollHeight: string = this._componentDefaults?.listbox?.scrollHeight ?? '14rem';
     /**
      * Index of the element in tabbing order.
      * @group Props
@@ -459,7 +461,7 @@ export class Listbox extends BaseEditableHolder<ListBoxPassThrough> {
      * When specified, allows selecting multiple values.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) multiple: boolean | undefined;
+    @Input({ transform: booleanAttribute }) multiple: boolean | undefined = this._componentDefaults?.listbox?.multiple;
     /**
      * Style class of the container.
      * @deprecated since v20.0.0, use `class` instead.
@@ -485,12 +487,12 @@ export class Listbox extends BaseEditableHolder<ListBoxPassThrough> {
      * When specified, allows selecting items with checkboxes.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) checkbox: boolean = false;
+    @Input({ transform: booleanAttribute }) checkbox: boolean = this._componentDefaults?.listbox?.checkbox ?? false;
     /**
      * When specified, displays a filter input at header.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) filter: boolean = false;
+    @Input({ transform: booleanAttribute }) filter: boolean = this._componentDefaults?.listbox?.filter ?? false;
     /**
      * When filtering is enabled, filterBy decides which field or fields (comma separated) to search against.
      * @group Props
@@ -500,17 +502,17 @@ export class Listbox extends BaseEditableHolder<ListBoxPassThrough> {
      * Defines how the items are filtered.
      * @group Props
      */
-    @Input() filterMatchMode: 'contains' | 'startsWith' | 'endsWith' | 'equals' | 'notEquals' | 'in' | 'lt' | 'lte' | 'gt' | 'gte' | string = 'contains';
+    @Input() filterMatchMode: 'contains' | 'startsWith' | 'endsWith' | 'equals' | 'notEquals' | 'in' | 'lt' | 'lte' | 'gt' | 'gte' | string = this._componentDefaults?.listbox?.filterMatchMode ?? 'contains';
     /**
      * Locale to use in filtering. The default locale is the host environment's current locale.
      * @group Props
      */
-    @Input() filterLocale: string | undefined;
+    @Input() filterLocale: string | undefined = this._componentDefaults?.listbox?.filterLocale;
     /**
      * Defines how multiple items can be selected, when true metaKey needs to be pressed to select or unselect an item and when set to false selection of each item can be toggled individually. On touch enabled devices, metaKeySelection is turned off automatically.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) metaKeySelection: boolean = false;
+    @Input({ transform: booleanAttribute }) metaKeySelection: boolean = this._componentDefaults?.listbox?.metaKeySelection ?? false;
     /**
      * A property to uniquely identify a value in options.
      * @group Props
@@ -520,32 +522,32 @@ export class Listbox extends BaseEditableHolder<ListBoxPassThrough> {
      * Whether header checkbox is shown in multiple mode.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showToggleAll: boolean = true;
+    @Input({ transform: booleanAttribute }) showToggleAll: boolean = this._componentDefaults?.listbox?.showToggleAll ?? true;
     /**
      * Name of the label field of an option.
      * @group Props
      */
-    @Input() optionLabel: string | undefined;
+    @Input() optionLabel: string | undefined = this._componentDefaults?.listbox?.optionLabel;
     /**
      * Name of the value field of an option.
      * @group Props
      */
-    @Input() optionValue: string | undefined;
+    @Input() optionValue: string | undefined = this._componentDefaults?.listbox?.optionValue;
     /**
      * Name of the options field of an option group.
      * @group Props
      */
-    @Input() optionGroupChildren: string | undefined = 'items';
+    @Input() optionGroupChildren: string | undefined = this._componentDefaults?.listbox?.optionGroupChildren ?? 'items';
     /**
      * Name of the label field of an option group.
      * @group Props
      */
-    @Input() optionGroupLabel: string | undefined = 'label';
+    @Input() optionGroupLabel: string | undefined = this._componentDefaults?.listbox?.optionGroupLabel ?? 'label';
     /**
      * Name of the disabled field of an option or function to determine disabled state.
      * @group Props
      */
-    @Input() optionDisabled: string | ((item: any) => boolean) | undefined;
+    @Input() optionDisabled: string | ((item: any) = this._componentDefaults?.listbox?.optionDisabled ?? > boolean) | undefined;
     /**
      * Defines a string that labels the filter input.
      * @group Props
@@ -560,12 +562,12 @@ export class Listbox extends BaseEditableHolder<ListBoxPassThrough> {
      * Text to display when filtering does not return any results.
      * @group Props
      */
-    @Input() emptyFilterMessage: string | undefined;
+    @Input() emptyFilterMessage: string | undefined = this._componentDefaults?.listbox?.emptyFilterMessage;
     /**
      * Text to display when there is no data. Defaults to global value in i18n translation configuration.
      * @group Props
      */
-    @Input() emptyMessage: string | undefined;
+    @Input() emptyMessage: string | undefined = this._componentDefaults?.listbox?.emptyMessage;
     /**
      * Whether to display options as grouped when nested options are provided.
      * @group Props

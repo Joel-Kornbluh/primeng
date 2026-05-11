@@ -7,6 +7,7 @@ import { Fluid } from 'primeng/fluid';
 import { TextareaPassThrough } from 'primeng/types/textarea';
 import { Subscription } from 'rxjs';
 import { TextareaStyle } from './style/textareastyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const TEXTAREA_INSTANCE = new InjectionToken<Textarea>('TEXTAREA_INSTANCE');
 
@@ -47,12 +48,13 @@ export class Textarea extends BaseModelHolder<TextareaPassThrough> {
      * When present, textarea size changes as being typed.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoResize: boolean | undefined;
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+    @Input({ transform: booleanAttribute }) autoResize: boolean | undefined = this._componentDefaults?.textarea?.autoResize;
     /**
      * Defines the size of the component.
      * @group Props
      */
-    @Input() pSize: 'large' | 'small';
+    @Input() pSize: 'large' | 'small' = this._componentDefaults?.textarea?.pSize;
     /**
      * Specifies the input variant of the component.
      * @defaultValue undefined

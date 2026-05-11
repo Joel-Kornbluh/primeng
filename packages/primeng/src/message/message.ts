@@ -9,6 +9,7 @@ import { MotionModule } from 'primeng/motion';
 import { Ripple } from 'primeng/ripple';
 import { MessageContainerTemplateContext, MessagePassThrough } from 'primeng/types/message';
 import { MessageStyle } from './style/messagestyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const MESSAGE_INSTANCE = new InjectionToken<Message>('MESSAGE_INSTANCE');
 
@@ -93,7 +94,8 @@ export class Message extends BaseComponent<MessagePassThrough> {
      * @defaultValue 'info'
      * @group Props
      */
-    @Input() severity: 'success' | 'info' | 'warn' | 'error' | 'secondary' | 'contrast' | undefined | null = 'info';
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+    @Input() severity: 'success' | 'info' | 'warn' | 'error' | 'secondary' | 'contrast' | undefined | null = this._componentDefaults?.message?.severity ?? 'info';
     /**
      * Text content.
      * @deprecated since v20.0.0. Use content projection instead '<p-message>Content</p-message>'.
@@ -105,7 +107,7 @@ export class Message extends BaseComponent<MessagePassThrough> {
      * @deprecated since v20.0.0. Use content projection instead '<p-message>Content</p-message>'.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) escape: boolean = true;
+    @Input({ transform: booleanAttribute }) escape: boolean = this._componentDefaults?.message?.escape ?? true;
     /**
      * Inline style of the component.
      * @group Props
@@ -121,24 +123,24 @@ export class Message extends BaseComponent<MessagePassThrough> {
      * @group Props
      * @defaultValue false
      */
-    @Input({ transform: booleanAttribute }) closable: boolean = false;
+    @Input({ transform: booleanAttribute }) closable: boolean = this._componentDefaults?.message?.closable ?? false;
     /**
      * Icon to display in the message.
      * @group Props
      * @defaultValue undefined
      */
-    @Input() icon: string | undefined;
+    @Input() icon: string | undefined = this._componentDefaults?.message?.icon;
     /**
      * Icon to display in the message close button.
      * @group Props
      * @defaultValue undefined
      */
-    @Input() closeIcon: string | undefined;
+    @Input() closeIcon: string | undefined = this._componentDefaults?.message?.closeIcon;
     /**
      * Delay in milliseconds to close the message automatically.
      * @defaultValue undefined
      */
-    @Input() life: number | undefined;
+    @Input() life: number | undefined = this._componentDefaults?.message?.life;
     /**
      * Transition options of the show animation.
      * @defaultValue '300ms ease-out'
@@ -157,12 +159,12 @@ export class Message extends BaseComponent<MessagePassThrough> {
      * Defines the size of the component.
      * @group Props
      */
-    @Input() size: 'large' | 'small' | undefined;
+    @Input() size: 'large' | 'small' | undefined = this._componentDefaults?.message?.size;
     /**
      * Specifies the input variant of the component.
      * @group Props
      */
-    @Input() variant: 'outlined' | 'text' | 'simple' | undefined;
+    @Input() variant: 'outlined' | 'text' | 'simple' | undefined = this._componentDefaults?.message?.variant;
     /**
      * The motion options.
      * @group Props

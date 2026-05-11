@@ -28,6 +28,7 @@ import { Nullable } from 'primeng/ts-helpers';
 import { OrganizationChartNodeCollapseEvent, OrganizationChartNodeExpandEvent, OrganizationChartNodeSelectEvent, OrganizationChartNodeUnSelectEvent, OrganizationChartPassThrough } from 'primeng/types/organizationchart';
 import { Subject, Subscription } from 'rxjs';
 import { OrganizationChartStyle } from './style/organizationchartstyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const ORGANIZATIONCHART_INSTANCE = new InjectionToken<OrganizationChart>('ORGANIZATIONCHART_INSTANCE');
 
@@ -96,6 +97,7 @@ const ORGANIZATIONCHART_INSTANCE = new InjectionToken<OrganizationChart>('ORGANI
     providers: [OrganizationChartStyle, { provide: PARENT_INSTANCE, useExisting: OrganizationChartNode }]
 })
 export class OrganizationChartNode extends BaseComponent {
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
     @Input() node: TreeNode<any> | undefined;
 
     @Input({ transform: booleanAttribute }) root: boolean | undefined;
@@ -104,7 +106,7 @@ export class OrganizationChartNode extends BaseComponent {
 
     @Input({ transform: booleanAttribute }) last: boolean | undefined;
 
-    @Input({ transform: booleanAttribute }) collapsible: boolean | undefined;
+    @Input({ transform: booleanAttribute }) collapsible: boolean | undefined = this._componentDefaults?.organizationChart?.collapsible;
 
     chart: OrganizationChart;
 
@@ -215,7 +217,7 @@ export class OrganizationChart extends BaseComponent<OrganizationChartPassThroug
      * Defines the selection mode.
      * @group Props
      */
-    @Input() selectionMode: 'single' | 'multiple' | null | undefined;
+    @Input() selectionMode: 'single' | 'multiple' | null | undefined = this._componentDefaults?.organizationChart?.selectionMode;
     /**
      * Whether the nodes can be expanded or toggled.
      * @group Props
@@ -226,7 +228,7 @@ export class OrganizationChart extends BaseComponent<OrganizationChartPassThroug
      * @deprecated since v20.0.0.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) preserveSpace: boolean = true;
+    @Input({ transform: booleanAttribute }) preserveSpace: boolean = this._componentDefaults?.organizationChart?.preserveSpace ?? true;
     /**
      * A single treenode instance or an array to refer to the selections.
      * @group Props

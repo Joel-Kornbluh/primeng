@@ -43,6 +43,7 @@ import { VoidListener } from 'primeng/ts-helpers';
 import { MenuItemTemplateContext, MenuPassThrough, MenuSubmenuHeaderTemplateContext } from 'primeng/types/menu';
 import { ZIndexUtils } from 'primeng/utils';
 import { MenuStyle } from './style/menustyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const MENU_INSTANCE = new InjectionToken<Menu>('MENU_INSTANCE');
 
@@ -125,6 +126,7 @@ export class SafeHtmlPipe implements PipeTransform {
     providers: [MenuStyle]
 })
 export class MenuItemContent extends BaseComponent {
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
     @Input('pMenuItemContent') item: MenuItem | undefined;
 
     @Input() itemTemplate: any | undefined;
@@ -293,7 +295,7 @@ export class Menu extends BaseComponent<MenuPassThrough> {
      * Defines if menu would displayed as a popup.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) popup: boolean | undefined;
+    @Input({ transform: booleanAttribute }) popup: boolean | undefined = this._componentDefaults?.menu?.popup;
     /**
      * Inline style of the component.
      * @group Props
@@ -308,12 +310,12 @@ export class Menu extends BaseComponent<MenuPassThrough> {
      * Whether to automatically manage layering.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoZIndex: boolean = true;
+    @Input({ transform: booleanAttribute }) autoZIndex: boolean = this._componentDefaults?.menu?.autoZIndex ?? true;
     /**
      * Base zIndex value to use in layering.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) baseZIndex: number = 0;
+    @Input({ transform: numberAttribute }) baseZIndex: number = this._componentDefaults?.menu?.baseZIndex ?? 0;
     /**
      * Transition options of the show animation.
      * @deprecated since v21.0.0, use `motionOptions` instead.

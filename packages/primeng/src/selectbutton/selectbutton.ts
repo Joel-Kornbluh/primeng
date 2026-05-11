@@ -29,6 +29,7 @@ import { Bind, BindModule } from 'primeng/bind';
 import { ToggleButton } from 'primeng/togglebutton';
 import { SelectButtonChangeEvent, SelectButtonItemTemplateContext, SelectButtonOptionClickEvent, SelectButtonPassThrough } from 'primeng/types/selectbutton';
 import { SelectButtonStyle } from './style/selectbuttonstyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const SELECTBUTTON_INSTANCE = new InjectionToken<SelectButton>('SELECTBUTTON_INSTANCE');
 
@@ -86,22 +87,23 @@ export class SelectButton extends BaseEditableHolder<SelectButtonPassThrough> im
      * An array of selectitems to display as the available options.
      * @group Props
      */
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
     @Input() options: any[] | undefined;
     /**
      * Name of the label field of an option.
      * @group Props
      */
-    @Input() optionLabel: string | undefined;
+    @Input() optionLabel: string | undefined = this._componentDefaults?.selectButton?.optionLabel;
     /**
      * Name of the value field of an option.
      * @group Props
      */
-    @Input() optionValue: string | undefined;
+    @Input() optionValue: string | undefined = this._componentDefaults?.selectButton?.optionValue;
     /**
      * Name of the disabled field of an option.
      * @group Props
      */
-    @Input() optionDisabled: string | undefined;
+    @Input() optionDisabled: string | undefined = this._componentDefaults?.selectButton?.optionDisabled;
     /**
      * Whether selection can be cleared.
      * @group Props
@@ -109,7 +111,7 @@ export class SelectButton extends BaseEditableHolder<SelectButtonPassThrough> im
     get unselectable(): boolean {
         return this._unselectable;
     }
-    private _unselectable: boolean = false;
+    private _unselectable: boolean = this._componentDefaults?.selectButton?.unselectable ?? false;
 
     @Input({ transform: booleanAttribute })
     set unselectable(value: boolean) {
@@ -126,12 +128,12 @@ export class SelectButton extends BaseEditableHolder<SelectButtonPassThrough> im
      * When specified, allows selecting multiple values.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) multiple: boolean | undefined;
+    @Input({ transform: booleanAttribute }) multiple: boolean | undefined = this._componentDefaults?.selectButton?.multiple;
     /**
      * Whether selection can not be cleared.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) allowEmpty: boolean = true;
+    @Input({ transform: booleanAttribute }) allowEmpty: boolean = this._componentDefaults?.selectButton?.allowEmpty ?? true;
     /**
      * Style class of the component.
      * @group Props

@@ -31,6 +31,7 @@ import { Nullable } from 'primeng/ts-helpers';
 import { RatingIconTemplateContext, RatingPassThrough } from 'primeng/types/rating';
 import type { RatingRateEvent } from 'primeng/types/rating';
 import { RatingStyle } from './style/ratingstyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const RATING_INSTANCE = new InjectionToken<Rating>('RATING_INSTANCE');
 
@@ -110,17 +111,18 @@ export class Rating extends BaseEditableHolder<RatingPassThrough> {
      * When present, changing the value is not possible.
      * @group Props
      */
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
     @Input({ transform: booleanAttribute }) readonly: boolean | undefined;
     /**
      * Number of stars.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) stars: number = 5;
+    @Input({ transform: numberAttribute }) stars: number = this._componentDefaults?.rating?.stars ?? 5;
     /**
      * Style class of the on icon.
      * @group Props
      */
-    @Input() iconOnClass: string | undefined;
+    @Input() iconOnClass: string | undefined = this._componentDefaults?.rating?.iconOnClass;
     /**
      * Inline style of the on icon.
      * @group Props
@@ -130,7 +132,7 @@ export class Rating extends BaseEditableHolder<RatingPassThrough> {
      * Style class of the off icon.
      * @group Props
      */
-    @Input() iconOffClass: string | undefined;
+    @Input() iconOffClass: string | undefined = this._componentDefaults?.rating?.iconOffClass;
     /**
      * Inline style of the off icon.
      * @group Props

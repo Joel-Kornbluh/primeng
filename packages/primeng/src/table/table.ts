@@ -84,6 +84,7 @@ import {
 import { ObjectUtils, UniqueComponentId, ZIndexUtils } from 'primeng/utils';
 import { Subject, Subscription } from 'rxjs';
 import { TableStyle } from './style/tablestyle';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 
 const TABLE_INSTANCE = new InjectionToken<Table>('TABLE_INSTANCE');
 
@@ -368,6 +369,7 @@ export class Table<RowData = any> extends BaseComponent<TablePassThrough> implem
      * An array of objects to represent dynamic columns that are frozen.
      * @group Props
      */
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
     @Input() frozenColumns: any[] | undefined;
     /**
      * An array of objects to display as frozen.
@@ -399,22 +401,22 @@ export class Table<RowData = any> extends BaseComponent<TablePassThrough> implem
      * Number of page links to display in paginator.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) pageLinks: number = 5;
+    @Input({ transform: numberAttribute }) pageLinks: number = this._componentDefaults?.table?.pageLinks ?? 5;
     /**
      * Array of integer/object values to display inside rows per page dropdown of paginator
      * @group Props
      */
-    @Input() rowsPerPageOptions: any[] | undefined;
+    @Input() rowsPerPageOptions: any[] | undefined = this._componentDefaults?.table?.rowsPerPageOptions;
     /**
      * Whether to show it even there is only one page.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) alwaysShowPaginator: boolean = true;
+    @Input({ transform: booleanAttribute }) alwaysShowPaginator: boolean = this._componentDefaults?.table?.alwaysShowPaginator ?? true;
     /**
      * Position of the paginator, options are "top", "bottom" or "both".
      * @group Props
      */
-    @Input() paginatorPosition: 'top' | 'bottom' | 'both' = 'bottom';
+    @Input() paginatorPosition: 'top' | 'bottom' | 'both' = this._componentDefaults?.table?.paginatorPosition ?? 'bottom';
     /**
      * Custom style class for paginator
      * @group Props
@@ -429,62 +431,62 @@ export class Table<RowData = any> extends BaseComponent<TablePassThrough> implem
      * Paginator dropdown height of the viewport in pixels, a scrollbar is defined if height of list exceeds this value.
      * @group Props
      */
-    @Input() paginatorDropdownScrollHeight: string = '200px';
+    @Input() paginatorDropdownScrollHeight: string = this._componentDefaults?.table?.paginatorDropdownScrollHeight ?? '200px';
     /**
      * Template of the current page report element. Available placeholders are {currentPage},{totalPages},{rows},{first},{last} and {totalRecords}
      * @group Props
      */
-    @Input() currentPageReportTemplate: string = '{currentPage} of {totalPages}';
+    @Input() currentPageReportTemplate: string = this._componentDefaults?.table?.currentPageReportTemplate ?? '{currentPage} of {totalPages}';
     /**
      * Whether to display current page report.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showCurrentPageReport: boolean | undefined;
+    @Input({ transform: booleanAttribute }) showCurrentPageReport: boolean | undefined = this._componentDefaults?.table?.showCurrentPageReport;
     /**
      * Whether to display a dropdown to navigate to any page.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showJumpToPageDropdown: boolean | undefined;
+    @Input({ transform: booleanAttribute }) showJumpToPageDropdown: boolean | undefined = this._componentDefaults?.table?.showJumpToPageDropdown;
     /**
      * Whether to display a input to navigate to any page.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showJumpToPageInput: boolean | undefined;
+    @Input({ transform: booleanAttribute }) showJumpToPageInput: boolean | undefined = this._componentDefaults?.table?.showJumpToPageInput;
     /**
      * When enabled, icons are displayed on paginator to go first and last page.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showFirstLastIcon: boolean = true;
+    @Input({ transform: booleanAttribute }) showFirstLastIcon: boolean = this._componentDefaults?.table?.showFirstLastIcon ?? true;
     /**
      * Whether to show page links.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showPageLinks: boolean = true;
+    @Input({ transform: booleanAttribute }) showPageLinks: boolean = this._componentDefaults?.table?.showPageLinks ?? true;
     /**
      * Sort order to use when an unsorted column gets sorted by user interaction.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) defaultSortOrder: number = 1;
+    @Input({ transform: numberAttribute }) defaultSortOrder: number = this._componentDefaults?.table?.defaultSortOrder ?? 1;
     /**
      * Defines whether sorting works on single column or on multiple columns.
      * @group Props
      */
-    @Input() sortMode: 'single' | 'multiple' = 'single';
+    @Input() sortMode: 'single' | 'multiple' = this._componentDefaults?.table?.sortMode ?? 'single';
     /**
      * When true, resets paginator to first page after sorting. Available only when sortMode is set to single.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) resetPageOnSort: boolean = true;
+    @Input({ transform: booleanAttribute }) resetPageOnSort: boolean = this._componentDefaults?.table?.resetPageOnSort ?? true;
     /**
      * Specifies the selection mode, valid values are "single" and "multiple".
      * @group Props
      */
-    @Input() selectionMode: 'single' | 'multiple' | undefined | null;
+    @Input() selectionMode: 'single' | 'multiple' | undefined | null = this._componentDefaults?.table?.selectionMode;
     /**
      * When enabled with paginator and checkbox selection mode, the select all checkbox in the header will select all rows on the current page.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) selectionPageOnly: boolean | undefined;
+    @Input({ transform: booleanAttribute }) selectionPageOnly: boolean | undefined = this._componentDefaults?.table?.selectionPageOnly;
     /**
      * Selected row with a context menu.
      * @group Props
@@ -500,7 +502,7 @@ export class Table<RowData = any> extends BaseComponent<TablePassThrough> implem
      *  Defines the behavior of context menu selection, in "separate" mode context menu updates contextMenuSelection property whereas in joint mode selection property is used instead so that when row selection is enabled, both row selection and context menu selection use the same property.
      * @group Props
      */
-    @Input() contextMenuSelectionMode: string = 'separate';
+    @Input() contextMenuSelectionMode: string = this._componentDefaults?.table?.contextMenuSelectionMode ?? 'separate';
     /**
      * A property to uniquely identify a record in data.
      * @group Props
@@ -510,7 +512,7 @@ export class Table<RowData = any> extends BaseComponent<TablePassThrough> implem
      * Defines whether metaKey should be considered for the selection. On touch enabled devices, metaKeySelection is turned off automatically.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) metaKeySelection: boolean | undefined = false;
+    @Input({ transform: booleanAttribute }) metaKeySelection: boolean | undefined = this._componentDefaults?.table?.metaKeySelection ?? false;
     /**
      * Defines if the row is selectable.
      * @group Props
@@ -530,22 +532,22 @@ export class Table<RowData = any> extends BaseComponent<TablePassThrough> implem
      * Whether to call lazy loading on initialization.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) lazyLoadOnInit: boolean = true;
+    @Input({ transform: booleanAttribute }) lazyLoadOnInit: boolean = this._componentDefaults?.table?.lazyLoadOnInit ?? true;
     /**
      * Algorithm to define if a row is selected, valid values are "equals" that compares by reference and "deepEquals" that compares all fields.
      * @group Props
      */
-    @Input() compareSelectionBy: 'equals' | 'deepEquals' = 'deepEquals';
+    @Input() compareSelectionBy: 'equals' | 'deepEquals' = this._componentDefaults?.table?.compareSelectionBy ?? 'deepEquals';
     /**
      * Character to use as the csv separator.
      * @group Props
      */
-    @Input() csvSeparator: string = ',';
+    @Input() csvSeparator: string = this._componentDefaults?.table?.csvSeparator ?? ',';
     /**
      * Name of the exported file.
      * @group Props
      */
-    @Input() exportFilename: string = 'download';
+    @Input() exportFilename: string = this._componentDefaults?.table?.exportFilename ?? 'download';
     /**
      * An array of FilterMetadata objects to provide external filters.
      * @group Props
@@ -560,12 +562,12 @@ export class Table<RowData = any> extends BaseComponent<TablePassThrough> implem
      * Delay in milliseconds before filtering the data.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) filterDelay: number = 300;
+    @Input({ transform: numberAttribute }) filterDelay: number = this._componentDefaults?.table?.filterDelay ?? 300;
     /**
      * Locale to use in filtering. The default locale is the host environment's current locale.
      * @group Props
      */
-    @Input() filterLocale: string | undefined;
+    @Input() filterLocale: string | undefined = this._componentDefaults?.table?.filterLocale;
     /**
      * Map instance to keep the expanded rows where key of the map is the data key of the row.
      * @group Props
@@ -580,32 +582,32 @@ export class Table<RowData = any> extends BaseComponent<TablePassThrough> implem
      * Whether multiple rows can be expanded at any time. Valid values are "multiple" and "single".
      * @group Props
      */
-    @Input() rowExpandMode: 'multiple' | 'single' = 'multiple';
+    @Input() rowExpandMode: 'multiple' | 'single' = this._componentDefaults?.table?.rowExpandMode ?? 'multiple';
     /**
      * Enables scrollable tables.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) scrollable: boolean | undefined;
+    @Input({ transform: booleanAttribute }) scrollable: boolean | undefined = this._componentDefaults?.table?.scrollable;
     /**
      * Type of the row grouping, valid values are "subheader" and "rowspan".
      * @group Props
      */
-    @Input() rowGroupMode: 'subheader' | 'rowspan' | undefined;
+    @Input() rowGroupMode: 'subheader' | 'rowspan' | undefined = this._componentDefaults?.table?.rowGroupMode;
     /**
      * Height of the scroll viewport in fixed pixels or the "flex" keyword for a dynamic size.
      * @group Props
      */
-    @Input() scrollHeight: string | undefined;
+    @Input() scrollHeight: string | undefined = this._componentDefaults?.table?.scrollHeight;
     /**
      * Whether the data should be loaded on demand during scroll.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) virtualScroll: boolean | undefined;
+    @Input({ transform: booleanAttribute }) virtualScroll: boolean | undefined = this._componentDefaults?.table?.virtualScroll;
     /**
      * Height of a row to use in calculations of virtual scrolling.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) virtualScrollItemSize: number | undefined;
+    @Input({ transform: numberAttribute }) virtualScrollItemSize: number | undefined = this._componentDefaults?.table?.virtualScrollItemSize;
     /**
      * Whether to use the scroller feature. The properties of scroller component can be used like an object in it.
      * @group Props
@@ -615,7 +617,7 @@ export class Table<RowData = any> extends BaseComponent<TablePassThrough> implem
      * Threshold in milliseconds to delay lazy loading during scrolling.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) virtualScrollDelay: number = 250;
+    @Input({ transform: numberAttribute }) virtualScrollDelay: number = this._componentDefaults?.table?.virtualScrollDelay ?? 250;
     /**
      * Width of the frozen columns container.
      * @group Props
@@ -630,17 +632,17 @@ export class Table<RowData = any> extends BaseComponent<TablePassThrough> implem
      * When enabled, columns can be resized using drag and drop.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) resizableColumns: boolean | undefined;
+    @Input({ transform: booleanAttribute }) resizableColumns: boolean | undefined = this._componentDefaults?.table?.resizableColumns;
     /**
      * Defines whether the overall table width should change on column resize, valid values are "fit" and "expand".
      * @group Props
      */
-    @Input() columnResizeMode: string = 'fit';
+    @Input() columnResizeMode: string = this._componentDefaults?.table?.columnResizeMode ?? 'fit';
     /**
      * When enabled, columns can be reordered using drag and drop.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) reorderableColumns: boolean | undefined;
+    @Input({ transform: booleanAttribute }) reorderableColumns: boolean | undefined = this._componentDefaults?.table?.reorderableColumns;
     /**
      * Displays a loader to indicate data load is in progress.
      * @group Props
@@ -650,27 +652,27 @@ export class Table<RowData = any> extends BaseComponent<TablePassThrough> implem
      * The icon to show while indicating data load is in progress.
      * @group Props
      */
-    @Input() loadingIcon: string | undefined;
+    @Input() loadingIcon: string | undefined = this._componentDefaults?.table?.loadingIcon;
     /**
      * Whether to show the loading mask when loading property is true.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showLoader: boolean = true;
+    @Input({ transform: booleanAttribute }) showLoader: boolean = this._componentDefaults?.table?.showLoader ?? true;
     /**
      * Adds hover effect to rows without the need for selectionMode. Note that tr elements that can be hovered need to have "p-selectable-row" class for rowHover to work.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) rowHover: boolean | undefined;
+    @Input({ transform: booleanAttribute }) rowHover: boolean | undefined = this._componentDefaults?.table?.rowHover;
     /**
      * Whether to use the default sorting or a custom one using sortFunction.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) customSort: boolean | undefined;
+    @Input({ transform: booleanAttribute }) customSort: boolean | undefined = this._componentDefaults?.table?.customSort;
     /**
      * Whether to use the initial sort badge or not.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showInitialSortBadge: boolean = true;
+    @Input({ transform: booleanAttribute }) showInitialSortBadge: boolean = this._componentDefaults?.table?.showInitialSortBadge ?? true;
     /**
      * Export function.
      * @group Props
@@ -695,7 +697,7 @@ export class Table<RowData = any> extends BaseComponent<TablePassThrough> implem
      * Defines the editing mode, valid values are "cell" and "row".
      * @group Props
      */
-    @Input() editMode: 'cell' | 'row' = 'cell';
+    @Input() editMode: 'cell' | 'row' = this._componentDefaults?.table?.editMode ?? 'cell';
     /**
      * Field name to use in row grouping.
      * @group Props
@@ -705,38 +707,38 @@ export class Table<RowData = any> extends BaseComponent<TablePassThrough> implem
      * Defines the size of the table.
      * @group Props
      */
-    @Input() size: 'small' | 'large' | undefined;
+    @Input() size: 'small' | 'large' | undefined = this._componentDefaults?.table?.size;
     /**
      * Whether to show grid lines between cells.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showGridlines: boolean | undefined;
+    @Input({ transform: booleanAttribute }) showGridlines: boolean | undefined = this._componentDefaults?.table?.showGridlines;
     /**
      * Whether to display rows with alternating colors.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) stripedRows: boolean | undefined;
+    @Input({ transform: booleanAttribute }) stripedRows: boolean | undefined = this._componentDefaults?.table?.stripedRows;
     /**
      * Order to sort when default row grouping is enabled.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) groupRowsByOrder: number = 1;
+    @Input({ transform: numberAttribute }) groupRowsByOrder: number = this._componentDefaults?.table?.groupRowsByOrder ?? 1;
     /**
      * Defines the responsive mode, valid options are "stack" and "scroll".
      * @deprecated since v20.0.0, always defaults to scroll, stack mode needs custom implementation
      * @group Props
      */
-    @Input() responsiveLayout: string = 'scroll';
+    @Input() responsiveLayout: string = this._componentDefaults?.table?.responsiveLayout ?? 'scroll';
     /**
      * The breakpoint to define the maximum width boundary when using stack responsive layout.
      * @group Props
      */
-    @Input() breakpoint: string = '960px';
+    @Input() breakpoint: string = this._componentDefaults?.table?.breakpoint ?? '960px';
     /**
      * Locale to be used in paginator formatting.
      * @group Props
      */
-    @Input() paginatorLocale: string | undefined;
+    @Input() paginatorLocale: string | undefined = this._componentDefaults?.table?.paginatorLocale;
     /**
      * An array of objects to display.
      * @group Props

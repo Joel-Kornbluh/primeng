@@ -62,6 +62,7 @@ import { InputText } from 'primeng/inputtext';
 import { Nullable } from 'primeng/ts-helpers';
 import type { Caret } from 'primeng/types/inputmask';
 import { InputMaskPassThrough } from 'primeng/types/inputmask';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { InputMaskStyle } from './style/inputmaskstyle';
 
 const INPUTMASK_INSTANCE = new InjectionToken<InputMask>('INPUTMASK_INSTANCE');
@@ -759,26 +760,28 @@ export class InputMask extends BaseInput<InputMaskPassThrough> {
 
     ptmParams = computed(() => ({ context: { filled: this.$variant() === 'filled' } }));
 
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
     /**
      * HTML5 input type.
      * @group Props
      */
-    @Input() type: string = 'text';
+    @Input() type: string = this._componentDefaults?.inputMask?.type ?? 'text';
     /**
      * Placeholder character in mask, default is underscore.
      * @group Props
      */
-    @Input() slotChar: string = '_';
+    @Input() slotChar: string = this._componentDefaults?.inputMask?.slotChar ?? '_';
     /**
      * Clears the incomplete value on blur.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoClear: boolean = true;
+    @Input({ transform: booleanAttribute }) autoClear: boolean = this._componentDefaults?.inputMask?.autoClear ?? true;
     /**
      * When enabled, a clear icon is displayed to clear the value.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) showClear: boolean = false;
+    @Input({ transform: booleanAttribute }) showClear: boolean = this._componentDefaults?.inputMask?.showClear ?? false;
     /**
      * Inline style of the input field.
      * @group Props
@@ -823,7 +826,7 @@ export class InputMask extends BaseInput<InputMaskPassThrough> {
      * Used to indicate that user input is required on an element before a form can be submitted.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) ariaRequired: boolean | undefined;
+    @Input({ transform: booleanAttribute }) ariaRequired: boolean | undefined = this._componentDefaults?.inputMask?.ariaRequired;
     /**
      * When present, it specifies that an input field is read-only.
      * @group Props
@@ -833,12 +836,12 @@ export class InputMask extends BaseInput<InputMaskPassThrough> {
      * Defines if ngModel sets the raw unmasked value to bound value or the formatted mask value.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) unmask: boolean | undefined;
+    @Input({ transform: booleanAttribute }) unmask: boolean | undefined = this._componentDefaults?.inputMask?.unmask;
     /**
      * Regex pattern for alpha characters
      * @group Props
      */
-    @Input() characterPattern: string = '[A-Za-z]';
+    @Input() characterPattern: string = this._componentDefaults?.inputMask?.characterPattern ?? '[A-Za-z]';
     /**
      * When present, the input gets a focus automatically on load.
      * @group Props
@@ -848,12 +851,12 @@ export class InputMask extends BaseInput<InputMaskPassThrough> {
      * Used to define a string that autocomplete attribute the current element.
      * @group Props
      */
-    @Input() autocomplete: string | undefined;
+    @Input() autocomplete: string | undefined = this._componentDefaults?.inputMask?.autocomplete;
     /**
      * When present, it specifies that whether to clean buffer value from model.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) keepBuffer: boolean = false;
+    @Input({ transform: booleanAttribute }) keepBuffer: boolean = this._componentDefaults?.inputMask?.keepBuffer ?? false;
     /**
      * Mask pattern.
      * @group Props
