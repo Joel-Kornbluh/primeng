@@ -227,7 +227,6 @@ export class OrganizationChart extends BaseComponent<OrganizationChartPassThroug
      * @group Props
      */
     @Input({ transform: booleanAttribute }) preserveSpace: boolean = this.getDefault('preserveSpace', true);
-
     /**
      * A single treenode instance or an array to refer to the selections.
      * @group Props

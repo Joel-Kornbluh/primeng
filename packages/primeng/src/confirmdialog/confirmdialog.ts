@@ -222,7 +222,6 @@ export class ConfirmDialog extends BaseComponent<ConfirmDialogPassThrough> imple
      * @group Props
      */
     @Input({ transform: booleanAttribute }) acceptVisible: boolean = this.getDefault('acceptVisible', true);
-
     /**
      * Icon of the reject button.
      * @group Props
@@ -243,7 +242,6 @@ export class ConfirmDialog extends BaseComponent<ConfirmDialogPassThrough> imple
      * @group Props
      */
     @Input({ transform: booleanAttribute }) rejectVisible: boolean = this.getDefault('rejectVisible', true);
-
     /**
      * Style class of the accept button.
      * @group Props
@@ -259,7 +257,6 @@ export class ConfirmDialog extends BaseComponent<ConfirmDialogPassThrough> imple
      * @group Props
      */
     @Input({ transform: booleanAttribute }) closeOnEscape: boolean = this.getDefault('closeOnEscape', true);
-
     /**
      * Specifies if clicking the modal background should hide the dialog.
      * @group Props
@@ -270,19 +267,16 @@ export class ConfirmDialog extends BaseComponent<ConfirmDialogPassThrough> imple
      * @group Props
      */
     @Input({ transform: booleanAttribute }) blockScroll: boolean = this.getDefault('blockScroll', true);
-
     /**
      * When enabled dialog is displayed in RTL direction.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) rtl: boolean = this.getDefault('rtl', false);
-
     /**
      * Adds a close icon to the header to hide the dialog.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) closable: boolean = this.getDefault('closable', true);
-
     /**
      * Target element to attach the overlay, valid values are "body" or a local ng-template variable of another element (note: use binding with brackets for template variables, e.g. [appendTo]="mydiv" for a div element having #mydiv as variable name).
      * @defaultValue 'body'
@@ -299,31 +293,26 @@ export class ConfirmDialog extends BaseComponent<ConfirmDialogPassThrough> imple
      * @group Props
      */
     @Input({ transform: booleanAttribute }) autoZIndex: boolean = this.getDefault('autoZIndex', true);
-
     /**
      * Base zIndex value to use in layering.
      * @group Props
      */
     @Input({ transform: numberAttribute }) baseZIndex: number = this.getDefault('baseZIndex', 0);
-
     /**
      * Transition options of the animation.
      * @group Props
      */
     @Input() transitionOptions: string = this.getDefault('transitionOptions', '150ms cubic-bezier(0, 0, 0.2, 1)');
-
     /**
      * When enabled, can only focus on elements inside the confirm dialog.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) focusTrap: boolean = this.getDefault('focusTrap', true);
-
     /**
      * Element to receive the focus when the dialog gets visible.
      * @group Props
      */
     @Input() defaultFocus: 'accept' | 'reject' | 'close' | 'none' = this.getDefault('defaultFocus', 'accept');
-
     /**
      * Object literal to define widths per screen size.
      * @group Props
@@ -334,7 +323,6 @@ export class ConfirmDialog extends BaseComponent<ConfirmDialogPassThrough> imple
      * @group Props
      */
     @Input({ transform: booleanAttribute }) modal: boolean = this.getDefault('modal', true);
-
     /**
      * Current visible state as a boolean.
      * @group Props
@@ -357,13 +345,11 @@ export class ConfirmDialog extends BaseComponent<ConfirmDialogPassThrough> imple
      * @group Props
      */
     @Input() position: 'center' | 'top' | 'bottom' | 'left' | 'right' | 'topleft' | 'topright' | 'bottomleft' | 'bottomright' = this.getDefault('position', 'center');
-
     /**
      * Enables dragging to change the position using header.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) draggable: boolean = this.getDefault('draggable', true);
-
     /**
      * Callback to invoke when dialog is hidden.
      * @param {ConfirmEventType} enum - Custom confirm event.

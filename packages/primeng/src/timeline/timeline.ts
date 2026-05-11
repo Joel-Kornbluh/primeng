@@ -71,13 +71,11 @@ export class Timeline extends BaseComponent<TimelinePassThrough> implements Bloc
      * @group Props
      */
     @Input() align: string = this.getDefault('align', 'left');
-
     /**
      * Orientation of the timeline.
      * @group Props
      */
     @Input() layout: 'vertical' | 'horizontal' = this.getDefault('layout', 'vertical');
-
     /**
      * Custom content template.
      * @param {TimelineItemTemplateContext} context - item context.

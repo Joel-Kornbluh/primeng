@@ -94,7 +94,6 @@ export class Message extends BaseComponent<MessagePassThrough> {
      * @group Props
      */
     @Input() severity: 'success' | 'info' | 'warn' | 'error' | 'secondary' | 'contrast' | undefined | null = this.getDefault('severity', 'info');
-
     /**
      * Text content.
      * @deprecated since v20.0.0. Use content projection instead '<p-message>Content</p-message>'.
@@ -107,7 +106,6 @@ export class Message extends BaseComponent<MessagePassThrough> {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) escape: boolean = this.getDefault('escape', true);
-
     /**
      * Inline style of the component.
      * @group Props
@@ -124,7 +122,6 @@ export class Message extends BaseComponent<MessagePassThrough> {
      * @defaultValue false
      */
     @Input({ transform: booleanAttribute }) closable: boolean = this.getDefault('closable', false);
-
     /**
      * Icon to display in the message.
      * @group Props
@@ -149,7 +146,6 @@ export class Message extends BaseComponent<MessagePassThrough> {
      * @deprecated since v21.0.0, use `motionOptions` instead.
      */
     @Input() showTransitionOptions: string = this.getDefault('showTransitionOptions', '300ms ease-out');
-
     /**
      * Transition options of the hide animation.
      * @defaultValue '200ms cubic-bezier(0.86, 0, 0.07, 1)'
@@ -157,7 +153,6 @@ export class Message extends BaseComponent<MessagePassThrough> {
      * @deprecated since v21.0.0, use `motionOptions` instead.
      */
     @Input() hideTransitionOptions: string = this.getDefault('hideTransitionOptions', '200ms cubic-bezier(0.86, 0, 0.07, 1)');
-
     /**
      * Defines the size of the component.
      * @group Props

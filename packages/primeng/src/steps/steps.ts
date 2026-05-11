@@ -92,7 +92,6 @@ export class Steps extends BaseComponent {
      * @group Props
      */
     @Input({ transform: numberAttribute }) activeIndex: number = this.getDefault('activeIndex', 0);
-
     /**
      * An array of menu items.
      * @group Props
@@ -118,7 +117,6 @@ export class Steps extends BaseComponent {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) exact: boolean = this.getDefault('exact', true);
-
     /**
      * Callback to invoke when the new step is selected.
      * @param {number} number - current index.

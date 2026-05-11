@@ -49,13 +49,11 @@ export class Skeleton extends BaseComponent<SkeletonPassThrough> {
      * @group Props
      */
     @Input() shape: string = this.getDefault('shape', 'rectangle');
-
     /**
      * Type of the animation.
      * @gruop Props
      */
     @Input() animation: string = this.getDefault('animation', 'wave');
-
     /**
      * Border radius of the element, defaults to value from theme.
      * @group Props
@@ -71,7 +69,6 @@ export class Skeleton extends BaseComponent<SkeletonPassThrough> {
      * @group Props
      */
     @Input() width: string = this.getDefault('width', '100%');
-
     /**
      * Height of the element.
      * @group Props

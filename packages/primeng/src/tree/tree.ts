@@ -890,7 +890,6 @@ export class Tree extends BaseComponent<TreePassThrough> implements BlockableUI 
      * @group Props
      */
     @Input() loadingMode: 'mask' | 'icon' = this.getDefault('loadingMode', 'mask');
-
     /**
      * A single treenode instance or an array to refer to the selections.
      * @group Props
@@ -912,7 +911,6 @@ export class Tree extends BaseComponent<TreePassThrough> implements BlockableUI 
      * @group Props
      */
     @Input() contextMenuSelectionMode: 'separate' | 'joint' = this.getDefault('contextMenuSelectionMode', 'joint');
-
     /**
      * Selected node with a context menu.
      * @group Props
@@ -943,19 +941,16 @@ export class Tree extends BaseComponent<TreePassThrough> implements BlockableUI 
      * @group Props
      */
     @Input({ transform: booleanAttribute }) metaKeySelection: boolean = this.getDefault('metaKeySelection', false);
-
     /**
      * Whether checkbox selections propagate to ancestor nodes.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) propagateSelectionUp: boolean = this.getDefault('propagateSelectionUp', true);
-
     /**
      * Whether checkbox selections propagate to descendant nodes.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) propagateSelectionDown: boolean = this.getDefault('propagateSelectionDown', true);
-
     /**
      * Displays a loader to indicate data load is in progress.
      * @group Props
@@ -971,7 +966,6 @@ export class Tree extends BaseComponent<TreePassThrough> implements BlockableUI 
      * @group Props
      */
     @Input() emptyMessage: string = this.getDefault('emptyMessage', '');
-
     /**
      * Used to define a string that labels the tree.
      * @group Props
@@ -1002,19 +996,16 @@ export class Tree extends BaseComponent<TreePassThrough> implements BlockableUI 
      * @group Props
      */
     @Input({ transform: booleanAttribute }) filterInputAutoFocus: boolean = this.getDefault('filterInputAutoFocus', false);
-
     /**
      * When filtering is enabled, filterBy decides which field or fields (comma separated) to search against.
      * @group Props
      */
     @Input() filterBy: string = this.getDefault('filterBy', 'label');
-
     /**
      * Mode for filtering valid values are "lenient" and "strict". Default is lenient.
      * @group Props
      */
     @Input() filterMode: string = this.getDefault('filterMode', 'lenient');
-
     /**
      * Mode for filtering valid values are "lenient" and "strict". Default is lenient.
      * @group Props
@@ -1045,7 +1036,6 @@ export class Tree extends BaseComponent<TreePassThrough> implements BlockableUI 
      * @group Props
      */
     @Input({ transform: booleanAttribute }) lazy: boolean = this.getDefault('lazy', false);
-
     /**
      * Whether the data should be loaded on demand during scroll.
      * @group Props
@@ -1066,7 +1056,6 @@ export class Tree extends BaseComponent<TreePassThrough> implements BlockableUI 
      * @group Props
      */
     @Input({ transform: numberAttribute }) indentation: number = this.getDefault('indentation', 1.5);
-
     /**
      * Custom templates of the component.
      * @group Props
@@ -1077,13 +1066,11 @@ export class Tree extends BaseComponent<TreePassThrough> implements BlockableUI 
      * @group Props
      */
     @Input() trackBy: Function = this.getDefault('trackBy', (index: number, item: any) => item);
-
     /**
      * Highlights the node on select.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) highlightOnSelect: boolean = this.getDefault('highlightOnSelect', false);
-
     /**
      * Callback to invoke when a node is selected.
      * @param {TreeNodeSelectEvent} event - Node select event.

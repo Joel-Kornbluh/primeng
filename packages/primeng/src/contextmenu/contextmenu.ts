@@ -507,7 +507,6 @@ export class ContextMenu extends BaseComponent<ContextMenuPassThrough> {
      * @group Props
      */
     @Input() triggerEvent: string = this.getDefault('triggerEvent', 'contextmenu');
-
     /**
      * Local template variable name of the element to attach the context menu.
      * @group Props
@@ -533,13 +532,11 @@ export class ContextMenu extends BaseComponent<ContextMenuPassThrough> {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) autoZIndex: boolean = this.getDefault('autoZIndex', true);
-
     /**
      * Base zIndex value to use in layering.
      * @group Props
      */
     @Input({ transform: numberAttribute }) baseZIndex: number = this.getDefault('baseZIndex', 0);
-
     /**
      * Current id state as a string.
      * @group Props
@@ -550,7 +547,6 @@ export class ContextMenu extends BaseComponent<ContextMenuPassThrough> {
      * @group Props
      */
     @Input() breakpoint: string = this.getDefault('breakpoint', '960px');
-
     /**
      * Defines a string value that labels an interactive element.
      * @group Props
@@ -566,7 +562,6 @@ export class ContextMenu extends BaseComponent<ContextMenuPassThrough> {
      * @group Props
      */
     @Input({ transform: numberAttribute }) pressDelay: number | undefined = this.getDefault('pressDelay', 500);
-
     /**
      * Target element to attach the overlay, valid values are "body" or a local ng-template variable of another element (note: use binding with brackets for template variables, e.g. [appendTo]="mydiv" for a div element having #mydiv as variable name).
      * @defaultValue 'self'

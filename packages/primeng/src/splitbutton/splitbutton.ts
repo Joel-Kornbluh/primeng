@@ -172,25 +172,21 @@ export class SplitButton extends BaseComponent<SplitButtonPassThrough> {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) raised: boolean = this.getDefault('raised', false);
-
     /**
      * Add a circular border radius to the button.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) rounded: boolean = this.getDefault('rounded', false);
-
     /**
      * Add a textual class to the button without a background initially.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) text: boolean = this.getDefault('text', false);
-
     /**
      * Add a border class without a background initially.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) outlined: boolean = this.getDefault('outlined', false);
-
     /**
      * Defines the size of the button.
      * @group Props
@@ -201,7 +197,6 @@ export class SplitButton extends BaseComponent<SplitButtonPassThrough> {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) plain: boolean = this.getDefault('plain', false);
-
     /**
      * Name of the icon.
      * @group Props
@@ -212,7 +207,6 @@ export class SplitButton extends BaseComponent<SplitButtonPassThrough> {
      * @group Props
      */
     @Input() iconPos: SplitButtonIconPosition = this.getDefault('iconPos', 'left');
-
     /**
      * Text of the button.
      * @group Props
@@ -271,14 +265,12 @@ export class SplitButton extends BaseComponent<SplitButtonPassThrough> {
      * @deprecated since v21.0.0. Use `motionOptions` instead.
      */
     @Input() showTransitionOptions: string = this.getDefault('showTransitionOptions', '.12s cubic-bezier(0, 0, 0.2, 1)');
-
     /**
      * Transition options of the hide animation.
      * @group Props
      * @deprecated since v21.0.0. Use `motionOptions` instead.
      */
     @Input() hideTransitionOptions: string = this.getDefault('hideTransitionOptions', '.1s linear');
-
     /**
      * The motion options.
      * @group Props
@@ -326,13 +318,11 @@ export class SplitButton extends BaseComponent<SplitButtonPassThrough> {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) menuButtonDisabled: boolean = this.getDefault('menuButtonDisabled', false);
-
     /**
      * When present, it specifies that the button element should be disabled.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) buttonDisabled: boolean = this.getDefault('buttonDisabled', false);
-
     /**
      * Callback to invoke when default command button is clicked.
      * @param {MouseEvent} event - Mouse event.

@@ -141,7 +141,6 @@ export class Drawer extends BaseComponent<DrawerPassThrough> {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) blockScroll: boolean = this.getDefault('blockScroll', false);
-
     /**
      * Inline style of the component.
      * @group Props
@@ -162,51 +161,43 @@ export class Drawer extends BaseComponent<DrawerPassThrough> {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) autoZIndex: boolean = this.getDefault('autoZIndex', true);
-
     /**
      * Base zIndex value to use in layering.
      * @group Props
      */
     @Input({ transform: numberAttribute }) baseZIndex: number = this.getDefault('baseZIndex', 0);
-
     /**
      * Whether an overlay mask is displayed behind the drawer.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) modal: boolean = this.getDefault('modal', true);
-
     /**
      * Used to pass all properties of the ButtonProps to the Button component.
      * @group Props
      */
     @Input() closeButtonProps: ButtonProps = this.getDefault('closeButtonProps', { severity: 'secondary', text: true, rounded: true });
-
     /**
      * Whether to dismiss drawer on click of the mask.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) dismissible: boolean = this.getDefault('dismissible', true);
-
     /**
      * Whether to display the close icon.
      * @group Props
      * @deprecated use 'closable' instead.
      */
     @Input({ transform: booleanAttribute }) showCloseIcon: boolean = this.getDefault('showCloseIcon', true);
-
     /**
      * Specifies if pressing escape key should hide the drawer.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) closeOnEscape: boolean = this.getDefault('closeOnEscape', true);
-
     /**
      * Transition options of the animation.
      * @group Props
      * @deprecated since v21.0.0. Use `motionOptions` instead.
      */
     @Input() transitionOptions: string = this.getDefault('transitionOptions', '150ms cubic-bezier(0, 0, 0.2, 1)');
-
     /**
      * The visible property is an input that determines the visibility of the component.
      * @defaultValue false
@@ -229,7 +220,6 @@ export class Drawer extends BaseComponent<DrawerPassThrough> {
      * @group Props
      */
     position = input<'left' | 'right' | 'bottom' | 'top' | 'full'>(this.getDefault('position', 'left'));
-
     /**
      * Adds a close icon to the header to hide the dialog.
      * @defaultValue false
@@ -258,7 +248,6 @@ export class Drawer extends BaseComponent<DrawerPassThrough> {
      * @defaultValue true
      */
     @Input({ transform: booleanAttribute }) closable: boolean = this.getDefault('closable', true);
-
     /**
      * Callback to invoke when dialog is shown.
      * @group Emits

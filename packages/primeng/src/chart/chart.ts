@@ -58,7 +58,6 @@ export class UIChart extends BaseComponent<ChartPassThrough> {
      * @group Props
      */
     @Input() plugins: any[] = this.getDefault('plugins', []);
-
     /**
      * Width of the chart.
      * @group Props
@@ -74,7 +73,6 @@ export class UIChart extends BaseComponent<ChartPassThrough> {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) responsive: boolean = this.getDefault('responsive', true);
-
     /**
      * Used to define a string that autocomplete attribute the current element.
      * @group Props

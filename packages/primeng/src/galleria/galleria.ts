@@ -126,7 +126,6 @@ export class Galleria extends BaseComponent<GalleriaPassThrough> {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) fullScreen: boolean = this.getDefault('fullScreen', false);
-
     /**
      * Unique identifier of the element.
      * @group Props
@@ -142,7 +141,6 @@ export class Galleria extends BaseComponent<GalleriaPassThrough> {
      * @group Props
      */
     @Input({ transform: numberAttribute }) numVisible: number = this.getDefault('numVisible', 3);
-
     /**
      * An array of options for responsive design.
      * @see {GalleriaResponsiveOptions}
@@ -154,91 +152,76 @@ export class Galleria extends BaseComponent<GalleriaPassThrough> {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) showItemNavigators: boolean = this.getDefault('showItemNavigators', false);
-
     /**
      * Whether to display navigation buttons in thumbnail container.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) showThumbnailNavigators: boolean = this.getDefault('showThumbnailNavigators', true);
-
     /**
      * Whether to display navigation buttons on item hover.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) showItemNavigatorsOnHover: boolean = this.getDefault('showItemNavigatorsOnHover', false);
-
     /**
      * When enabled, item is changed on indicator hover.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) changeItemOnIndicatorHover: boolean = this.getDefault('changeItemOnIndicatorHover', false);
-
     /**
      * Defines if scrolling would be infinite.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) circular: boolean = this.getDefault('circular', false);
-
     /**
      * Items are displayed with a slideshow in autoPlay mode.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) autoPlay: boolean = this.getDefault('autoPlay', false);
-
     /**
      * When enabled, autorun should stop by click.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) shouldStopAutoplayByClick: boolean = this.getDefault('shouldStopAutoplayByClick', true);
-
     /**
      * Time in milliseconds to scroll items.
      * @group Props
      */
     @Input({ transform: numberAttribute }) transitionInterval: number = this.getDefault('transitionInterval', 4000);
-
     /**
      * Whether to display thumbnail container.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) showThumbnails: boolean = this.getDefault('showThumbnails', true);
-
     /**
      * Position of thumbnails.
      * @group Props
      */
     @Input() thumbnailsPosition: 'bottom' | 'top' | 'left' | 'right' | undefined = this.getDefault('thumbnailsPosition', 'bottom');
-
     /**
      * Height of the viewport in vertical thumbnail.
      * @group Props
      */
     @Input() verticalThumbnailViewPortHeight: string = this.getDefault('verticalThumbnailViewPortHeight', '300px');
-
     /**
      * Whether to display indicator container.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) showIndicators: boolean = this.getDefault('showIndicators', false);
-
     /**
      * When enabled, indicator container is displayed on item container.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) showIndicatorsOnItem: boolean = this.getDefault('showIndicatorsOnItem', false);
-
     /**
      * Position of indicators.
      * @group Props
      */
     @Input() indicatorsPosition: 'bottom' | 'top' | 'left' | 'right' | undefined = this.getDefault('indicatorsPosition', 'bottom');
-
     /**
      * Base zIndex value to use in layering.
      * @group Props
      */
     @Input({ transform: numberAttribute }) baseZIndex: number = this.getDefault('baseZIndex', 0);
-
     /**
      * Style class of the mask on fullscreen mode.
      * @group Props
@@ -260,14 +243,12 @@ export class Galleria extends BaseComponent<GalleriaPassThrough> {
      * @group Props
      */
     @Input() showTransitionOptions: string = this.getDefault('showTransitionOptions', '150ms cubic-bezier(0, 0, 0.2, 1)');
-
     /**
      * Transition options of the hide animation.
      * @deprecated since v21.0.0. Use `motionOptions` instead.
      * @group Props
      */
     @Input() hideTransitionOptions: string = this.getDefault('hideTransitionOptions', '150ms cubic-bezier(0, 0, 0.2, 1)');
-
     /**
      * The motion options.
      * @group Props

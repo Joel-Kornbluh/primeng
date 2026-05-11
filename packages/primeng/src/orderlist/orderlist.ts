@@ -293,7 +293,6 @@ export class OrderList extends BaseComponent<OrderListPassThrough> {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) autoOptionFocus: boolean = this.getDefault('autoOptionFocus', true);
-
     /**
      * Name of the field that uniquely identifies the record in the data.
      * @group Props

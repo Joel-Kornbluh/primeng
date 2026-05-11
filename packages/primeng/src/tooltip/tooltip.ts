@@ -37,7 +37,6 @@ export class Tooltip extends BaseComponent<TooltipPassThroughOptions> {
      * @group Props
      */
     @Input() tooltipEvent: 'hover' | 'focus' | 'both' = this.getDefault('tooltipEvent', 'hover');
-
     /**
      * Type of CSS position.
      * @group Props
@@ -58,7 +57,6 @@ export class Tooltip extends BaseComponent<TooltipPassThroughOptions> {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) escape: boolean = this.getDefault('escape', true);
-
     /**
      * Delay to show the tooltip in milliseconds.
      * @group Props
@@ -89,25 +87,21 @@ export class Tooltip extends BaseComponent<TooltipPassThroughOptions> {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) autoHide: boolean = this.getDefault('autoHide', true);
-
     /**
      * Automatically adjusts the element position when there is not enough space on the selected position.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) fitContent: boolean = this.getDefault('fitContent', true);
-
     /**
      * Whether to hide tooltip on escape key press.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) hideOnEscape: boolean = this.getDefault('hideOnEscape', true);
-
     /**
      * Whether to show the tooltip only when the target text overflows (e.g., ellipsis is active).
      * @group Props
      */
     @Input({ transform: booleanAttribute }) showOnEllipsis: boolean = this.getDefault('showOnEllipsis', false);
-
     /**
      * Content of the tooltip.
      * @group Props

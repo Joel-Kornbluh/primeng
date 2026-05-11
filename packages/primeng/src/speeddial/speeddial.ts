@@ -183,31 +183,26 @@ export class SpeedDial extends BaseComponent<SpeedDialPassThrough> {
      * @gruop Props
      */
     @Input() direction: 'up' | 'down' | 'left' | 'right' | 'up-left' | 'up-right' | 'down-left' | 'down-right' | undefined = this.getDefault('direction', 'up');
-
     /**
      * Transition delay step for each action item.
      * @group Props
      */
     @Input({ transform: numberAttribute }) transitionDelay: number = this.getDefault('transitionDelay', 30);
-
     /**
      * Specifies the opening type of actions.
      * @group Props
      */
     @Input() type: 'linear' | 'circle' | 'semi-circle' | 'quarter-circle' | undefined = this.getDefault('type', 'linear');
-
     /**
      * Radius for *circle types.
      * @group Props
      */
     @Input({ transform: numberAttribute }) radius: number = this.getDefault('radius', 0);
-
     /**
      * Whether to show a mask element behind the speeddial.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) mask: boolean = this.getDefault('mask', false);
-
     /**
      * Whether the component is disabled.
      * @group Props
@@ -218,7 +213,6 @@ export class SpeedDial extends BaseComponent<SpeedDialPassThrough> {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) hideOnClickOutside: boolean = this.getDefault('hideOnClickOutside', true);
-
     /**
      * Inline style of the button element.
      * @group Props
@@ -254,7 +248,6 @@ export class SpeedDial extends BaseComponent<SpeedDialPassThrough> {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) rotateAnimation: boolean = this.getDefault('rotateAnimation', true);
-
     /**
      * Defines a string value that labels an interactive element.
      * @group Props

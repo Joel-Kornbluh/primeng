@@ -503,7 +503,6 @@ export class Stepper extends BaseComponent<StepperPassThrough> {
      * @deprecated since v21.0.0, use `motionOptions` instead.
      */
     transitionOptions: InputSignal<string> = input<string>(this.getDefault('transitionOptions', '400ms cubic-bezier(0.86, 0, 0.07, 1)'));
-
     /**
      * The motion options.
      * @group Props

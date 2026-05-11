@@ -63,13 +63,11 @@ export class Avatar extends BaseComponent<AvatarPassThrough> {
      * @group Props
      */
     @Input() size: 'normal' | 'large' | 'xlarge' | undefined = this.getDefault('size', 'normal');
-
     /**
      * Shape of the element.
      * @group Props
      */
     @Input() shape: 'square' | 'circle' | undefined = this.getDefault('shape', 'square');
-
     /**
      * Class of the element.
      * @deprecated since v20.0.0, use `class` instead.

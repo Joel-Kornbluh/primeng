@@ -54,13 +54,11 @@ export class Divider extends BaseComponent<DividerPassThrough> {
      * @group Props
      */
     @Input() layout: 'horizontal' | 'vertical' | undefined = this.getDefault('layout', 'horizontal');
-
     /**
      * Border style type.
      * @group Props
      */
     @Input() type: 'solid' | 'dashed' | 'dotted' | undefined = this.getDefault('type', 'solid');
-
     /**
      * Alignment of the content.
      * @group Props

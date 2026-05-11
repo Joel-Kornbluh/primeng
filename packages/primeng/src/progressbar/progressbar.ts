@@ -56,7 +56,6 @@ export class ProgressBar extends BaseComponent<ProgressBarPassThrough> {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) showValue: boolean = this.getDefault('showValue', true);
-
     /**
      * Style class of the element.
      * @deprecated since v20.0.0, use `class` instead.
@@ -73,14 +72,12 @@ export class ProgressBar extends BaseComponent<ProgressBarPassThrough> {
      * @group Props
      */
     @Input() unit: string = this.getDefault('unit', '%');
-
     /**
      * Defines the mode of the progress
      * @defaultValue 'determinate'
      * @group Props
      */
     @Input() mode: 'determinate' | 'indeterminate' = this.getDefault('mode', 'determinate');
-
     /**
      * Color for the background of the progress.
      * @group Props

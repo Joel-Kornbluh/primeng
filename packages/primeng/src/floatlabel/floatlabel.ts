@@ -43,7 +43,6 @@ export class FloatLabel extends BaseComponent<FloatLabelPassThrough> implements 
      * @group Props
      */
     @Input() variant: 'in' | 'over' | 'on' = this.getDefault('variant', 'over');
-
 }
 
 @NgModule({

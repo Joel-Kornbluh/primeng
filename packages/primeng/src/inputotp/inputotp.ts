@@ -120,7 +120,6 @@ export class InputOtp extends BaseEditableHolder<InputOtpPassThrough> implements
      * @group Props
      */
     @Input() length: number = this.getDefault('length', 4);
-
     /**
      * Style class of the input element.
      * @group Props
@@ -131,13 +130,11 @@ export class InputOtp extends BaseEditableHolder<InputOtpPassThrough> implements
      * @group Props
      */
     @Input() mask: boolean = this.getDefault('mask', false);
-
     /**
      * When present, it specifies that an input field is integer-only.
      * @group Props
      */
     @Input() integerOnly: boolean = this.getDefault('integerOnly', false);
-
     /**
      * When present, it specifies that the component should automatically get focus on load.
      * @group Props

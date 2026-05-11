@@ -229,25 +229,21 @@ export class Carousel extends BaseComponent {
      * @group Props
      */
     @Input() orientation: 'horizontal' | 'vertical' = this.getDefault('orientation', 'horizontal');
-
     /**
      * Height of the viewport in vertical layout.
      * @group Props
      */
     @Input() verticalViewPortHeight: string = this.getDefault('verticalViewPortHeight', '300px');
-
     /**
      * Style class of main content.
      * @group Props
      */
     @Input() contentClass: string = this.getDefault('contentClass', '');
-
     /**
      * Style class of the indicator items.
      * @group Props
      */
     @Input() indicatorsContentClass: string = this.getDefault('indicatorsContentClass', '');
-
     /**
      * Inline style of the indicator items.
      * @group Props
@@ -258,7 +254,6 @@ export class Carousel extends BaseComponent {
      * @group Props
      */
     @Input() indicatorStyleClass: string = this.getDefault('indicatorStyleClass', '');
-
     /**
      * Style of the indicators.
      * @group Props
@@ -283,25 +278,21 @@ export class Carousel extends BaseComponent {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) circular: boolean = this.getDefault('circular', false);
-
     /**
      * Whether to display indicator container.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) showIndicators: boolean = this.getDefault('showIndicators', true);
-
     /**
      * Whether to display navigation buttons in container.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) showNavigators: boolean = this.getDefault('showNavigators', true);
-
     /**
      * Time in milliseconds to scroll items automatically.
      * @group Props
      */
     @Input({ transform: numberAttribute }) autoplayInterval: number = this.getDefault('autoplayInterval', 0);
-
     /**
      * Style class of the viewport container.
      * @deprecated since v20.0.0, use `class` instead.

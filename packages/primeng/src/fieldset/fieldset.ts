@@ -150,7 +150,6 @@ export class Fieldset extends BaseComponent<FieldsetPassThrough> implements Bloc
      * @deprecated since v21.0.0, use `motionOptions` instead.
      */
     @Input() transitionOptions: string = this.getDefault('transitionOptions', '400ms cubic-bezier(0.86, 0, 0.07, 1)');
-
     /**
      * The motion options.
      * @group Props

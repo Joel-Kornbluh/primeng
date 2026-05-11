@@ -553,13 +553,11 @@ export class Password extends BaseInput<PasswordPassThrough> {
      * @group Props
      */
     @Input() mediumRegex: string = this.getDefault('mediumRegex', '^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})');
-
     /**
      * Regex value for strong regex.
      * @group Props
      */
     @Input() strongRegex: string = this.getDefault('strongRegex', '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})');
-
     /**
      * Text for a weak password. Defaults to PrimeNG I18N API configuration.
      * @group Props
@@ -591,7 +589,6 @@ export class Password extends BaseInput<PasswordPassThrough> {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) feedback: boolean = this.getDefault('feedback', true);
-
     /**
      * Whether to show an icon to display the password as plain text.
      * @group Props
@@ -619,14 +616,12 @@ export class Password extends BaseInput<PasswordPassThrough> {
      * @deprecated since v21.0.0, use `motionOptions` instead.
      */
     @Input() showTransitionOptions: string = this.getDefault('showTransitionOptions', '.12s cubic-bezier(0, 0, 0.2, 1)');
-
     /**
      * Transition options of the hide animation.
      * @group Props
      * @deprecated since v21.0.0, use `motionOptions` instead.
      */
     @Input() hideTransitionOptions: string = this.getDefault('hideTransitionOptions', '.1s linear');
-
     /**
      * Specify automated assistance in filling out password by browser.
      * @group Props
@@ -642,7 +637,6 @@ export class Password extends BaseInput<PasswordPassThrough> {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) showClear: boolean = this.getDefault('showClear', false);
-
     /**
      * When present, it specifies that the component should automatically get focus on load.
      * @group Props

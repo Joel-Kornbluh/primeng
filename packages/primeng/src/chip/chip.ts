@@ -135,7 +135,6 @@ export class Chip extends BaseComponent<ChipPassThrough> {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) removable: boolean | undefined = this.getDefault('removable', false);
-
     /**
      * Icon of the remove element.
      * @group Props

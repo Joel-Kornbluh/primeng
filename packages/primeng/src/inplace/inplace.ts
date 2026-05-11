@@ -85,7 +85,6 @@ export class Inplace extends BaseComponent<InplacePassThrough> {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) closable: boolean | undefined = this.getDefault('closable', false);
-
     /**
      * When present, it specifies that the element should be disabled.
      * @group Props

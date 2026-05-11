@@ -44,7 +44,6 @@ export class IconField extends BaseComponent<IconFieldPassThrough> implements Af
      * @group Props
      */
     @Input() iconPosition: 'right' | 'left' = this.getDefault('iconPosition', 'left');
-
     /**
      * Style class of the component.
      * @deprecated since v20.0.0, use `class` instead.

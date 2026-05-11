@@ -425,7 +425,6 @@ export class Accordion extends BaseComponent<AccordionPassThrough> implements Bl
      * @group Props
      */
     multiple = input(this.getDefault('multiple', false), { transform: (v: any) => transformToBoolean(v) });
-
     /**
      * Class of the element.
      * @deprecated since v20.0.0, use `class` instead.
@@ -448,7 +447,6 @@ export class Accordion extends BaseComponent<AccordionPassThrough> implements Bl
      * @group Props
      */
     selectOnFocus = input(this.getDefault('selectOnFocus', false), { transform: (v: any) => transformToBoolean(v) });
-
     /**
      * Transition options of the animation.
      * @group Props

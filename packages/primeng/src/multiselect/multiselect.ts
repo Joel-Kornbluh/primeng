@@ -538,7 +538,6 @@ export class MultiSelect extends BaseEditableHolder<MultiSelectPassThrough> {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) filter: boolean = this.getDefault('filter', true);
-
     /**
      * Defines placeholder of the filter input.
      * @group Props
@@ -554,7 +553,6 @@ export class MultiSelect extends BaseEditableHolder<MultiSelectPassThrough> {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) overlayVisible: boolean | undefined = this.getDefault('overlayVisible', false);
-
     /**
      * Index of the element in tabbing order.
      * @group Props
@@ -607,25 +605,21 @@ export class MultiSelect extends BaseEditableHolder<MultiSelectPassThrough> {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) showToggleAll: boolean = this.getDefault('showToggleAll', true);
-
     /**
      * Text to display when filtering does not return any results.
      * @group Props
      */
     @Input() emptyFilterMessage: string = this.getDefault('emptyFilterMessage', '');
-
     /**
      * Text to display when there is no data. Defaults to global value in i18n translation configuration.
      * @group Props
      */
     @Input() emptyMessage: string = this.getDefault('emptyMessage', '');
-
     /**
      * Clears the filter value when hiding the dropdown.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) resetFilterOnHide: boolean = this.getDefault('resetFilterOnHide', false);
-
     /**
      * Icon class of the dropdown icon.
      * @group Props
@@ -656,19 +650,16 @@ export class MultiSelect extends BaseEditableHolder<MultiSelectPassThrough> {
      * @group Props
      */
     @Input() optionGroupLabel: string | undefined = this.getDefault('optionGroupLabel', 'label');
-
     /**
      * Name of the options field of an option group.
      * @group Props
      */
     @Input() optionGroupChildren: string = this.getDefault('optionGroupChildren', 'items');
-
     /**
      * Whether to show the header.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) showHeader: boolean = this.getDefault('showHeader', true);
-
     /**
      * When filtering is enabled, filterBy decides which field or fields (comma separated) to search against.
      * @group Props
@@ -679,13 +670,11 @@ export class MultiSelect extends BaseEditableHolder<MultiSelectPassThrough> {
      * @group Props
      */
     @Input() scrollHeight: string = this.getDefault('scrollHeight', '200px');
-
     /**
      * Defines if data is loaded and interacted with in lazy manner.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) lazy: boolean = this.getDefault('lazy', false);
-
     /**
      * Whether the data should be loaded on demand during scroll.
      * @group Props
@@ -726,7 +715,6 @@ export class MultiSelect extends BaseEditableHolder<MultiSelectPassThrough> {
      * @group Props
      */
     @Input() filterMatchMode: 'contains' | 'startsWith' | 'endsWith' | 'equals' | 'notEquals' | 'in' | 'lt' | 'lte' | 'gt' | 'gte' = this.getDefault('filterMatchMode', 'contains');
-
     /**
      * Advisory information to display in a tooltip on hover.
      * @group Props
@@ -737,13 +725,11 @@ export class MultiSelect extends BaseEditableHolder<MultiSelectPassThrough> {
      * @group Props
      */
     @Input() tooltipPosition: 'top' | 'left' | 'right' | 'bottom' = this.getDefault('tooltipPosition', 'right');
-
     /**
      * Type of CSS position.
      * @group Props
      */
     @Input() tooltipPositionStyle: string = this.getDefault('tooltipPositionStyle', 'absolute');
-
     /**
      * Style class of the tooltip.
      * @group Props
@@ -754,25 +740,21 @@ export class MultiSelect extends BaseEditableHolder<MultiSelectPassThrough> {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) autofocusFilter: boolean = this.getDefault('autofocusFilter', false);
-
     /**
      * Defines how the selected items are displayed.
      * @group Props
      */
     @Input() display: string | 'comma' | 'chip' = this.getDefault('display', 'comma');
-
     /**
      * Defines the autocomplete is active.
      * @group Props
      */
     @Input() autocomplete: string = this.getDefault('autocomplete', 'off');
-
     /**
      * When enabled, a clear icon is displayed to clear the value.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) showClear: boolean = this.getDefault('showClear', false);
-
     /**
      * When present, it specifies that the component should automatically get focus on load.
      * @group Props
@@ -825,7 +807,6 @@ export class MultiSelect extends BaseEditableHolder<MultiSelectPassThrough> {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) focusOnHover: boolean = this.getDefault('focusOnHover', true);
-
     /**
      * Fields used when filtering the options, defaults to optionLabel.
      * @group Props
@@ -836,19 +817,16 @@ export class MultiSelect extends BaseEditableHolder<MultiSelectPassThrough> {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) selectOnFocus: boolean = this.getDefault('selectOnFocus', false);
-
     /**
      * Whether to focus on the first visible or selected element when the overlay panel is shown.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) autoOptionFocus: boolean = this.getDefault('autoOptionFocus', false);
-
     /**
      * Whether the selected option will be add highlight class.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) highlightOnSelect: boolean = this.getDefault('highlightOnSelect', true);
-
     /**
      * Specifies the size of the component.
      * @defaultValue undefined

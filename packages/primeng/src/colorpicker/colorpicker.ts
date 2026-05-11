@@ -113,14 +113,12 @@ export class ColorPicker extends BaseEditableHolder<ColorPickerPassThrough> impl
      * @deprecated since v21.0.0, use `motionOptions` instead.
      */
     @Input() showTransitionOptions: string = this.getDefault('showTransitionOptions', '.12s cubic-bezier(0, 0, 0.2, 1)');
-
     /**
      * Transition options of the hide animation.
      * @group Props
      * @deprecated since v21.0.0, use `motionOptions` instead.
      */
     @Input() hideTransitionOptions: string = this.getDefault('hideTransitionOptions', '.1s linear');
-
     /**
      * Whether to display as an overlay or not.
      * @group Props
@@ -131,7 +129,6 @@ export class ColorPicker extends BaseEditableHolder<ColorPickerPassThrough> impl
      * @group Props
      */
     @Input() format: 'hex' | 'rgb' | 'hsb' = this.getDefault('format', 'hex');
-
     /**
      * Index of the element in tabbing order.
      * @group Props
@@ -147,7 +144,6 @@ export class ColorPicker extends BaseEditableHolder<ColorPickerPassThrough> impl
      * @group Props
      */
     @Input({ transform: booleanAttribute }) autoZIndex: boolean = this.getDefault('autoZIndex', true);
-
     /**
      * When present, it specifies that the component should automatically get focus on load.
      * @group Props
@@ -158,7 +154,6 @@ export class ColorPicker extends BaseEditableHolder<ColorPickerPassThrough> impl
      * @group Props
      */
     @Input() defaultColor: string | undefined = this.getDefault('defaultColor', 'ff0000');
-
     /**
      * Target element to attach the overlay, valid values are "body" or a local ng-template variable of another element (note: use binding with brackets for template variables, e.g. [appendTo]="mydiv" for a div element having #mydiv as variable name).
      * @defaultValue 'self'

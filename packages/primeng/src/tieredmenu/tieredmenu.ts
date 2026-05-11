@@ -522,40 +522,34 @@ export class TieredMenu extends BaseComponent<TieredMenuPassThrough> {
      * @group Props
      */
     @Input() breakpoint: string = this.getDefault('breakpoint', '960px');
-
     /**
      * Whether to automatically manage layering.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) autoZIndex: boolean = this.getDefault('autoZIndex', true);
-
     /**
      * Base zIndex value to use in layering.
      * @group Props
      */
     @Input({ transform: numberAttribute }) baseZIndex: number = this.getDefault('baseZIndex', 0);
-
     /**
      * Whether to show a root submenu on mouse over.
      * @defaultValue true
      * @group Props
      */
     @Input({ transform: booleanAttribute }) autoDisplay: boolean | undefined = this.getDefault('autoDisplay', true);
-
     /**
      * Transition options of the show animation.
      * @group Props
      * @deprecated since v21.0.0, use `motionOptions` instead.
      */
     @Input() showTransitionOptions: string = this.getDefault('showTransitionOptions', '.12s cubic-bezier(0, 0, 0.2, 1)');
-
     /**
      * Transition options of the hide animation.
      * @group Props
      * @deprecated since v21.0.0, use `motionOptions` instead.
      */
     @Input() hideTransitionOptions: string = this.getDefault('hideTransitionOptions', '.1s linear');
-
     /**
      * Current id state as a string.
      * @group Props

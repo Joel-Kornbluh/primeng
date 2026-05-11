@@ -116,7 +116,6 @@ export class Rating extends BaseEditableHolder<RatingPassThrough> {
      * @group Props
      */
     @Input({ transform: numberAttribute }) stars: number = this.getDefault('stars', 5);
-
     /**
      * Style class of the on icon.
      * @group Props

@@ -451,19 +451,16 @@ export class CascadeSelect extends BaseEditableHolder<CascadeSelectPassThrough> 
      * @group Props
      */
     @Input({ transform: booleanAttribute }) focusOnHover: boolean = this.getDefault('focusOnHover', true);
-
     /**
      * Determines if the option will be selected on focus.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) selectOnFocus: boolean = this.getDefault('selectOnFocus', false);
-
     /**
      * Whether to focus on the first visible or selected element when the overlay panel is shown.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) autoOptionFocus: boolean = this.getDefault('autoOptionFocus', false);
-
     /**
      * Style class of the component.
      * @deprecated since v20.0.0, use `class` instead.
@@ -540,7 +537,6 @@ export class CascadeSelect extends BaseEditableHolder<CascadeSelectPassThrough> 
      * @group Props
      */
     @Input({ transform: booleanAttribute }) showClear: boolean = this.getDefault('showClear', false);
-
     /**
      * Style class of the overlay panel.
      * @group Props
@@ -576,7 +572,6 @@ export class CascadeSelect extends BaseEditableHolder<CascadeSelectPassThrough> 
      * @group Props
      */
     @Input() breakpoint: string = this.getDefault('breakpoint', '960px');
-
     /**
      * Specifies the size of the component.
      * @defaultValue undefined

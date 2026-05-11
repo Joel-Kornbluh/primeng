@@ -65,7 +65,6 @@ export class OverlayBadge extends BaseComponent<OverlayBadgePassThrough> {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) badgeDisabled: boolean = this.getDefault('badgeDisabled', false);
-
     /**
      * Size of the badge, valid options are "large" and "xlarge".
      * @group Props

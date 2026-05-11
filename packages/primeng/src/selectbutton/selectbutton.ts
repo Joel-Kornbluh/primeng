@@ -132,7 +132,6 @@ export class SelectButton extends BaseEditableHolder<SelectButtonPassThrough> im
      * @group Props
      */
     @Input({ transform: booleanAttribute }) allowEmpty: boolean = this.getDefault('allowEmpty', true);
-
     /**
      * Style class of the component.
      * @group Props

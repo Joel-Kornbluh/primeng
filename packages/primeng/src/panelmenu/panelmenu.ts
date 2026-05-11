@@ -966,14 +966,12 @@ export class PanelMenu extends BaseComponent<PanelMenuPassThrough> {
      * @group Props
      */
     @Input({ transform: booleanAttribute }) multiple: boolean = this.getDefault('multiple', false);
-
     /**
      * Transition options of the animation.
      * @group Props
      * @deprecated since v21.0.0, use `motionOptions` instead.
      */
     @Input() transitionOptions: string = this.getDefault('transitionOptions', '400ms cubic-bezier(0.86, 0, 0.07, 1)');
-
     /**
      * The motion options.
      * @group Props

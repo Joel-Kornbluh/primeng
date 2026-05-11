@@ -118,13 +118,11 @@ export class ToggleButton extends BaseEditableHolder<ToggleButtonPassThrough> {
      * @group Props
      */
     @Input() onLabel: string = this.getDefault('onLabel', 'Yes');
-
     /**
      * Label for the off state.
      * @group Props
      */
     @Input() offLabel: string = this.getDefault('offLabel', 'No');
-
     /**
      * Icon for the on state.
      * @group Props
@@ -166,7 +164,6 @@ export class ToggleButton extends BaseEditableHolder<ToggleButtonPassThrough> {
      * @group Props
      */
     @Input() iconPos: 'left' | 'right' = this.getDefault('iconPos', 'left');
-
     /**
      * When present, it specifies that the component should automatically get focus on load.
      * @group Props

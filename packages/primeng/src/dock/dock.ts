@@ -163,7 +163,6 @@ export class Dock extends BaseComponent<DockPassThrough> {
      * @group Props
      */
     @Input() position: 'bottom' | 'top' | 'left' | 'right' = this.getDefault('position', 'bottom');
-
     /**
      * Defines a string that labels the input for accessibility.
      * @group Props
@@ -175,7 +174,6 @@ export class Dock extends BaseComponent<DockPassThrough> {
      * @group Props
      */
     @Input() breakpoint: string | undefined = this.getDefault('breakpoint', '960px');
-
     /**
      * Defines a string that labels the dropdown button for accessibility.
      * @group Props

@@ -50,7 +50,6 @@ export class Tabs extends BaseComponent<TabsPassThrough> {
      * @group Props
      */
     scrollable = input(this.getDefault('scrollable', false), { transform: booleanAttribute });
-
     /**
      * When enabled, tabs are not rendered until activation.
      * @type boolean
@@ -58,7 +57,6 @@ export class Tabs extends BaseComponent<TabsPassThrough> {
      * @group Props
      */
     lazy = input(this.getDefault('lazy', false), { transform: booleanAttribute });
-
     /**
      * When enabled, the focused tab is activated.
      * @type boolean
@@ -66,7 +64,6 @@ export class Tabs extends BaseComponent<TabsPassThrough> {
      * @group Props
      */
     selectOnFocus = input(this.getDefault('selectOnFocus', false), { transform: booleanAttribute });
-
     /**
      * Whether to display navigation buttons in container when scrollable is enabled.
      * @type boolean
@@ -74,7 +71,6 @@ export class Tabs extends BaseComponent<TabsPassThrough> {
      * @group Props
      */
     showNavigators = input(this.getDefault('showNavigators', true), { transform: booleanAttribute });
-
     /**
      * Tabindex of the tab buttons.
      * @type number

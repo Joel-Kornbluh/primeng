@@ -178,7 +178,6 @@ export class DataView extends BaseComponent<DataViewPassThrough> implements Bloc
      * @group Props
      */
     @Input({ transform: numberAttribute }) pageLinks: number = this.getDefault('pageLinks', 5);
-
     /**
      * Array of integer/object values to display inside rows per page dropdown of paginator
      * @group Props
@@ -189,7 +188,6 @@ export class DataView extends BaseComponent<DataViewPassThrough> implements Bloc
      * @group Props
      */
     @Input() paginatorPosition: 'top' | 'bottom' | 'both' = this.getDefault('paginatorPosition', 'bottom');
-
     /**
      * Custom style class for paginator
      * @group Props
@@ -200,7 +198,6 @@ export class DataView extends BaseComponent<DataViewPassThrough> implements Bloc
      * @group Props
      */
     @Input({ transform: booleanAttribute }) alwaysShowPaginator: boolean = this.getDefault('alwaysShowPaginator', true);
-
     /**
      * Target element to attach the paginator dropdown overlay, valid values are "body" or a local ng-template variable of another element (note: use binding with brackets for template variables, e.g. [appendTo]="mydiv" for a div element having #mydiv as variable name).
      * @group Props
@@ -211,13 +208,11 @@ export class DataView extends BaseComponent<DataViewPassThrough> implements Bloc
      * @group Props
      */
     @Input() paginatorDropdownScrollHeight: string = this.getDefault('paginatorDropdownScrollHeight', '200px');
-
     /**
      * Template of the current page report element. Available placeholders are {currentPage},{totalPages},{rows},{first},{last} and {totalRecords}
      * @group Props
      */
     @Input() currentPageReportTemplate: string = this.getDefault('currentPageReportTemplate', '{currentPage} of {totalPages}');
-
     /**
      * Whether to display current page report.
      * @group Props
@@ -233,13 +228,11 @@ export class DataView extends BaseComponent<DataViewPassThrough> implements Bloc
      * @group Props
      */
     @Input({ transform: booleanAttribute }) showFirstLastIcon: boolean = this.getDefault('showFirstLastIcon', true);
-
     /**
      * Whether to show page links.
      * @group Props
      */
     @Input({ transform: booleanAttribute }) showPageLinks: boolean = this.getDefault('showPageLinks', true);
-
     /**
      * Defines if data is loaded and interacted with in lazy manner.
      * @group Props
@@ -250,13 +243,11 @@ export class DataView extends BaseComponent<DataViewPassThrough> implements Bloc
      * @group Props
      */
     @Input({ transform: booleanAttribute }) lazyLoadOnInit: boolean = this.getDefault('lazyLoadOnInit', true);
-
     /**
      * Text to display when there is no data. Defaults to global value in i18n translation configuration.
      * @group Props
      */
     @Input() emptyMessage: string = this.getDefault('emptyMessage', '');
-
     /**
      * Style class of the component.
      * @deprecated since v20.0.0, use `class` instead.
@@ -268,13 +259,11 @@ export class DataView extends BaseComponent<DataViewPassThrough> implements Bloc
      * @group Props
      */
     @Input() gridStyleClass: string = this.getDefault('gridStyleClass', '');
-
     /**
      * Function to optimize the dom operations by delegating to ngForTrackBy, default algorithm checks for object identity.
      * @group Props
      */
     @Input() trackBy: Function = this.getDefault('trackBy', (index: number, item: any) => item);
-
     /**
      * Comma separated list of fields in the object graph to search against.
      * @group Props
@@ -300,7 +289,6 @@ export class DataView extends BaseComponent<DataViewPassThrough> implements Bloc
      * @group Props
      */
     @Input({ transform: numberAttribute }) first: number | undefined = this.getDefault('first', 0);
-
     /**
      * Property name of data to use in sorting by default.
      * @group Props
@@ -321,7 +309,6 @@ export class DataView extends BaseComponent<DataViewPassThrough> implements Bloc
      * @group Props
      */
     @Input() layout: 'list' | 'grid' = this.getDefault('layout', 'list');
-
     /**
      * Callback to invoke when paging, sorting or filtering happens in lazy mode.
      * @param {DataViewLazyLoadEvent} event - Custom lazy load event.

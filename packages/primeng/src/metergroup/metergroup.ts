@@ -141,31 +141,26 @@ export class MeterGroup extends BaseComponent<MeterGroupPassThrough> {
      * @group Props
      */
     @Input() min: number = this.getDefault('min', 0);
-
     /**
      * Maximum boundary value.
      * @group Props
      */
     @Input() max: number = this.getDefault('max', 100);
-
     /**
      * Specifies the layout of the component, valid values are 'horizontal' and 'vertical'.
      * @group Props
      */
     @Input() orientation: 'horizontal' | 'vertical' = this.getDefault('orientation', 'horizontal');
-
     /**
      * Specifies the label position of the component, valid values are 'start' and 'end'.
      * @group Props
      */
     @Input() labelPosition: 'start' | 'end' = this.getDefault('labelPosition', 'end');
-
     /**
      * Specifies the label orientation of the component, valid values are 'horizontal' and 'vertical'.
      * @group Props
      */
     @Input() labelOrientation: 'horizontal' | 'vertical' | undefined = this.getDefault('labelOrientation', 'horizontal');
-
     /**
      * Style class of the element.
      * @deprecated since v20.0.0, use `class` instead.
