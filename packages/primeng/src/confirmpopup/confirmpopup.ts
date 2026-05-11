@@ -39,6 +39,7 @@ import { Nullable, VoidListener } from 'primeng/ts-helpers';
 import { ConfirmPopupContentTemplateContext, ConfirmPopupHeadlessTemplateContext, ConfirmPopupPassThrough } from 'primeng/types/confirmpopup';
 import { ZIndexUtils } from 'primeng/utils';
 import { Subscription } from 'rxjs';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { ConfirmPopupStyle } from './style/confirmpopupstyle';
 
 const CONFIRMPOPUP_INSTANCE = new InjectionToken<ConfirmPopup>('CONFIRMPOPUP_INSTANCE');
@@ -138,6 +139,8 @@ export class ConfirmPopup extends BaseComponent<ConfirmPopupPassThrough> {
 
     bindDirectiveInstance = inject(Bind, { self: true });
 
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
     onAfterViewChecked(): void {
         this.bindDirectiveInstance.setAttrs(this.ptm('host'));
     }
@@ -151,7 +154,7 @@ export class ConfirmPopup extends BaseComponent<ConfirmPopupPassThrough> {
      * Element to receive the focus when the popup gets visible, valid values are "accept", "reject", and "none".
      * @group Props
      */
-    @Input() defaultFocus: string = 'accept';
+    @Input() defaultFocus: string = this._componentDefaults?.confirmPopup?.defaultFocus ?? 'accept';
     /**
      * Transition options of the show animation.
      * @group Props
@@ -168,12 +171,12 @@ export class ConfirmPopup extends BaseComponent<ConfirmPopupPassThrough> {
      * Whether to automatically manage layering.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoZIndex: boolean = true;
+    @Input({ transform: booleanAttribute }) autoZIndex: boolean = this._componentDefaults?.confirmPopup?.autoZIndex ?? true;
     /**
      * Base zIndex value to use in layering.
      * @group Props
      */
-    @Input({ transform: numberAttribute }) baseZIndex: number = 0;
+    @Input({ transform: numberAttribute }) baseZIndex: number = this._componentDefaults?.confirmPopup?.baseZIndex ?? 0;
     /**
      * Inline style of the component.
      * @group Props

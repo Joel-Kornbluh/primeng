@@ -14,6 +14,7 @@ import { Nullable, VoidListener } from 'primeng/ts-helpers';
 import type { ColorPickerChangeEvent } from 'primeng/types/colorpicker';
 import { ColorPickerPassThrough } from 'primeng/types/colorpicker';
 import { ZIndexUtils } from 'primeng/utils';
+import { PRIMENG_COMPONENT_DEFAULTS } from 'primeng/config';
 import { ColorPickerStyle } from './style/colorpickerstyle';
 
 export const COLORPICKER_VALUE_ACCESSOR: any = {
@@ -97,6 +98,8 @@ export class ColorPicker extends BaseEditableHolder<ColorPickerPassThrough> impl
 
     bindDirectiveInstance = inject(Bind, { self: true });
 
+    private _componentDefaults = inject(PRIMENG_COMPONENT_DEFAULTS, { optional: true });
+
     onAfterViewChecked(): void {
         this.bindDirectiveInstance.setAttrs(this.ptms(['host', 'root']));
     }
@@ -123,12 +126,12 @@ export class ColorPicker extends BaseEditableHolder<ColorPickerPassThrough> impl
      * Whether to display as an overlay or not.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) inline: boolean | undefined;
+    @Input({ transform: booleanAttribute }) inline: boolean | undefined = this._componentDefaults?.colorPicker?.inline;
     /**
      * Format to use in value binding.
      * @group Props
      */
-    @Input() format: 'hex' | 'rgb' | 'hsb' = 'hex';
+    @Input() format: 'hex' | 'rgb' | 'hsb' = this._componentDefaults?.colorPicker?.format ?? 'hex';
     /**
      * Index of the element in tabbing order.
      * @group Props
@@ -143,7 +146,7 @@ export class ColorPicker extends BaseEditableHolder<ColorPickerPassThrough> impl
      * Whether to automatically manage layering.
      * @group Props
      */
-    @Input({ transform: booleanAttribute }) autoZIndex: boolean = true;
+    @Input({ transform: booleanAttribute }) autoZIndex: boolean = this._componentDefaults?.colorPicker?.autoZIndex ?? true;
     /**
      * When present, it specifies that the component should automatically get focus on load.
      * @group Props
@@ -153,7 +156,7 @@ export class ColorPicker extends BaseEditableHolder<ColorPickerPassThrough> impl
      * Default color to display initially when model value is not present.
      * @group Props
      */
-    @Input() defaultColor: string | undefined = 'ff0000';
+    @Input() defaultColor: string | undefined = this._componentDefaults?.colorPicker?.defaultColor ?? 'ff0000';
     /**
      * Target element to attach the overlay, valid values are "body" or a local ng-template variable of another element (note: use binding with brackets for template variables, e.g. [appendTo]="mydiv" for a div element having #mydiv as variable name).
      * @defaultValue 'self'
